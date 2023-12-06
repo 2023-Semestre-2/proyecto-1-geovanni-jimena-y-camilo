@@ -2,6 +2,8 @@
 # Tienda de Ciclismo 
 ## Integrantes:
 ### 2022163324 Geovanni Gonzalez Aguilar
+### Carné Jimena Mendez Morales
+### Carné Camilo 
 
 ### Estado del proyecto: Escala de 1 a 5, 1 siendo completo y 5 muy malo
 ### Enlace del video: (Si esto fue solicitado)
