@@ -4,6 +4,11 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisc
@@ -15,6 +20,13 @@ public class UsuarioVentana extends javax.swing.JFrame {
      */
     public UsuarioVentana() {
         initComponents();
+        try {
+            System.out.println(FileManager.readFile("usuarios.acc"));
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error, no se ha leido el archivo correctamente");
+        }
+        
     }
 
     /**
