@@ -11,6 +11,10 @@ package ejercicio.tiendaciclismo;
 public class TiendaCiclismo {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        UsuarioVentana v1 = new UsuarioVentana();
+        v1.setVisible(true);
+        
+        
+        
     }
 }
