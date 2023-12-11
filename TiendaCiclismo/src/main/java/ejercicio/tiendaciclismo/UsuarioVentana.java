@@ -7,6 +7,7 @@ package ejercicio.tiendaciclismo;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,10 +22,14 @@ public class UsuarioVentana extends javax.swing.JFrame {
     public UsuarioVentana() {
         initComponents();
         try {
-            System.out.println(FileManager.readFile("usuarios.acc"));
+            System.out.println(FileManager.readFile("usuarrios.acc"));
             
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error, no se ha leido el archivo correctamente");
+            // falta esta validacion
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            
+            // Cerrar el programa
+            System.exit(0);
         }
         
     }
@@ -41,9 +46,9 @@ public class UsuarioVentana extends javax.swing.JFrame {
         lblSaludo = new javax.swing.JLabel();
         txfUsuario = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
-        txfPassword = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
+        pwfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,12 +62,6 @@ public class UsuarioVentana extends javax.swing.JFrame {
         });
 
         lblUsuario.setText("Usuario");
-
-        txfPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfPasswordActionPerformed(evt);
-            }
-        });
 
         lblPassword.setText("Contraseña");
 
@@ -79,11 +78,11 @@ public class UsuarioVentana extends javax.swing.JFrame {
                         .addComponent(lblSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                             .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pwfPassword))))
                 .addContainerGap(160, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -102,8 +101,8 @@ public class UsuarioVentana extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(pwfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnNext)
                 .addGap(41, 41, 41))
         );
@@ -114,10 +113,6 @@ public class UsuarioVentana extends javax.swing.JFrame {
     private void txfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfUsuarioActionPerformed
-
-    private void txfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +154,7 @@ public class UsuarioVentana extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSaludo;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txfPassword;
+    private javax.swing.JPasswordField pwfPassword;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 }
