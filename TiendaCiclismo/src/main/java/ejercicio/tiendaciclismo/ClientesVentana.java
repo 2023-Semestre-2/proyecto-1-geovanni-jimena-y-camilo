@@ -220,7 +220,7 @@ public class ClientesVentana extends javax.swing.JFrame {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
-        AgregarCliente vent1= new AgregarCliente();
+        AgregarClienteVentana vent1= new AgregarClienteVentana();
         vent1.setVisible(true);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
@@ -249,6 +249,12 @@ public class ClientesVentana extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
