@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ejercicio.tiendaciclismo;
 
-/**
- *
- * @author geova
- */
-public class Cliente {
+package ejercicio.tiendaciclismo;
+import java.io.Serializable; //Libreria para serializar objetos
+
+public class Cliente implements Serializable {
     
     int codigo = 1;
     String nombre;

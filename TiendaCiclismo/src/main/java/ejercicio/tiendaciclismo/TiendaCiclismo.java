@@ -6,8 +6,9 @@ public class TiendaCiclismo {
 
     public static void main(String[] args) {
         
-        clientesFrame ventanaCli= new clientesFrame();
+        ClientesVentana ventanaCli= new ClientesVentana();
         ventanaCli.setVisible(true);
+        
         
     }
 }
