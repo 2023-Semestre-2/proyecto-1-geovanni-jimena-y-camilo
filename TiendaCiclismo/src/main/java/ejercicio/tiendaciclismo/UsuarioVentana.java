@@ -13,19 +13,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.awt.*;
 
 /**
  *
  * @author luisc
  */
 public class UsuarioVentana extends javax.swing.JFrame {
-    private ArrayList<String> arrayUsers = new ArrayList<String>();
+    private ArrayList<String> arrayUsers = new ArrayList<String>(); // variable donde se almacenan las credenciales de usuario
+    int center_horizontal_point;
+    int center_vertical_point;
     
     /**
      * Creates new form UsuarioVentana
      */
     public UsuarioVentana() {
         initComponents();
+        centerWindow(this);
         
          try {
            // System.out.println(FileManager.readFileLine("usuarios.acc"));
@@ -53,6 +57,14 @@ public class UsuarioVentana extends javax.swing.JFrame {
         return false; 
        
     }
+    
+    private void centerWindow(Window window) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        center_horizontal_point = (screenSize.width - window.getWidth()) / 2;
+        center_vertical_point = (screenSize.height - window.getHeight()) / 2;
+        window.setLocation(center_horizontal_point, center_vertical_point);
+    }
+    
     
     private void readFileLine (String path) throws FileNotFoundException, IOException
     {
@@ -166,8 +178,8 @@ public class UsuarioVentana extends javax.swing.JFrame {
          if(verifyUser(usuario, password)){
              Menu m1 = new Menu();
              m1.setVisible(true);
+             m1.setLocation(center_horizontal_point, center_vertical_point);
              dispose();
-            
          }
          else{
             JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE); 
