@@ -17,6 +17,9 @@ public class TiendaCiclismo {
         
         System.out.println(reg1.toString());
         
+        ProductosVentana v1 = new ProductosVentana();
+        v1.setVisible(true);
+        
     
     }
 }
