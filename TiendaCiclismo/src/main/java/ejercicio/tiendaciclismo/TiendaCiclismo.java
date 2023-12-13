@@ -11,6 +11,12 @@ package ejercicio.tiendaciclismo;
 public class TiendaCiclismo {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        RegistroProductos reg1= new RegistroProductos();
+        
+        reg1.agregarTipoProducto("Jimena");
+        
+        System.out.println(reg1.toString());
+        
+    
     }
 }
