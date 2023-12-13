@@ -16,6 +16,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
      */
     public AgregarClienteVentana() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

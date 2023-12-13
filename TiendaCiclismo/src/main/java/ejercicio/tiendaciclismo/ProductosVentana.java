@@ -15,6 +15,8 @@ public class ProductosVentana extends javax.swing.JFrame {
      */
     public ProductosVentana() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**

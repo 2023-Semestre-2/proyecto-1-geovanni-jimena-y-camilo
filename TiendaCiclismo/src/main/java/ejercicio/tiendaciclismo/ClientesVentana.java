@@ -16,6 +16,8 @@ public class ClientesVentana extends javax.swing.JFrame {
      */
     public ClientesVentana() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
