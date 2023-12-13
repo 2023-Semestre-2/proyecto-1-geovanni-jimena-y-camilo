@@ -193,14 +193,553 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_comboxDistritoActionPerformed
 
     private void comboxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxProvinciaActionPerformed
-        // TODO add your handling code here:
+       String provincia = (String) comboxProvincia.getSelectedItem();
+       
+       if ("Limón" == provincia){
+           String [] listaCantonesLimon = {"Pococí","Guacimo","Siquirres","Matina","Limón","Talamanca"};
+           comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesLimon.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesLimon[indice]);
+       }
+       if ("San José" == provincia){
+           String [] listaCantonesSanJose = {"San José","Escazú","Desamparados",
+                                           "Puriscal","Tarrazú","Aserrí","Mora","Goicoechea",
+                                           "Santa Ana", "Alajuelita","Vásquez de Coronado",
+                                            "Acosta","Tibás","Montes de Oca","Turrubares","Dota",
+                                              "Curridabat","Pérez Zeledón","León Cortés Castro"};
+            comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesSanJose.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesSanJose[indice]);
+       }
+       if ("Alajuela" == provincia){
+           String [] listaCantonesAlajuela = {"Alajuela", "San Ramón", "Grecia", "San Mateo", "Atenas", "Naranjo", "Palmares", "Poás", "Orotina", "Sarchí", "Upala", "Los Chiles", "Guatuso"};
+           comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesAlajuela.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesAlajuela[indice]);
+       }
+       if ("Cartago" == provincia){
+           String [] listaCantonesCartago = {"Cartago", "Paraíso", "La Unión", "Jiménez", "Turrialba", "Alvarado", "Oreamuno", "El Guarco"};
+            comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesCartago.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesCartago[indice]);
+       }
+       if ("Heredia" == provincia){
+           String [] listaCantonesHeredia = {"Heredia", "Barva", "Santo Domingo", "Santa Bárbara", "San Rafael"};
+            comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesHeredia.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesHeredia[indice]);
+       }
+       if ("Guanacaste" == provincia){
+           String [] listaCantonesGuanacaste = {"Liberia", "Nicoya", "Santa Cruz", "Bagaces", "Carrillo", "Cañas", "Abangares", "Tilarán", "Nandayure", "La Cruz", "Hojancha"};
+            comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesGuanacaste.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesGuanacaste[indice]);
+       }
+       if ("Puntarenas" == provincia){
+           String [] listaCantonesPuntarenas = {"Puntarenas", "Esparza", "Buenos Aires", "Montes de Oro", "Osa", "Quepos", "Golfito", "Coto Brus", "Parrita"};
+            comboxCanton.removeAllItems();
+           for (int indice=0 ; listaCantonesPuntarenas.length != indice; indice++)
+               comboxCanton.addItem(listaCantonesPuntarenas[indice]);
+       }
+       
+       
     }//GEN-LAST:event_comboxProvinciaActionPerformed
 
     private void comboxCantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxCantonActionPerformed
-        
-            
-        
- 
+       String canton = (String) comboxCanton.getSelectedItem();
+       if ("Limón" == canton){
+           String [] listaDistritosLimon = {"Limón", "Valle La Estrella", "Río Blanco", "Matama"};
+            comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosLimon.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosLimon[indice]);
+       }
+       if ("Pococí" == canton){
+           String [] listaDistritosPococi = {"Guápiles", "Jiménez", "La Colonia", "Rita", "Roxana", "Cariari", "Colorado"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPococi.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPococi[indice]);
+       }
+       if ("Siquirres" == canton){
+           String [] listaDistritosSiquirres = {"Siquirres", "Pacuarito", "Florida", "Germania", "Cairo"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosSiquirres.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosSiquirres[indice]);
+       }
+       if ("Talamanca" == canton){
+           String [] listaDistritosTalamanca = {"Bribri", "Sixaola", "Cahuita", "Bratsi"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTalamanca.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTalamanca[indice]);
+       }
+       if ("Matina" == canton){
+           String [] listaDistritosMatina = {"Matina", "Batán", "Carrandí"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosMatina.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosMatina [indice]);
+       }
+       
+       if ("Guacimo" == canton){
+           String [] listaDistritosGuacimo = {"Guácimo", "Duacarí", "Jiménez", "Río Jiménez", "Rita", "Colorado"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGuacimo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGuacimo [indice]);
+       }
+       if ("San José" == canton){
+           String [] listaDistritosSanJose = {"Carmen", "Merced", "Hospital", "Catedral", "Zapote", "San Francisco de Dos Ríos", "Uruca", "Mata Redonda", "Pavas", "Hatillo", "San Sebastián"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosSanJose.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosSanJose [indice]);
+       }
+       if ("Escazú" == canton){
+           String [] listaDistritosEscazú = {"Escazú", "San Antonio", "San Rafael"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosEscazú.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosEscazú [indice]);
+       }
+       if ("Desamparados" == canton){
+           String [] listaDistritosDesamparados = {"Desamparados", "San Miguel", "San Juan de Dios", "San Rafael Arriba", "San Antonio", "Frailes", "Patarrá", "San Cristóbal", "Rosario", "Damas", "San Rafael Abajo", "Gravilias", "Los Guido"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosDesamparados.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosDesamparados [indice]);
+       }
+       if ("Puriscal" == canton){
+           String [] listaDistritosPuriscal = {"Santiago", "Mercedes Sur", "Barbacoas", "Grifo Alto", "San Rafael", "Candelarita", "Desamparaditos", "San Antonio", "Chires"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPuriscal.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPuriscal [indice]);
+       }
+       if ("Tarrazú" == canton){
+           String [] listaDistritosTarrazú = {"San Marcos", "San Lorenzo", "San Carlos"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTarrazú.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTarrazú [indice]);
+       }
+       if ("Aserrí" == canton){
+           String [] listaDistritosAserrí = {"Aserrí", "Tarbaca", "Vuelta de Jorco", "San Gabriel", "Legua", "Monterrey", "Salitrillos"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAserrí.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAserrí [indice]);
+        }
+       if ("Mora" == canton){
+           String [] listaDistritosMora = {"Carmen", "Merced", "Hospital", "Catedral", "Zapote", "San Francisco de Dos Ríos", "Uruca", "Mata Redonda", "Pavas", "Hatillo", "San Sebastián"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosMora.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosMora [indice]);
+        }
+            if ("Santa Ana" == canton){
+           String [] listaDistritosSantaAna = {"Santa Ana", "Salitral", "Pozos", "Uruca", "Piedades", "Brasil"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosSantaAna.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosSantaAna [indice]);
+        }
+       if ("Goicoechea" == canton){
+           String [] listaDistritosGoicoechea = {"Guadalupe", "San Francisco", "Calle Blancos", "Mata de Plátano", "Ipís", "Rancho Redondo", "Purral"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGoicoechea.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGoicoechea [indice]);
+        }
+       if ("Alajuelita" == canton){
+           String [] listaDistritosAlajuelita = {"Alajuelita", "San Josecito", "San Antonio", "Concepción", "San Felipe"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAlajuelita.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAlajuelita [indice]);
+       }
+       if ("Vásquez de Coronado" == canton){
+           String [] listaDistritosVásquez = {"San Isidro", "San Rafael", "Dulce Nombre de Jesús", "Patalillo", "Cascajal"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosVásquez.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosVásquez [indice]);
+       }
+       if ("Acosta" == canton){
+           String [] listaDistritosAcosta = {"San Ignacio", "Guaitil", "Palmichal", "Cangrejal", "Sabanillas"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAcosta.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAcosta [indice]);
+       }
+       if ("Tibás" == canton){
+           String [] listaDistritosTibás = {"San Juan", "Cinco Esquinas", "Anselmo Llorente", "León XIII", "Colima"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTibás.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTibás [indice]);
+       }
+       if ("Moravia" == canton){
+           String [] listaDistritosMoravia = {"San Vicente", "San Jerónimo", "La Trinidad"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosMoravia.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosMoravia [indice]);
+       }
+       if ("Montes de Oca" == canton){
+           String [] listaDistritosMontes = {"San Pedro", "Sabanilla", "Mercedes", "San Rafael"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosMontes.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosMontes [indice]);
+       }
+       if ("Turrubares" == canton){
+           String [] listaDistritosTurrubares = {"San Pablo", "San Pedro", "San Juan de Mata", "San Luis", "Carara"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTurrubares.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTurrubares [indice]);
+       }
+       if ("Dota" == canton){
+           String [] listaDistritosDota = {"Santa María", "Jardín", "Copey"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosDota.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosDota [indice]);
+       }if ("Curridabat" == canton){
+           String [] listaDistritosCurridabat = {"Curridabat", "Granadilla", "Sánchez", "Tirrases"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCurridabat.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCurridabat [indice]);
+       }
+       if ("Pérez Zeledón" == canton){
+           String [] listaDistritosPérez = {"San Isidro de El General", "General", "Daniel Flores", "Rivas", "San Pedro", "Platanares", "Pejibaye", "Cajón", "Barú", "Río Nuevo", "Páramo", "La Amistad"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPérez.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPérez [indice]);
+       }
+       if ("León Cortés Castro" == canton){
+           String [] listaDistritosLeón = {"San Pablo", "San Andrés", "Llano Bonito", "San Isidro", "Santa Cruz", "San Antonio"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosLeón.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosLeón [indice]);
+       }
+       if ("Alajuela" == canton){
+           String [] listaDistritosAlajuela = {"Alajuela", "San José", "Carrizal", "San Antonio", "Guácima", "San Isidro", "Sabanilla", "San Rafael", "Río Segundo", "Desamparados", "Turrúcares", "Tambor", "Garita", "Sarapiquí"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAlajuela.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAlajuela [indice]);
+       }
+       if ("San Ramón" == canton){
+           String [] listaDistritosRamón = {"San Ramón", "Santiago", "San Juan", "Piedades Norte", "Piedades Sur", "San Rafael", "San Isidro", "Ángeles", "Alfaro", "Volio", "Concepción", "Zapotal", "Peñas Blancas"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosRamón.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosRamón [indice]);
+       }
+       if ("Grecia" == canton){
+           String [] listaDistritosGrecia = {"Grecia", "San Isidro", "San José", "San Roque", "Tacares", "Río Cuarto", "Puente de Piedra", "Bolívar"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGrecia.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGrecia [indice]);
+       }
+       if ("San Mateo" == canton){
+           String [] listaDistritosMateo = {"San Mateo", "Desmonte", "Jesús María", "Labrador"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosMateo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosMateo [indice]);
+       }
+       if ("Atenas" == canton){
+           String [] listaDistritosTarrazú = {"Atenas", "Jesús", "Mercedes", "San Isidro", "Concepción", "San José", "Santa Eulalia", "Escobal"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTarrazú.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTarrazú [indice]);
+       }
+       if ("Naranjo" == canton){
+           String [] listaDistritosNaranjo = {"Naranjo", "San Miguel", "San José", "Cirrí Sur", "San Jerónimo", "San Juan", "El Rosario", "Palmitos"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosNaranjo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosNaranjo [indice]);
+       }
+       if ("Palmares" == canton){
+           String [] listaDistritosPalmares = {"Palmares", "Zaragoza", "Buenos Aires", "Santiago", "Candelaria", "Esquipulas", "La Granja"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPalmares.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPalmares [indice]);
+       }
+       if ("Poás" == canton){
+           String [] listaDistritosPoás = {"San Pedro", "San Juan", "San Rafael", "Carrillos", "Sabana Redonda"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPoás.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPoás [indice]);
+       }
+       if ("Orotina" == canton){
+           String [] listaDistritosOrotina = {"Orotina", "El Mastate", "Hacienda Vieja", "Coyolar", "La Ceiba"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosOrotina.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosOrotina [indice]);
+       }
+       if ("San Carlos" == canton){
+           String [] listaDistritosCarlos = {"Quesada", "Florencia", "Buenavista", "Aguas Zarcas", "Venecia", "Pital", "La Fortuna", "La Tigra", "La Palmera", "Venado", "Cutris", "Monterrey", "Pocosol"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCarlos.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCarlos [indice]);
+       }
+       if ("Zarcero" == canton){
+           String [] listaDistritosZarcero = {"Zarcero", "Laguna", "Tapezco", "Guadalupe", "Palmira", "Zapote", "Brisas"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosZarcero.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosZarcero [indice]);
+       }
+       if ("Valverde Vega" == canton){
+           String [] listaDistritosValverde = {"Sarchí Norte", "Sarchí Sur", "Toro Amarillo", "San Pedro", "Rodríguez"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosValverde.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosValverde [indice]);
+       }
+       if ("Upala" == canton){
+           String [] listaDistritosUpala = {"Upala", "Aguas Claras", "San José o Pizote", "Bijagua", "Delicias", "Dos Ríos", "Yolillal", "Canalete"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosUpala.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosUpala [indice]);
+       }
+       if ("Los Chiles" == canton){
+           String [] listaDistritosChiles = {"Los Chiles", "Caño Negro", "El Amparo", "San Jorge"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosChiles.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosChiles [indice]);
+       }
+       if ("Guatuso" == canton){
+           String [] listaDistritosGuatuso = {"San Rafael", "Buenavista", "Cote", "Katira"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGuatuso.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGuatuso [indice]);
+       }if ("Río Cuarto" == canton){
+           String [] listaDistritosRío = {"Río Cuarto", "Santa Isabel", "Santa Rita", "Muelle"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosRío.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosRío [indice]);
+       }
+       if ("Cartago" == canton){
+           String [] listaDistritosCartago = {"Oriental", "Occidental", "Carmen", "San Nicolás", "Aguacaliente", "Guadalupe", "Corralillo", "Tierra Blanca", "Dulce Nombre", "Llano Grande", "Quebradilla"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCartago.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCartago [indice]);
+       }
+       if ("Paraíso" == canton){
+           String [] listaDistritosParaíso = {"Paraíso", "Santiago", "Orosi", "Cachí", "Llanos de Santa Lucía"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosParaíso.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosParaíso [indice]);
+       }
+       if ("La Unión" == canton){
+           String [] listaDistritosUnión = {"Tres Ríos", "San Diego", "San Juan", "San Rafael", "Concepción", "Dulce Nombre", "San Ramón", "Río Azul"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosUnión.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosUnión [indice]);
+       }
+       if ("Jiménez" == canton){
+           String [] listaDistritosJiménez = {"Juan Viñas", "Tucurrique", "Pejibaye"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosJiménez.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosJiménez [indice]);
+       }
+       if ("Turrialba" == canton){
+           String [] listaDistritosTurrialba = {"Turrialba", "La Suiza", "Peralta", "Santa Cruz", "Santa Teresita", "Pavones", "Tuis", "Tayutic", "Santa Rosa", "Tres Equis", "La Isabel", "Chirripó"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTurrialba.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTurrialba [indice]);
+       }
+       if ("Alvarado" == canton){
+           String [] listaDistritosAlvarado = {"Pacayas", "Cervantes", "Capellades"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAlvarado.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAlvarado [indice]);
+       }
+       if ("Oreamuno" == canton){
+           String [] listaDistritosOreamuno = {"San Rafael", "Cot", "Potrero Cerrado", "Cipreses", "Santa Rosa"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosOreamuno.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosOreamuno [indice]);
+       }
+       if ("El Guarco" == canton){
+           String [] listaDistritosGuarco = {"El Tejar", "San Isidro", "Tobosi", "Patio de Agua"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGuarco.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGuarco [indice]);
+       }
+       if ("Heredia" == canton){
+           String [] listaDistritosHeredia = {"Heredia", "Mercedes", "San Francisco", "Ulloa", "Varablanca"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosHeredia.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosHeredia [indice]);
+       }
+       if ("Barva" == canton){
+           String [] listaDistritosBarva = {"Barva", "San Pedro", "San Pablo", "San Roque", "Santa Lucía", "San José de la Montaña"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosBarva.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosBarva [indice]);
+       }
+       if ("Santo Domingo" == canton){
+           String [] listaDistritosDomingo = {"Santo Domingo", "San Vicente", "San Miguel", "Paracito", "Santo Tomás", "Santa Rosa", "Tures", "Pará"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosDomingo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosDomingo [indice]);
+       }
+       if ("Santa Bárbara" == canton){
+           String [] listaDistritosBárbara = {"Santa Bárbara", "San Pedro", "San Juan", "Jesús", "Santo Domingo", "Purabá"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosBárbara.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosBárbara [indice]);
+       }
+       if ("San Rafael" == canton){
+           String [] listaDistritosRafael = {"San Rafael", "San Josecito", "Santiago", "Ángeles", "Concepción"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosRafael.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosRafael [indice]);
+       }
+       if ("San Isidro" == canton){
+           String [] listaDistritosIsidro = {"San Isidro", "San José", "Concepción", "San Francisco"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosIsidro.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosIsidro [indice]);
+       }
+       if ("Belén" == canton){
+           String [] listaDistritosBelén = {"San Antonio", "La Ribera", "La Asunción"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosBelén.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosBelén [indice]);
+       }
+       if ("Flores" == canton){
+           String [] listaDistritosFlores = {"San Joaquín", "Barrantes", "Llorente"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosFlores.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosFlores [indice]);
+       }
+       if ("San Pablo" == canton){
+           String [] listaDistritosPablo = {"San Pablo", "Rincón de Sabanilla"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPablo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPablo [indice]);
+       }
+       if ("Sarapiquí" == canton){
+           String [] listaDistritosSarapiquí = {"Puerto Viejo", "La Virgen", "Horquetas", "Llanuras del Gaspar", "Cureña"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosSarapiquí.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosSarapiquí [indice]);
+       }
+       if ("Liberia" == canton){
+           String [] listaDistritosLiberia = {"Liberia", "Cañas Dulces", "Mayorga", "Nacascolo", "Curubandé"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosLiberia.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosLiberia [indice]);
+       }
+       if ("Nicoya" == canton){
+           String [] listaDistritosNicoya = {"Nicoya", "Mansión", "San Antonio", "Quebrada Honda", "Sámara", "Nosara", "Belén de Nosarita"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosNicoya.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosNicoya [indice]);
+       }
+       if ("Santa Cruz" == canton){
+           String [] listaDistritosCruz = {"Santa Cruz", "Bolsón", "Veintisiete de Abril", "Tempate", "Cartagena", "Cuajiniquil", "Diriá", "Cabo Velas", "Tamarindo"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCruz.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCruz [indice]);
+       }
+       if ("Bagaces" == canton){
+           String [] listaDistritosBagaces = {"Bagaces", "La Fortuna", "Mogote", "Río Naranjo"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosBagaces.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosBagaces [indice]);
+       }
+       if ("Carrillo" == canton){
+           String [] listaDistritosCarrillo = {"Filadelfia", "Palmira", "Sardinal", "Belén"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCarrillo.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCarrillo [indice]);
+       }
+       if ("Cañas" == canton){
+           String [] listaDistritosCañas = {"Cañas", "Palmira", "San Miguel", "Bebedero", "Porozal"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCañas.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCañas [indice]);
+       }
+       if ("Abangares" == canton){
+           String [] listaDistritosAbangares = {"Las Juntas", "Sierra", "San Juan", "Colorado"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAbangares.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAbangares [indice]);
+       }
+       if ("Tilarán" == canton){
+           String [] listaDistritosTilarán = {"Tilarán", "Quebrada Grande", "Tronadora", "Santa Rosa", "Líbano", "Tierras Morenas", "Arenal", "Cabeceras"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosTilarán.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosTilarán [indice]);
+       }
+       if ("Nandayure" == canton){
+           String [] listaDistritosNandayure = {"Carmona", "Santa Rita", "Zapotal", "San Pablo", "Porvenir", "Bejuco"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosNandayure.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosNandayure [indice]);
+       }
+       if ("La Cruz" == canton){
+           String [] listaDistritosLaCruz = {"La Cruz", "Santa Cecilia", "La Garita", "Santa Elena"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosLaCruz.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosLaCruz [indice]);
+       }
+       if ("Hojancha" == canton){
+           String [] listaDistritosHojancha = {"Hojancha", "Monte Romo", "Puerto Carrillo", "Huacas", "Matambú"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosHojancha.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosHojancha [indice]);
+       }
+       if ("Puntarenas" == canton){
+           String [] listaDistritosPuntarenas = {"Puntarenas", "Pitahaya", "Chomes", "Lepanto", "Paquera", "Manzanillo", "Guacimal", "Barranca", "Monteverde", "Isla del Coco", "Cóbano", "Chacarita", "Chira", "Acapulco", "El Roble", "Arancibia"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosPuntarenas.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosPuntarenas [indice]);
+       }
+       if ("Esparza" == canton){
+           String [] listaDistritosEsparza = {"Espíritu Santo", "San Juan Grande", "Macacona", "San Rafael", "San Jerónimo", "Caldera"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosEsparza.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosEsparza [indice]);
+       }
+       if ("Buenos Aires" == canton){
+           String [] listaDistritosAires = {"Buenos Aires", "Volcán", "Potrero Grande", "Boruca", "Pilas", "Colinas", "Changuena", "Biolley", "Brunka"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosAires.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosAires [indice]);
+       }
+       if ("Montes de Oro" == canton){
+           String [] listaDistritosOro = {"Miramar", "La Unión", "San Isidro"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosOro.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosOro [indice]);
+       }
+       if ("Osa" == canton){
+           String [] listaDistritosOsa = {"Puerto Cortés", "Palmar", "Sierpe", "Bahía Ballena", "Piedras Blancas", "Bahía Drake"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosOsa.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosOsa [indice]);
+       }
+       if ("Quepos" == canton){
+           String [] listaDistritosQuepos = {"Quepos", "Savegre", "Naranjito"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosQuepos.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosQuepos [indice]);
+       }
+       if ("Golfito" == canton){
+           String [] listaDistritosGolfito = {"Golfito", "Guaycará", "Pavón"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGolfito.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGolfito [indice]);
+       }
+       if ("Coto Brus" == canton){
+           String [] listaDistritosBrus = {"San Vito", "Sabalito", "Aguabuena", "Limoncito", "Pittier", "Gutiérrez Braun"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosBrus.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosBrus [indice]);
+       }
+       if ("Parrita" == canton){
+           String [] listaDistritosParrita = {"Parrita"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosParrita.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosParrita [indice]);
+       }
+       if ("Corredores" == canton){
+           String [] listaDistritosCorredores = {"Corredor", "La Cuesta", "Canoas", "Laurel"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosCorredores.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosCorredores [indice]);
+       }
+       if ("Garabito" == canton){
+           String [] listaDistritosGarabito = {"Jacó", "Tárcoles"};
+           comboxDistrito.removeAllItems();
+           for (int indice=0 ; listaDistritosGarabito.length != indice; indice++)
+               comboxDistrito.addItem(listaDistritosGarabito [indice]);
+       }
+       
+       
     }//GEN-LAST:event_comboxCantonActionPerformed
 
     /**
