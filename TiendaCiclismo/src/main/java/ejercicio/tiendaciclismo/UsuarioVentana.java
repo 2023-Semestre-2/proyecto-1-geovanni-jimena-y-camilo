@@ -31,7 +31,7 @@ public class UsuarioVentana extends javax.swing.JFrame {
         initComponents();
         centerWindow(this);
         
-         try {
+        try {
            // System.out.println(FileManager.readFileLine("usuarios.acc"));
             readFileLine("usuarios.acc");
                
@@ -40,9 +40,7 @@ public class UsuarioVentana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
             // Cerrar el programa
             System.exit(0);
-        }
-        
-        
+        }  
     }
     private boolean verifyUser(String usuario, String password){
     // funcion que verifica los usuarios
@@ -68,8 +66,6 @@ public class UsuarioVentana extends javax.swing.JFrame {
     
     private void readFileLine (String path) throws FileNotFoundException, IOException
     {
-       
-
         try(BufferedReader br = new BufferedReader(new FileReader(path))) 
         {
             String line = br.readLine();

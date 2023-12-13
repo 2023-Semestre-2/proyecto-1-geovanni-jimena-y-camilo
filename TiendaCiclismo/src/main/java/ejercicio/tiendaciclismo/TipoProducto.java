@@ -4,18 +4,27 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author luisc
  */
-public class Articulo {
+public class TipoProducto implements Serializable {
     private String nombre;
-    private String codigo;
+    private int codigo;
 
-    public Articulo(String nombre, String codigo) {
-        this.nombre = nombre + 1;
+    public TipoProducto(String nombre, int codigo) {
+        this.nombre = nombre.trim();
         this.codigo = codigo;
     }
+
+    @Override
+    public String toString() {
+        return "TipoProducto{" + "nombre=" + nombre + ", codigo=" + codigo + '}';
+    }
+    
+   
     
     
     

@@ -17,8 +17,11 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class TiendaCiclismo {
 
     public static void main(String[] args) {
-        UsuarioVentana v1 = new UsuarioVentana();
-        v1.setVisible(true);
+        //UsuarioVentana v1 = new UsuarioVentana();
+        //v1.setVisible(true);
+        
+        TipoProductoVentana v2 = new TipoProductoVentana();
+        v2.setVisible(true);
         
         
     }
