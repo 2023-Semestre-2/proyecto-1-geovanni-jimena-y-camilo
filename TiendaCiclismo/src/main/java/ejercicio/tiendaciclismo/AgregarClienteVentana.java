@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ejercicio.tiendaciclismo;
-
+import ejercicio.tiendaciclismo.Cliente;
+import javax.swing.ComboBoxModel;
 /**
  *
  * @author geova
@@ -31,9 +32,9 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         textApellidos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        testTelefono = new javax.swing.JTextField();
+        textTelefono = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        testCorreo = new javax.swing.JTextField();
+        textCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         comboxProvincia = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -48,6 +49,12 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
         jLabel1.setText("NOMBRE");
 
+        textNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("APELLIDOS");
 
         textApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -58,11 +65,17 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
         jLabel3.setText("TELEFONO");
 
+        textTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textTelefonoActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("CORREO");
 
-        testCorreo.addActionListener(new java.awt.event.ActionListener() {
+        textCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testCorreoActionPerformed(evt);
+                textCorreoActionPerformed(evt);
             }
         });
 
@@ -117,8 +130,8 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                             .addComponent(textApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(testTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(testCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textCorreo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +171,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(testTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboxDistrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +179,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(testCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,16 +190,25 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
-        // TODO add your handling code here:
+        String nombreCliente= textNombre.getText();
+        String apellidosCliente= textApellidos.getText();
+        String telefono=textTelefono.getText();
+        String correo=textCorreo.getText();
+        ComboBoxModel<String> provincia=comboxProvincia.getModel();
+        ComboBoxModel<String> canton=comboxCanton.getModel();
+        ComboBoxModel<String> distrito=comboxDistrito.getModel();
+        String fechaNacimiento= dateNacimiento.getDateFormatString();
+        
+        
     }//GEN-LAST:event_botonTerminarActionPerformed
 
     private void textApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textApellidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textApellidosActionPerformed
 
-    private void testCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testCorreoActionPerformed
+    private void textCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_testCorreoActionPerformed
+    }//GEN-LAST:event_textCorreoActionPerformed
 
     private void comboxDistritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxDistritoActionPerformed
         // TODO add your handling code here:
@@ -742,6 +764,14 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
        
     }//GEN-LAST:event_comboxCantonActionPerformed
 
+    private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreActionPerformed
+
+    private void textTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTelefonoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -792,9 +822,9 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField testCorreo;
-    private javax.swing.JTextField testTelefono;
     private javax.swing.JTextField textApellidos;
+    private javax.swing.JTextField textCorreo;
     private javax.swing.JTextField textNombre;
+    private javax.swing.JTextField textTelefono;
     // End of variables declaration//GEN-END:variables
 }

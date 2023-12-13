@@ -10,6 +10,8 @@ public class TiendaCiclismo {
         ventanaCli.setVisible(true);
         
         
+        
     }
    
+    
 }

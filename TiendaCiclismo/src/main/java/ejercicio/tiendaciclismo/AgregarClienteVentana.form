@@ -34,8 +34,8 @@
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                           <Component id="textNombre" alignment="0" pref="164" max="32767" attributes="0"/>
                           <Component id="textApellidos" alignment="0" max="32767" attributes="0"/>
-                          <Component id="testTelefono" alignment="0" max="32767" attributes="0"/>
-                          <Component id="testCorreo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textTelefono" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textCorreo" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -87,7 +87,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="testTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboxDistrito" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="testCorreo" min="-2" max="-2" attributes="0"/>
+                  <Component id="textCorreo" min="-2" max="-2" attributes="0"/>
                   <Component id="dateNacimiento" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -114,6 +114,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textNombre">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textNombreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -130,16 +133,19 @@
         <Property name="text" type="java.lang.String" value="TELEFONO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="testTelefono">
+    <Component class="javax.swing.JTextField" name="textTelefono">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTelefonoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="CORREO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="testCorreo">
+    <Component class="javax.swing.JTextField" name="textCorreo">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testCorreoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textCorreoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
