@@ -4,7 +4,12 @@
  */
 package ejercicio.tiendaciclismo;
 import ejercicio.tiendaciclismo.Cliente;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import static javax.management.Query.or;
 import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author geova
@@ -44,6 +49,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         comboxDistrito = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         botonTerminar = new javax.swing.JButton();
+        dateNacimiento = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +121,9 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
             }
         });
 
+        dateNacimiento.setDateFormatString("dd/MM/yyyy");
+        dateNacimiento.setMaxSelectableDate(new java.util.Date(253370790068000L));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +131,9 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,17 +144,22 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                             .addComponent(textTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textCorreo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboxCanton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(comboxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboxDistrito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(47, 47, 47))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboxCanton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(comboxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboxDistrito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +193,9 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -187,14 +205,28 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
+        
+        java.util.Date date= new java.util.Date();
+        SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
+        //Se asignan las variables
         String nombreCliente= textNombre.getText();
         String apellidosCliente= textApellidos.getText();
         String telefono=textTelefono.getText();
         String correo=textCorreo.getText();
-        ComboBoxModel<String> provincia=comboxProvincia.getModel();
-        ComboBoxModel<String> canton=comboxCanton.getModel();
-        ComboBoxModel<String> distrito=comboxDistrito.getModel();
-    //    String fechaNacimiento= dateNacimiento.getDateFormatString();
+        String provincia=(String) comboxProvincia.getSelectedItem();
+        String canton= (String)comboxCanton.getSelectedItem();
+        String distrito= (String)comboxDistrito.getSelectedItem();
+        //int año = dateNacimiento.getCalendar().get(Calendar.YEAR);
+        //int mes = dateNacimiento.getCalendar().get(Calendar.MARCH);
+        //int dia = dateNacimiento.getCalendar().get(Calendar.DAY_OF_MONTH);    
+        String fechaNacimiento ;
+        fechaNacimiento=fecha.format(dateNacimiento.getDate());
+        
+        if (nombreCliente.isEmpty() || apellidosCliente.isEmpty() || telefono.isEmpty() || correo.isEmpty() || provincia=="Seleccione" 
+                || canton=="Seleccione" || distrito=="Seleccione"){
+            JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
         
         
     }//GEN-LAST:event_botonTerminarActionPerformed
@@ -215,7 +247,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
        String provincia = (String) comboxProvincia.getSelectedItem();
        
        if ("Limón" == provincia){
-           String [] listaCantonesLimon = {"Pococí","Guacimo","Siquirres","Matina","Limón","Talamanca"};
+           String [] listaCantonesLimon = {"Pococí","Guácimo","Siquirres","Matina","Limón","Talamanca"};
            comboxCanton.removeAllItems();
            for (int indice=0 ; listaCantonesLimon.length != indice; indice++)
                comboxCanton.addItem(listaCantonesLimon[indice]);
@@ -297,7 +329,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                comboxDistrito.addItem(listaDistritosMatina [indice]);
        }
        
-       if ("Guacimo" == canton){
+       if ("Guácimo" == canton){
            String [] listaDistritosGuacimo = {"Guácimo", "Duacarí", "Jiménez", "Río Jiménez", "Rita", "Colorado"};
            comboxDistrito.removeAllItems();
            for (int indice=0 ; listaDistritosGuacimo.length != indice; indice++)
@@ -810,6 +842,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboxCanton;
     private javax.swing.JComboBox<String> comboxDistrito;
     private javax.swing.JComboBox<String> comboxProvincia;
+    private com.toedter.calendar.JDateChooser dateNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
