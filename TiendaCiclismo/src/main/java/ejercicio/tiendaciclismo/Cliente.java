@@ -7,14 +7,14 @@ public class Cliente implements Serializable {
     int codigo = 1;
     String nombre;
     String apellidos;
-    String telefono;
+    int telefono;
     String correo;
     String provincia;
     String canton;
     String distrito;
     String fechaNacimiento;
 
-    public Cliente(String nombre, String apellidos, String telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
+    public Cliente(int codigo, String nombre, String apellidos, int telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
         this.codigo = codigo++;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -26,10 +26,15 @@ public class Cliente implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    Cliente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getCodigo() {
+        return codigo;
     }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -46,11 +51,11 @@ public class Cliente implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -92,6 +97,11 @@ public class Cliente implements Serializable {
 
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", correo=" + correo + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
     
     

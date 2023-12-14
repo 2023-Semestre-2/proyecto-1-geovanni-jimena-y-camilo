@@ -4,6 +4,8 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.awt.HeadlessException;
+
 /**
  *
  * @author jimen
@@ -13,10 +15,18 @@ public class ProductosVentana extends javax.swing.JFrame {
     /**
      * Creates new form ProductosVentana
      */
+    
+    
+    
     public ProductosVentana() {
-        initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    
+    
+    }
 
+    public ProductosVentana(Menu m1) {
+        initComponents();
+        m1.getBtnBicicletas().setEnabled(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

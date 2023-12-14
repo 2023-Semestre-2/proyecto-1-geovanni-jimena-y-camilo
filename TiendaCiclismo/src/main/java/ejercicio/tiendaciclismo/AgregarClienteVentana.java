@@ -10,7 +10,6 @@ import javax.swing.ComboBoxModel;
  * @author geova
  */
 public class AgregarClienteVentana extends javax.swing.JFrame {
-
     /**
      * Creates new form AgregarCliente
      */
