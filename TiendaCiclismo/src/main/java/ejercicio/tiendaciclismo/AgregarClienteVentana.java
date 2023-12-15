@@ -4,6 +4,8 @@
  */
 package ejercicio.tiendaciclismo;
 import ejercicio.tiendaciclismo.Cliente;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +25,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
-
+    private static boolean verificarNumero(String texto) {
+        // Verificar si el texto comienza con 2, 4, 6 u 8
+        return texto.startsWith("2") || texto.startsWith("4") || texto.startsWith("6") || texto.startsWith("8");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,34 +56,94 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         botonTerminar = new javax.swing.JButton();
         dateNacimiento = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("NOMBRE");
 
+        textNombre.setForeground(new java.awt.Color(153, 153, 153));
+        textNombre.setText("Ingrese su nombre");
+        textNombre.setToolTipText("Ingrese su nombre (solo letras)");
+        textNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textNombreFocusLost(evt);
+            }
+        });
         textNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNombreActionPerformed(evt);
             }
         });
+        textNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNombreKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("APELLIDOS");
 
+        textApellidos.setForeground(new java.awt.Color(153, 153, 153));
+        textApellidos.setText("Ingrese sus apellidos");
+        textApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textApellidosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textApellidosFocusLost(evt);
+            }
+        });
         textApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textApellidosActionPerformed(evt);
             }
         });
+        textApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textApellidosKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("TELEFONO");
 
+        textTelefono.setForeground(new java.awt.Color(153, 153, 153));
+        textTelefono.setText("Solo inicia (2,4,6,8)");
+        textTelefono.setToolTipText("El numero debe iniciar con (2,4,6,8)");
+        textTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textTelefonoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textTelefonoFocusLost(evt);
+            }
+        });
         textTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textTelefonoActionPerformed(evt);
             }
         });
+        textTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textTelefonoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("CORREO");
 
+        textCorreo.setForeground(new java.awt.Color(153, 153, 153));
+        textCorreo.setText("un@ejemplo.com");
+        textCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textCorreoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textCorreoFocusLost(evt);
+            }
+        });
         textCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCorreoActionPerformed(evt);
@@ -87,7 +152,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
         jLabel5.setText("PROVINCIA");
 
-        comboxProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "San José", "Alajuela", "Cartago", "Heredia", "Guanacaste", "Puntarenas", "Limón" }));
+        comboxProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Alajuela", "Cartago", "Guanacaste", "Heredia", "Limón", "Puntarenas", "San José" }));
         comboxProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboxProvinciaActionPerformed(evt);
@@ -215,19 +280,34 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         String correo=textCorreo.getText();
         String provincia=(String) comboxProvincia.getSelectedItem();
         String canton= (String)comboxCanton.getSelectedItem();
-        String distrito= (String)comboxDistrito.getSelectedItem();
-        //int año = dateNacimiento.getCalendar().get(Calendar.YEAR);
-        //int mes = dateNacimiento.getCalendar().get(Calendar.MARCH);
-        //int dia = dateNacimiento.getCalendar().get(Calendar.DAY_OF_MONTH);    
+        String distrito= (String)comboxDistrito.getSelectedItem();    
         String fechaNacimiento ;
         fechaNacimiento=fecha.format(dateNacimiento.getDate());
         
-        if (nombreCliente.isEmpty() || apellidosCliente.isEmpty() || telefono.isEmpty() || correo.isEmpty() || provincia=="Seleccione" 
-                || canton=="Seleccione" || distrito=="Seleccione"){
-            JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas", "Error", JOptionPane.ERROR_MESSAGE);
-            
+        if ("Ingrese su nombre".equals(nombreCliente) || "Ingrese sus apellidos".equals(apellidosCliente) || "Solo inicia (2,4,6,8)".equals(telefono) || "un@ejemplo.com".equals(correo) || "Seleccione".equals(provincia) 
+                || "Seleccione".equals(canton) || "Seleccione".equals(distrito)||fechaNacimiento.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }     else {
+                   if ( telefono.length() < 8 ){
+                       JOptionPane.showMessageDialog(null, "El numero debe ser de 8 digitos", "Error", JOptionPane.ERROR_MESSAGE);
+                   }
+                   if (!verificarNumero(telefono)){
+                               JOptionPane.showMessageDialog(null, "El numero de telefono debe empezar con (2,4,6,8)", "Error", JOptionPane.ERROR_MESSAGE);
+                   }
+                   if (nombreCliente!=nombreCliente.trim()){
+                    JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos del nombre", "Error", JOptionPane.ERROR_MESSAGE);
+
+                   }
+                   if (apellidosCliente != apellidosCliente.trim()){
+                       JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+
+                   }
+                   if (correo != correo.trim()){
+                    JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
+                   }
+                   
         }
-        
+     
         
     }//GEN-LAST:event_botonTerminarActionPerformed
 
@@ -246,13 +326,13 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private void comboxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxProvinciaActionPerformed
        String provincia = (String) comboxProvincia.getSelectedItem();
        
-       if ("Limón" == provincia){
+       if ("Limón".equals(provincia)){
            String [] listaCantonesLimon = {"Pococí","Guácimo","Siquirres","Matina","Limón","Talamanca"};
            comboxCanton.removeAllItems();
            for (int indice=0 ; listaCantonesLimon.length != indice; indice++)
                comboxCanton.addItem(listaCantonesLimon[indice]);
        }
-       if ("San José" == provincia){
+       if ("San José".equals(provincia)){
            String [] listaCantonesSanJose = {"San José","Escazú","Desamparados",
                                            "Puriscal","Tarrazú","Aserrí","Mora","Goicoechea",
                                            "Santa Ana", "Alajuelita","Vásquez de Coronado",
@@ -800,6 +880,89 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private void textTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textTelefonoActionPerformed
+
+    private void textTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyPressed
+        
+    }//GEN-LAST:event_textTelefonoKeyPressed
+
+    private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
+        char numero = evt.getKeyChar();
+        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+         if (textTelefono.getText().length()==8){
+        evt.consume();}
+         
+         
+    }//GEN-LAST:event_textTelefonoKeyTyped
+
+    private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
+        char letra = evt.getKeyChar();
+        if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
+            evt.consume();        }
+    }//GEN-LAST:event_textNombreKeyTyped
+
+    private void textApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textApellidosKeyTyped
+        char letra = evt.getKeyChar();
+        if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
+            evt.consume();        }
+    }//GEN-LAST:event_textApellidosKeyTyped
+
+    private void textTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textTelefonoFocusGained
+        if (textTelefono.getText().equals("Solo inicia (2,4,6,8)")){
+        textTelefono.setText("");
+        textTelefono.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_textTelefonoFocusGained
+
+    private void textTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textTelefonoFocusLost
+        if (textTelefono.getText().equals("")){
+            textTelefono.setText("Solo inicia (2,4,6,8)");
+            textTelefono.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_textTelefonoFocusLost
+
+    private void textNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNombreFocusGained
+        if (textNombre.getText().equals("Ingrese su nombre")){
+        textNombre.setText("");
+        textNombre.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_textNombreFocusGained
+
+    private void textNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNombreFocusLost
+    if (textNombre.getText().equals("")){
+        textNombre.setText("Ingrese su nombre");
+        textNombre.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_textNombreFocusLost
+
+    private void textApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textApellidosFocusGained
+       if (textApellidos.getText().equals("Ingrese sus apellidos")){
+        textApellidos.setText("");
+        textApellidos.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_textApellidosFocusGained
+
+    private void textApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textApellidosFocusLost
+        if (textApellidos.getText().equals("")){
+        textApellidos.setText("Ingrese sus apellidos");
+        textApellidos.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_textApellidosFocusLost
+
+    private void textCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textCorreoFocusGained
+        if (textCorreo.getText().equals("un@ejemplo.com")){
+        textCorreo.setText("");
+        textCorreo.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_textCorreoFocusGained
+
+    private void textCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textCorreoFocusLost
+        if (textCorreo.getText().equals("")){
+        textCorreo.setText("un@ejemplo.com");
+        textCorreo.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_textCorreoFocusLost
 
     /**
      * @param args the command line arguments
