@@ -5,7 +5,10 @@
 package ejercicio.tiendaciclismo;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +18,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private ArrayList<Cliente> clientes;
     private ArrayList<Mantenimiento> taller;
-    
+    private Mantenimiento m1;
     
     /**
      * Creates new form MantenimientoVentana
@@ -26,11 +29,11 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         taller = new ArrayList<>();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        m1 = new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto");
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-        taller.add(new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto"));
-    
+        taller.add(m1);
     }
     
     private void buscarCliente(String texto){
@@ -56,9 +59,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     
     }
     
-    private void eliminarMantenimiento(){
-    
-    
+    private void eliminarMantenimiento(Mantenimiento clienteMantenimiento){
+        clientes.remove(clienteMantenimiento);
     }
     
     
@@ -92,6 +94,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
     
+    private void centrarCeldas(){
+    // funcion que centra todas las celdas
+    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+    centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for (int i = 0; i < tblTablaMantenimiento.getColumnCount(); i++) {
+            tblTablaMantenimiento.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +116,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         cmbBuscar = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTablaMantenimiento = new javax.swing.JTable();
         txfBuscar = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -122,19 +133,19 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
         cmbBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Codigo" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTablaMantenimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Marca", "Descripcion"
+                "Codigo del servicio", "Codigo del cliente", "Marca", "Descripcion", "Precio", "Fecha de recibido", "Fecha de entrega", "Observaciones", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -145,9 +156,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblTablaMantenimiento.setEnabled(false);
+        jScrollPane1.setViewportView(tblTablaMantenimiento);
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
@@ -159,23 +176,24 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(cmbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txfBuscar)
-                .addGap(250, 250, 250))
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
-                .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar)
+                        .addContainerGap(516, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnModificar)
+                            .addComponent(btnAgregar)
+                            .addComponent(btnEliminar))
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,21 +201,18 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(btnBuscar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnAgregar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,6 +221,14 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         buscarCliente(txfBuscar.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblTablaMantenimiento.getModel();
+        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
+            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
+            m1.getEstado()});
+        centrarCeldas();
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,7 +272,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cmbBuscar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblTablaMantenimiento;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

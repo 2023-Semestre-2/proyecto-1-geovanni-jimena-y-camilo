@@ -38,9 +38,95 @@ public class Mantenimiento {
         
         
     }
+
+    @Override
+    public String toString() {
+        return "Mantenimiento{" + "codigo_servicio=" + codigo_servicio + ", codigo_cliente=" + codigo_cliente + ", marca_bicicleta=" + marca_bicicleta + ", descripcion=" + descripcion + ", precio=" + precio + ", fecha_recibido=" + fecha_recibido + ", fecha_entrega=" + fecha_entrega + ", observaciones=" + observaciones + ", estado=" + estado + ", menu=" + menu + '}';
+    }
+
+    public int getCodigo_servicio() {
+        return codigo_servicio;
+    }
+
+    public void setCodigo_servicio(int codigo_servicio) {
+        this.codigo_servicio = codigo_servicio;
+    }
+
+    public int getCodigo_cliente() {
+        return codigo_cliente;
+    }
+
+    public void setCodigo_cliente(int codigo_cliente) {
+        this.codigo_cliente = codigo_cliente;
+    }
+
+    public String getMarca_bicicleta() {
+        return marca_bicicleta;
+    }
+
+    public void setMarca_bicicleta(String marca_bicicleta) {
+        this.marca_bicicleta = marca_bicicleta;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public String getFecha_recibido() {
+        return fecha_recibido;
+    }
+
+    public void setFecha_recibido(String fecha_recibido) {
+        this.fecha_recibido = fecha_recibido;
+    }
+
+    public String getFecha_entrega() {
+        return fecha_entrega;
+    }
+
+    public void setFecha_entrega(String fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
     
     
         
+    
         
       
 }
