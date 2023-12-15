@@ -1,6 +1,6 @@
 
 package ejercicio.tiendaciclismo;
-import java.io.Serializable; //Libreria para serializar objetos
+import java.io.Serializable; //Libreria para serializar objeto
 
 public class Cliente implements Serializable {
     

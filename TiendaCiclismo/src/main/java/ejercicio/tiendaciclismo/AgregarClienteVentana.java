@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author geova
  */
-public class AgregarClienteVentana extends javax.swing.JFrame {
+public class AgregarClienteVentana extends javax.swing.JFrame{
 
     /**
      * Creates new form AgregarCliente
@@ -300,12 +300,17 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                    }
                    if (apellidosCliente != apellidosCliente.trim()){
                        JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
-
+                       
                    }
                    if (correo != correo.trim()){
                     JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
                    }
+                   else{
+                   Cliente clienteNuevo = new Cliente(nombreCliente,apellidosCliente,telefono,correo,provincia,canton,distrito,fechaNacimiento);
+                   OperacionesCliente añadir= new OperacionesCliente ();
+                   añadir.guardarClienteCSV(clienteNuevo);
                    
+                   }
         }
      
         
