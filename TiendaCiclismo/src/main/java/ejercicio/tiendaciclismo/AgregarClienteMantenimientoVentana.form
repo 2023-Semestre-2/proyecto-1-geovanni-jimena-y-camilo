@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -23,91 +23,126 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCodigoCliente" min="-2" max="-2" attributes="0"/>
-                  <Component id="txfCodigoCliente" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txfDescripcion" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txfPrecio" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txfObservaciones" alignment="0" pref="164" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblFechaRecibido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txfMarca" alignment="0" pref="123" max="32767" attributes="0"/>
-                          <Component id="txfEstado" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
+                              <Component id="ftfPrecio" alignment="0" pref="164" max="32767" attributes="0"/>
+                              <Component id="lblPrecio" min="-2" max="-2" attributes="0"/>
+                              <Component id="txfDescripcion" alignment="0" pref="164" max="32767" attributes="0"/>
+                              <Component id="txfCodigoCliente" alignment="0" pref="164" max="32767" attributes="0"/>
+                              <Component id="lblCodigoCliente" min="-2" max="-2" attributes="0"/>
+                              <Component id="ftfCodigoServicio" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="lblCodigoServicio" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txfMarca" alignment="0" max="32767" attributes="0"/>
                           <Component id="txfFechaRecibido" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblFechaEntrega" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfFechaEntrega" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ftfFechaEntrega" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFechaEntrega" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="125" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="cmbEstado" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txfPrecio" min="-2" pref="164" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="txfFechaEntrega" min="-2" pref="123" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblDescripcion" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="lblFechaRecibido" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txfObservaciones" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-              <Component id="btnGuardar" min="-2" pref="499" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="127" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+              <Component id="btnGuardar" min="-2" pref="386" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCodigoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="lblEstado" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCodigoServicio" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txfCodigoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txfEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ftfCodigoServicio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCodigoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txfDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txfMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txfCodigoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblFechaRecibido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txfFechaRecibido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txfDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ftfFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ftfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txfFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txfObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-              <Component id="btnGuardar" min="-2" pref="84" max="-2" attributes="0"/>
-              <EmptySpace pref="59" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txfObservaciones" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <Component id="btnGuardar" min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,6 +170,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Precio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfPrecioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txfFechaRecibido">
       <Properties>
@@ -154,15 +192,13 @@
         <Property name="text" type="java.lang.String" value="Observaciones"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txfEstado">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Estado"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCodigoCliente">
       <Properties>
@@ -202,6 +238,48 @@
     <Component class="javax.swing.JLabel" name="lblFechaEntrega">
       <Properties>
         <Property name="text" type="java.lang.String" value="FECHA DE ENTREGA"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="ftfPrecio">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftfPrecioActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ftfPrecioKeyPressed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ftfPrecioKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="ftfFechaEntrega">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbEstado">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Abierto"/>
+            <StringItem index="1" value="Cerrado"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="ftfCodigoServicio">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCodigoServicio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CODIGO DEL SERVICIO"/>
       </Properties>
     </Component>
   </SubComponents>
