@@ -4,11 +4,18 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -33,7 +40,23 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-        taller.add(m1);
+        
+        //esto debe ser una clase aparte 
+         tblTablaMantenimiento.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Obtiene la fila clicada
+                    int filaClicada = tblTablaMantenimiento.rowAtPoint(e.getPoint());
+                    // Realiza alguna acción con la fila clicada
+                    System.out.println("Clic en la fila: " + filaClicada);
+                    
+                    
+                    cambiarColorFondoFila(filaClicada);
+                }
+            });
+        
+        
+        
     }
     
     private void buscarCliente(String texto){
@@ -51,7 +74,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         else{
             buscarClienteNombre(texto);
         }
-    
     }
     
     private void agregarMantenimiento(Cliente cliente){
@@ -99,10 +121,20 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
     centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         for (int i = 0; i < tblTablaMantenimiento.getColumnCount(); i++) {
-            tblTablaMantenimiento.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+           tblTablaMantenimiento.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
     
+    private void cambiarColorFondoFila(int fila) {
+        int columnas = tblTablaMantenimiento.getColumnCount();
+        for (int columna = 0; columna < 9; columna++) {
+            tblTablaMantenimiento.getCellRenderer(fila, columna).getTableCellRendererComponent(tblTablaMantenimiento, null, true, true, fila, columna).setBackground(Color.CYAN);
+       
+        }
+        repaint();
+      
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,7 +259,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
             m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
             m1.getEstado()});
+        taller.add(m1);
         centrarCeldas();
+        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana();
+        m1.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**

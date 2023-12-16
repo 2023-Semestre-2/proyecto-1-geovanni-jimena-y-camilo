@@ -14,8 +14,10 @@ ejercicio\tiendaciclismo\UsuarioVentana$2.class
 ejercicio\tiendaciclismo\Mantenimiento.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$2.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$9.class
+ejercicio\tiendaciclismo\AgregarClienteMantenimientoVentana$2.class
 ejercicio\tiendaciclismo\ClientesVentana$4.class
 ejercicio\tiendaciclismo\LeerUsuario.class
+ejercicio\tiendaciclismo\MantenimientoVentana$5.class
 ejercicio\tiendaciclismo\ProductosVentana$2.class
 ejercicio\tiendaciclismo\ProductosVentana.class
 ejercicio\tiendaciclismo\ClientesVentana$1.class
@@ -24,13 +26,16 @@ ejercicio\tiendaciclismo\Archivos.class
 ejercicio\tiendaciclismo\AgregarCliente.class
 ejercicio\tiendaciclismo\UsuarioVentana$1.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$1.class
+ejercicio\tiendaciclismo\AgregarClienteMantenimientoVentana$1.class
 ejercicio\tiendaciclismo\MantenimientoVentana$2.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$6.class
 ejercicio\tiendaciclismo\Menu$2.class
 ejercicio\tiendaciclismo\ClientesVentana$3.class
+ejercicio\tiendaciclismo\AgregarClienteMantenimientoVentana$3.class
 ejercicio\tiendaciclismo\ClientesVentana$5.class
 ejercicio\tiendaciclismo\FileManager.class
 ejercicio\tiendaciclismo\TipoProducto.class
+ejercicio\tiendaciclismo\AgregarClienteMantenimientoVentana.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$8.class
 ejercicio\tiendaciclismo\AgregarClienteVentana$3.class
 ejercicio\tiendaciclismo\UsuarioVentana$3.class
