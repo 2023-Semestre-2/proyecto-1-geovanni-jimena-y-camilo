@@ -104,6 +104,9 @@ public class Cliente implements Serializable {
         return "Cliente{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", correo=" + correo + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
     
+    public String toNameCode(){
+        return codigo + '/' + nombre;
+    }
     
     
 }

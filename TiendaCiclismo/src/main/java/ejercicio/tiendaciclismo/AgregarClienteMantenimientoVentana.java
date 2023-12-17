@@ -5,7 +5,11 @@
 package ejercicio.tiendaciclismo;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,13 +22,25 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
      */
     
     private ArrayList<Mantenimiento> clienteMantenimiento;
-    private ArrayList<MantenimientoVentana> refVentana;
+    private MantenimientoVentana refVentana;
+    private ArrayList<Cliente> clientes;
     
     
-    public AgregarClienteMantenimientoVentana() {
+    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana) {
+        initComponents();
+        this.clientes = clientes;
+        this.clienteMantenimiento = clientesMantenimiento;
+        this.refVentana = refVentana;
+        loadClientes();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+    }
+
+    private AgregarClienteMantenimientoVentana() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,10 +72,14 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         cmbEstado = new javax.swing.JComboBox<>();
         ftfCodigoServicio = new javax.swing.JFormattedTextField();
         lblCodigoServicio = new javax.swing.JLabel();
+        txfNombreCliente = new javax.swing.JTextField();
+        lblNombreCliente = new javax.swing.JLabel();
+        cmbClientes = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txfCodigoCliente.setText("Cliente");
+        txfCodigoCliente.setEditable(false);
+        txfCodigoCliente.setText("1");
         txfCodigoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfCodigoClienteActionPerformed(evt);
@@ -85,6 +105,11 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         });
 
         txfFechaEntrega.setText("Entrega");
+        txfFechaEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfFechaEntregaActionPerformed(evt);
+            }
+        });
 
         txfObservaciones.setText("Observaciones");
 
@@ -112,6 +137,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         lblFechaEntrega.setText("FECHA DE ENTREGA");
 
         ftfPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ftfPrecio.setText("1");
         ftfPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftfPrecioActionPerformed(evt);
@@ -131,74 +157,91 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
 
         ftfCodigoServicio.setEditable(false);
+        ftfCodigoServicio.setText("1");
 
         lblCodigoServicio.setText("CODIGO DEL SERVICIO");
+
+        lblNombreCliente.setText("NOMBRE DEL CLIENTE");
+
+        cmbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camilo" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblObservaciones)
                                 .addComponent(ftfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                 .addComponent(lblPrecio)
                                 .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                 .addComponent(txfCodigoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                 .addComponent(lblCodigoCliente)
                                 .addComponent(ftfCodigoServicio))
-                            .addComponent(lblCodigoServicio))
-                        .addGap(18, 18, 18)
+                            .addComponent(lblCodigoServicio)
+                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEstado))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfMarca)
-                            .addComponent(txfFechaRecibido)
-                            .addComponent(ftfFechaEntrega)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(lblFechaEntrega)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEstado)
-                                    .addComponent(lblMarca)
-                                    .addComponent(lblFechaEntrega))
-                                .addGap(0, 125, Short.MAX_VALUE))
-                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(ftfFechaEntrega)
+                                            .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txfFechaRecibido)
+                                            .addComponent(cmbClientes, 0, 239, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 10, Short.MAX_VALUE)
+                                                .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblObservaciones))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
                                 .addComponent(lblDescripcion)
                                 .addGap(119, 119, 119)
                                 .addComponent(lblFechaRecibido))
-                            .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(txfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lblEstado))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblCodigoServicio)))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodigoServicio)
+                    .addComponent(lblNombreCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftfCodigoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfCodigoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarca)
@@ -217,19 +260,24 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                     .addComponent(txfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFechaEntrega)
-                    .addComponent(lblPrecio))
+                    .addComponent(lblPrecio)
+                    .addComponent(lblFechaEntrega))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ftfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ftfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblObservaciones))
+                    .addComponent(lblObservaciones)
+                    .addComponent(lblEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(txfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -246,9 +294,46 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfFechaRecibidoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        int codigoServicio = Integer.parseInt(ftfCodigoServicio.getText());
+        int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
+        String marca = txfMarca.getText();
+        String descripcion = txfDescripcion.getText();
+        int precio = Integer.parseInt(ftfPrecio.getText());
+        String fechaRecibido = txfFechaRecibido.getText();
+        String fechaEntrega = txfFechaEntrega.getText();
+        String observaciones = txfObservaciones.getText();
+        String estado = txfObservaciones.getText();
+        String nombre = cmbClientes.getSelectedItem().toString();
+        Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
+        clienteMantenimiento.add(m1);
+        System.out.println(m1.toString());
+        
+        
+        // eso es uno
+        
+        DefaultTableModel model = (DefaultTableModel) refVentana.getTblTablaMantenimiento().getModel();
+        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
+            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
+            m1.getEstado()});
+        
+        try {
+            FileManager.writeFile("mantenimiento.csv", m1.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    public void loadClientes(){
+        for (int i = 0; i < clientes.size(); i++) {
+            cmbClientes.addItem(clientes.get(i).toNameCode());
+        }
+    
+    
+    }
+    
+    
+    
     private void txfPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfPrecioActionPerformed
@@ -270,6 +355,10 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_ftfPrecioKeyTyped
+
+    private void txfFechaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfFechaEntregaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfFechaEntregaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +397,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cmbClientes;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftfCodigoServicio;
     private javax.swing.JFormattedTextField ftfFechaEntrega;
@@ -319,6 +409,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private javax.swing.JLabel lblFechaEntrega;
     private javax.swing.JLabel lblFechaRecibido;
     private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblObservaciones;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JTextField txfCodigoCliente;
@@ -326,6 +417,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private javax.swing.JTextField txfFechaEntrega;
     private javax.swing.JTextField txfFechaRecibido;
     private javax.swing.JTextField txfMarca;
+    private javax.swing.JTextField txfNombreCliente;
     private javax.swing.JTextField txfObservaciones;
     private javax.swing.JTextField txfPrecio;
     // End of variables declaration//GEN-END:variables

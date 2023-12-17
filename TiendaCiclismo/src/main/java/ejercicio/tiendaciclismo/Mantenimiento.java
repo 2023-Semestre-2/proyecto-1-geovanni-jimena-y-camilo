@@ -20,11 +20,12 @@ public class Mantenimiento {
     private String fecha_entrega;
     private String observaciones;
     private String estado;
+    private String nombre;
    
     // aparte de los atributos, necesita de la referencia al menu y al arreglo
     private Menu menu;
 
-    public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, String fecha_recibido, String fecha_entrega, String observaciones, String estado) {
+    public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, String fecha_recibido, String fecha_entrega, String observaciones, String estado, String nombre) {
         this.codigo_servicio = codigo_servicio;
         this.codigo_cliente = codigo_cliente;
         this.marca_bicicleta = marca_bicicleta;
@@ -34,6 +35,7 @@ public class Mantenimiento {
         this.fecha_entrega = fecha_entrega;
         this.observaciones = observaciones;
         this.estado = estado;
+        this.nombre = nombre;
         
         
         
@@ -41,7 +43,7 @@ public class Mantenimiento {
 
     @Override
     public String toString() {
-        return "Mantenimiento{" + "codigo_servicio=" + codigo_servicio + ", codigo_cliente=" + codigo_cliente + ", marca_bicicleta=" + marca_bicicleta + ", descripcion=" + descripcion + ", precio=" + precio + ", fecha_recibido=" + fecha_recibido + ", fecha_entrega=" + fecha_entrega + ", observaciones=" + observaciones + ", estado=" + estado + ", menu=" + menu + '}';
+        return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + fecha_recibido + "," + fecha_entrega + "," + observaciones + "," + estado + ',' + nombre + '\n';
     }
 
     public int getCodigo_servicio() {

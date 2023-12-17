@@ -36,7 +36,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         taller = new ArrayList<>();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        m1 = new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto");
+        m1 = new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto", "Camilo");
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -261,7 +261,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             m1.getEstado()});
         taller.add(m1);
         centrarCeldas();
-        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana();
+        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this);
         m1.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -299,6 +299,12 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             }
         });
     }
+
+    public JTable getTblTablaMantenimiento() {
+        return tblTablaMantenimiento;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
