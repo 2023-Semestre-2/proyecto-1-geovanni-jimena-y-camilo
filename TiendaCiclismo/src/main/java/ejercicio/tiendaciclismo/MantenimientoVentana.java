@@ -336,6 +336,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         btnModificar.setEnabled(false);
         System.out.println(taller.size());
         
+        if(taller.size() == 0){
+            FileManager.deleteFile("mantenimiento.csv");
+        }
+        
         for (int i = 0; i < taller.size(); i++) {
             try {
                 if(i == 0){
