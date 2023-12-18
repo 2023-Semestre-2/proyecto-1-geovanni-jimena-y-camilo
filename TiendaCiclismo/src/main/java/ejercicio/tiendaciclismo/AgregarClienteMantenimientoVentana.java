@@ -24,6 +24,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
+    private int codigo_servicio = 0;
     
     
     public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana) {
@@ -146,7 +147,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
 
         ftfCodigoServicio.setEditable(false);
-        ftfCodigoServicio.setText("1");
 
         lblCodigoServicio.setText("CODIGO DEL SERVICIO");
 
@@ -181,10 +181,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                     .addComponent(lblEstado))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblFechaEntrega)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -195,7 +191,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(ftfFechaEntrega)
                                             .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +206,15 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                                         .addGap(32, 32, 32))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(151, 151, 151))))))))
+                                        .addGap(151, 151, 151))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(ftfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFechaEntrega))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -270,7 +273,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1)
                         .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -308,13 +311,13 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
             m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
             m1.getEstado()});
-        
         try {
             FileManager.writeFile("mantenimiento.csv", m1.toString());
         } catch (IOException ex) {
             Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+        codigo_servicio++;
+        ftfCodigoServicio.setText("" + codigo_servicio);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void loadClientes(){
@@ -322,6 +325,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
             cmbClientes.addItem(clientes.get(i).getNombre());
         }
         txfCodigoCliente.setText("" + clientes.get(0).getCodigo());
+        ftfCodigoServicio.setText("" + codigo_servicio);
     
     }
     
@@ -354,7 +358,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         for (int i = 0; i < clientes.size(); i++) {
             if(clientes.get(i).getNombre().equals(cliente)){
                 txfCodigoCliente.setText("" + clientes.get(i).getCodigo());
-            
+                break;
             }
         }
     }//GEN-LAST:event_cmbClientesActionPerformed

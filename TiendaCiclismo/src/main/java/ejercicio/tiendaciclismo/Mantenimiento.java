@@ -26,7 +26,7 @@ public class Mantenimiento {
     private Menu menu;
 
     public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, String fecha_recibido, String fecha_entrega, String observaciones, String estado, String nombre) {
-        this.codigo_servicio = codigo_servicio++;
+        this.codigo_servicio = codigo_servicio;
         this.codigo_cliente = codigo_cliente;
         this.marca_bicicleta = marca_bicicleta;
         this.descripcion = descripcion;
@@ -36,10 +36,12 @@ public class Mantenimiento {
         this.observaciones = observaciones;
         this.estado = estado;
         this.nombre = nombre;
-        
-        
-        
     }
+
+    public Mantenimiento() {
+    }
+    
+    
 
     @Override
     public String toString() {
@@ -61,6 +63,11 @@ public class Mantenimiento {
     public String getNombre() {
         return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
     public void setCodigo_cliente(int codigo_cliente) {
         this.codigo_cliente = codigo_cliente;

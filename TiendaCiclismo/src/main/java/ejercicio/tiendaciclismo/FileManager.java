@@ -23,6 +23,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +35,8 @@ import java.util.logging.Logger;
  */
 public class FileManager {
  
-    
+    private static ArrayList<String> arreglo = new ArrayList<>();
+    private static ArrayList<Mantenimiento> arreglo1 = new ArrayList<>();
     
     
     
@@ -50,7 +52,6 @@ public class FileManager {
             String line = br.readLine();
 
             while (line != null) {
-                
                 sb.append(line);
                 sb.append(System.lineSeparator());
                 line = br.readLine();
@@ -62,12 +63,57 @@ public class FileManager {
     }
     
     
+    public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException
+    {
+       
+
+        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
+        {
+            String line = br.readLine();
+
+            while (line != null) {
+               Mantenimiento m1 = new Mantenimiento();
+               String[] mantenimiento = line.split(",");
+               System.out.println(line);
+               m1.setCodigo_servicio(Integer.parseInt(mantenimiento[0]));
+               m1.setCodigo_cliente(Integer.parseInt(mantenimiento[1]));
+               m1.setMarca_bicicleta(mantenimiento[2]);
+               m1.setDescripcion(mantenimiento[3]);
+               m1.setPrecio(Integer.parseInt(mantenimiento[4]));
+               m1.setFecha_recibido(mantenimiento[5]);
+               m1.setFecha_entrega(mantenimiento[6]);
+               m1.setObservaciones(mantenimiento[7]);
+               m1.setEstado(mantenimiento[8]);
+               m1.setNombre(mantenimiento[9]);
+               line = br.readLine();
+               
+               arreglo1.add(m1); 
+            }
+            
+        }   
+        
+        return arreglo1;
+    }
+    
+    
         // read txt file, para ller el query
     public static void writeFile (String path, String value) throws IOException 
     {
 
 
         try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, true))) 
+        {
+            bw.write(value);
+            bw.close();
+        }
+        
+    }
+    
+    public static void writeFileTruncade (String path, String value) throws IOException 
+    {
+
+
+        try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, false))) 
         {
             bw.write(value);
             bw.close();

@@ -29,6 +29,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Cliente> clientes;
     private ArrayList<Mantenimiento> taller;
     private Mantenimiento m1;
+    private ArrayList<String> lista;
+    private DefaultTableModel model;
     
     /**
      * Creates new form MantenimientoVentana
@@ -37,13 +39,29 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         initComponents();
         clientes = new ArrayList<>();
         taller = new ArrayList<>();
+        lista = new ArrayList<>();
+        model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        loadFileToArray();
+        loadClientes();
+        centrarCeldas();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         m1 = new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto", "Camilo");
+
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-        
+        clientes.add(new Cliente(2, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
+
+    }
+    
+    private void loadFileToArray(){
+        try {
+            taller = FileManager.readFileToArray("mantenimiento.csv");
+            System.out.println(taller.size());
+        } catch (IOException ex) {
+            System.out.println("No funciono");
+        }
     }
     
     private void buscarCliente(String texto){
@@ -54,6 +72,11 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             if(texto.matches("\\d+")){
                 buscarClienteCodigo(Integer.parseInt(texto)); 
             }
+            else if(texto.isBlank()){
+                eraseTable();
+                loadClientes();
+            
+            }
             else{
                 JOptionPane.showMessageDialog(null, "Error, contiene caracteres invalidos", "Error", JOptionPane.ERROR_MESSAGE);   
             }
@@ -63,32 +86,45 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
     
-    private void agregarMantenimiento(Cliente cliente){
-    
-    
-    }
-    
-    private void eliminarMantenimiento(Mantenimiento clienteMantenimiento){
-        taller.remove(clienteMantenimiento);
-        tblTablaMantenimiento.remove(tblTablaMantenimiento.getSelectedRow());
-         
+    private void loadClientes(){
+        for (int i = 0; i < taller.size(); i++) {
+            model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
+            taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
+            taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
+            taller.get(i).getEstado()});
+        }
+        repaint();
     }
     
     
     private void buscarClienteCodigo(int codigo_buscar){
         boolean buscado = false;
-        for (int i = 0; i < clientes.size(); i++) {
-            if(clientes.get(i).getCodigo() == codigo_buscar){
+        int contador = 0;
+        for (int i = 0; i < taller.size(); i++) {
+            if(taller.get(i).getCodigo_cliente() == codigo_buscar){
+                if(contador == 0){
+                   eraseTable();
+                }
                 System.out.println("Cliente encontrado: ");
-                System.out.println(clientes.get(i).toString());
+                mostrarClientes(taller.get(i));
+                System.out.println(taller.get(i).toString());
                 buscado = true;
+                contador++;
+               // break;
             }
         }
         if(buscado == false){
-            System.out.println("No se ha encontrado el cliente");
-              
-        }
-        tblTablaMantenimiento.removeAll(); 
+            JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
+        } 
+    }
+    
+    private void mostrarClientes(Mantenimiento m1){
+        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
+            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
+            m1.getEstado()});
+        repaint();
+    
     }
     
     private void buscarClienteNombre(String nombre_buscar){
@@ -101,7 +137,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             }
         }
         if(buscado == false){
-            System.out.println("No se ha encontrado el cliente");    
+            JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
+   
         }
     }
     
@@ -112,6 +149,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         for (int i = 0; i < tblTablaMantenimiento.getColumnCount(); i++) {
            tblTablaMantenimiento.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
+    }
+    
+    private void eraseTable(){
+        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        int rowCount = tblTablaMantenimiento.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+                model.removeRow(i);
+        }
+    
     }
 
     /**
@@ -183,6 +229,11 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
@@ -251,8 +302,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private void tblTablaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMantenimientoMouseClicked
         // TODO add your handling code here:
-        int selectedRow = tblTablaMantenimiento.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
     }//GEN-LAST:event_tblTablaMantenimientoMouseClicked
@@ -263,16 +312,26 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         model.removeRow(tblTablaMantenimiento.getSelectedRow());
         repaint();
         btnEliminar.setEnabled(false);
+        btnModificar.setEnabled(false);
         System.out.println(taller.size());
         
         for (int i = 0; i < taller.size(); i++) {
             try {
-                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+                if(i == 0){
+                   FileManager.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
+                }
+                else
+                    FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
             } catch (IOException ex) {
                 Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        btnEliminar.setEnabled(false);
+        btnModificar.setEnabled(false);
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
