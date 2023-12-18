@@ -8,8 +8,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -41,22 +44,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
         
-        //esto debe ser una clase aparte 
-         tblTablaMantenimiento.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // Obtiene la fila clicada
-                    int filaClicada = tblTablaMantenimiento.rowAtPoint(e.getPoint());
-                    // Realiza alguna acción con la fila clicada
-                    System.out.println("Clic en la fila: " + filaClicada);
-                    
-                    
-                    cambiarColorFondoFila(filaClicada);
-                }
-            });
-        
-        
-        
     }
     
     private void buscarCliente(String texto){
@@ -82,7 +69,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }
     
     private void eliminarMantenimiento(Mantenimiento clienteMantenimiento){
-        clientes.remove(clienteMantenimiento);
+        taller.remove(clienteMantenimiento);
+        tblTablaMantenimiento.remove(tblTablaMantenimiento.getSelectedRow());
+         
     }
     
     
@@ -99,7 +88,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             System.out.println("No se ha encontrado el cliente");
               
         }
-          
+        tblTablaMantenimiento.removeAll(); 
     }
     
     private void buscarClienteNombre(String nombre_buscar){
@@ -123,17 +112,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         for (int i = 0; i < tblTablaMantenimiento.getColumnCount(); i++) {
            tblTablaMantenimiento.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-    }
-    
-    private void cambiarColorFondoFila(int fila) {
-        int columnas = tblTablaMantenimiento.getColumnCount();
-        for (int columna = 0; columna < 9; columna++) {
-            tblTablaMantenimiento.getCellRenderer(fila, columna).getTableCellRendererComponent(tblTablaMantenimiento, null, true, true, fila, columna).setBackground(Color.CYAN);
-       
-        }
-        repaint();
-      
-        
     }
 
     /**
@@ -188,7 +166,12 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblTablaMantenimiento.setEnabled(false);
+        tblTablaMantenimiento.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblTablaMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablaMantenimientoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTablaMantenimiento);
 
         btnAgregar.setText("Agregar");
@@ -203,6 +186,11 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,15 +243,36 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tblTablaMantenimiento.getModel();
-        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
-            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
-            m1.getEstado()});
-        taller.add(m1);
         centrarCeldas();
         AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this);
         m1.setVisible(true);
+        System.out.println(taller.size());
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void tblTablaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMantenimientoMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = tblTablaMantenimiento.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+    }//GEN-LAST:event_tblTablaMantenimientoMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        taller.remove(taller.get(tblTablaMantenimiento.getSelectedRow()));
+        model.removeRow(tblTablaMantenimiento.getSelectedRow());
+        repaint();
+        btnEliminar.setEnabled(false);
+        System.out.println(taller.size());
+        
+        for (int i = 0; i < taller.size(); i++) {
+            try {
+                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+            } catch (IOException ex) {
+                Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
