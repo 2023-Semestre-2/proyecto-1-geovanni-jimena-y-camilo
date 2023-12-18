@@ -24,6 +24,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,10 +66,11 @@ public class FileManager {
     }
     
     
-    public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException
+    public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {
        
-
+        String patronFecha = "dd/MM-yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
         try(BufferedReader br = new BufferedReader(new FileReader(path))) 
         {
             String line = br.readLine();
@@ -81,8 +84,8 @@ public class FileManager {
                m1.setMarca_bicicleta(mantenimiento[2]);
                m1.setDescripcion(mantenimiento[3]);
                m1.setPrecio(Integer.parseInt(mantenimiento[4]));
-               m1.setFecha_recibido(mantenimiento[5]);
-               m1.setFecha_entrega(mantenimiento[6]);
+               m1.setFecha_recibido(sdf.parse(mantenimiento[5]));
+               m1.setFecha_entrega(sdf.parse(mantenimiento[6]));
                m1.setObservaciones(mantenimiento[7]);
                m1.setEstado(mantenimiento[8]);
                m1.setNombre(mantenimiento[9]);

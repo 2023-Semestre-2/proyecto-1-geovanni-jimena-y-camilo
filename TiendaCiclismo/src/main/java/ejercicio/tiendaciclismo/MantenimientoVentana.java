@@ -10,6 +10,7 @@ import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Level;
@@ -45,8 +46,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         centrarCeldas();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        m1 = new Mantenimiento(1, 1, "Yamaha", "All good", 100, "23", "293", "Mal estado", "Abierto", "Camilo");
-
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -58,6 +57,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             System.out.println(taller.size());
         } catch (IOException ex) {
             System.out.println("No funciono");
+        }
+        catch (ParseException ex) {
+            System.out.println("No hizo los parse a Date");
         }
     }
     

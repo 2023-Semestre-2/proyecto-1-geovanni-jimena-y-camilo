@@ -4,6 +4,7 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,26 +17,28 @@ public class Mantenimiento {
     private String marca_bicicleta;
     private String descripcion;
     private int precio;
-    private String fecha_recibido;
-    private String fecha_entrega;
+    private Date fecha_recibido;
+    private Date fecha_entrega;
     private String observaciones;
     private String estado;
     private String nombre;
+    String patronFecha = "dd/MM/yyyy";
+    SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
    
     // aparte de los atributos, necesita de la referencia al menu y al arreglo
     private Menu menu;
 
-    public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, String fecha_recibido, String fecha_entrega, String observaciones, String estado, String nombre) {
+    public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, Date fecha_recibido, Date fecha_entrega, String observaciones, String estado, String nombre) {
         this.codigo_servicio = codigo_servicio;
         this.codigo_cliente = codigo_cliente;
-        this.marca_bicicleta = marca_bicicleta;
-        this.descripcion = descripcion;
+        this.marca_bicicleta = marca_bicicleta.trim();
+        this.descripcion = descripcion.trim();
         this.precio = precio;
         this.fecha_recibido = fecha_recibido;
         this.fecha_entrega = fecha_entrega;
-        this.observaciones = observaciones;
+        this.observaciones = observaciones.trim();
         this.estado = estado;
-        this.nombre = nombre;
+        this.nombre = nombre.trim();
     }
 
     public Mantenimiento() {
@@ -45,7 +48,7 @@ public class Mantenimiento {
 
     @Override
     public String toString() {
-        return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + fecha_recibido + "," + fecha_entrega + "," + observaciones + "," + estado + ',' + nombre + '\n';
+        return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + sdf.format(fecha_recibido) + "," + sdf.format(fecha_entrega) + "," + observaciones + "," + estado + ',' + nombre + '\n';
     }
 
     public int getCodigo_servicio() {
@@ -97,19 +100,19 @@ public class Mantenimiento {
         this.precio = precio;
     }
 
-    public String getFecha_recibido() {
+    public Date getFecha_recibido() {
         return fecha_recibido;
     }
 
-    public void setFecha_recibido(String fecha_recibido) {
+    public void setFecha_recibido(Date fecha_recibido) {
         this.fecha_recibido = fecha_recibido;
     }
 
-    public String getFecha_entrega() {
+    public Date getFecha_entrega() {
         return fecha_entrega;
     }
 
-    public void setFecha_entrega(String fecha_entrega) {
+    public void setFecha_entrega(Date fecha_entrega) {
         this.fecha_entrega = fecha_entrega;
     }
 
