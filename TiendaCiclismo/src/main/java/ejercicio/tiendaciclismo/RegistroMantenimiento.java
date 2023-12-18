@@ -4,10 +4,13 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author luisc
  */
 public class RegistroMantenimiento {
-    
+    private ArrayList<Mantenimiento> taller;
+    private MantenimientoVentana refVentana; 
 }

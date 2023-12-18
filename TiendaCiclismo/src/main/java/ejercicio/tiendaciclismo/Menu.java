@@ -133,6 +133,7 @@ public class Menu extends javax.swing.JFrame {
     private void btnServicioTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicioTallerActionPerformed
         MantenimientoVentana m1 = new MantenimientoVentana();
         m1.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnServicioTallerActionPerformed
 
     /**
