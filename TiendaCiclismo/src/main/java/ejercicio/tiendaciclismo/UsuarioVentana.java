@@ -4,86 +4,33 @@
  */
 package ejercicio.tiendaciclismo;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import java.awt.*;
+
 
 /**
  *
  * @author luisc
  */
 public class UsuarioVentana extends javax.swing.JFrame {
-    private ArrayList<String> arrayUsers = new ArrayList<String>(); // variable donde se almacenan las credenciales de usuario
-    int center_horizontal_point;
-    int center_vertical_point;
-    
+
+    private LeerUsuario leerUsuario;
+
     /**
      * Creates new form UsuarioVentana
      */
     public UsuarioVentana() {
+        leerUsuario = new LeerUsuario();
         initComponents();
-        centerWindow(this);
-        
-         try {
-           // System.out.println(FileManager.readFileLine("usuarios.acc"));
-            readFileLine("usuarios.acc");
-               
-        } catch (IOException ex) {
-            // falta esta validacion
-            JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
-            // Cerrar el programa
+        setLocationRelativeTo(null);
+
+        try {
+            leerUsuario.initializeUsers("usuarios.acc");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
-        
-        
     }
-    private boolean verifyUser(String usuario, String password){
-    // funcion que verifica los usuarios
-        for (int i = 0; i < arrayUsers.size(); i++) {
-            String[] usersCredentials = arrayUsers.get(i).split(",");
-            // si el usuario y la contraseña coinciden con los de la linea
-            if((usersCredentials[0].equals(usuario) && (usersCredentials[1].equals(password)))){
-                return true;
-            }
-            
-        }
-        return false; 
-       
-    }
-    
-    private void centerWindow(Window window) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        center_horizontal_point = (screenSize.width - window.getWidth()) / 2;
-        center_vertical_point = (screenSize.height - window.getHeight()) / 2;
-        window.setLocation(center_horizontal_point, center_vertical_point);
-    }
-    
-    
-    private void readFileLine (String path) throws FileNotFoundException, IOException
-    {
-       
-
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
-        {
-            String line = br.readLine();
-
-            while (line != null) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                arrayUsers.add(line);
-                line = br.readLine();
-            }
-        }   
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,26 +118,28 @@ public class UsuarioVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfUsuarioActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-         String usuario = txfUsuario.getText();
-         String password = new String(pwfPassword.getPassword()); // convierte char[] a String, se debe crear una nueva instancia
-         System.out.println("Texto ingresado: " + usuario);
-         System.out.println("Texto ingresado: " + password);
-         if(verifyUser(usuario, password)){
-             Menu m1 = new Menu();
-             m1.setVisible(true);
-             m1.setLocation(center_horizontal_point, center_vertical_point);
-             dispose();
-         }
-         else{
-            JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE); 
-
-         }
-         
-      
-         
-         
-         
+        String usuario = txfUsuario.getText();
+        String password = new String(pwfPassword.getPassword());
+        System.out.println("Texto ingresado: " + usuario);
+        System.out.println("Texto ingresado: " + password);
+        if (usuario.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese usuario y contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+            limpiarCampos();
+        } else {
+            if (leerUsuario.verifyUser(usuario, password)) {
+                new Menu().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                limpiarCampos();
+            }
+        }
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void limpiarCampos() {
+        txfUsuario.setText("");
+        pwfPassword.setText("");
+    }
 
     /**
      * @param args the command line arguments
@@ -235,4 +184,8 @@ public class UsuarioVentana extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwfPassword;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
+
+    void isVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

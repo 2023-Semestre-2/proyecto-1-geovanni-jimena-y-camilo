@@ -4,11 +4,7 @@
 
 package ejercicio.tiendaciclismo;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 
 /**
  *
@@ -16,10 +12,11 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class TiendaCiclismo {
 
-    public static void main(String[] args) {
-        UsuarioVentana v1 = new UsuarioVentana();
-        v1.setVisible(true);
+    public static void main(String[] args){
+        UsuarioVentana ventana=new UsuarioVentana();
+        ventana.setVisible(true);
         
         
+    
     }
 }
