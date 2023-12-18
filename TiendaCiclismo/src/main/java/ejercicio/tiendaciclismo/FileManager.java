@@ -11,6 +11,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -120,6 +121,22 @@ public class FileManager {
         }
         
     }
+    
+    public static void deleteFile(String path){
+        File archivo = new File(path);
+        
+        if (archivo.exists()) {
+            // Intentar eliminar el archivo
+            if (archivo.delete()) {
+                System.out.println("El archivo ha sido eliminado correctamente.");
+            } else {
+                System.out.println("No se pudo eliminar el archivo.");
+            }
+        } else {
+            System.out.println("El archivo no existe en la ruta especificada.");
+        }
+    }
+    
     
     // escribe un objeto
     public static void writeObject (Object obj, String filePath)
