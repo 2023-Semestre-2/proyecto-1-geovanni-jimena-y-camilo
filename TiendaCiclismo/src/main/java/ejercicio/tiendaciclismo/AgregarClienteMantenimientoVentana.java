@@ -34,6 +34,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         this.refVentana = refVentana;
         loadClientes();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         
     }
 
@@ -164,6 +165,11 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         txfObservaciones.setText("Observaciones");
 
         btRegresar.setText("REGRESAR");
+        btRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,7 +194,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblObservaciones)
-                                .addContainerGap(435, Short.MAX_VALUE))
+                                .addContainerGap(400, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -202,7 +208,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(txfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,6 +375,12 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cmbClientesActionPerformed
+
+    private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed
+        MantenimientoVentana v1 = new MantenimientoVentana();
+        v1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btRegresarActionPerformed
 
     /**
      * @param args the command line arguments

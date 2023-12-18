@@ -329,6 +329,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this);
         m1.setVisible(true);
         System.out.println(taller.size());
+        dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void tblTablaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMantenimientoMouseClicked
