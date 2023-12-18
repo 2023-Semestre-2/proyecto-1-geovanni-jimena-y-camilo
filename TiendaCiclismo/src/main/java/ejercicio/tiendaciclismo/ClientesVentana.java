@@ -7,18 +7,24 @@ package ejercicio.tiendaciclismo;
 
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.OperacionesCliente;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class ClientesVentana extends javax.swing.JFrame {
-
-    /**
-     * Creates new form clientesFrame
-     */
-    public ClientesVentana() {
+    
+    
+    DefaultTableModel model = new DefaultTableModel();
+    private String[] fila;
+    
+    public ClientesVentana() throws IOException {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        OperacionesCliente operacion = new OperacionesCliente();
-        DefaultTableModel model = new DefaultTableModel();
+        
         model.addColumn("Codigo");
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
@@ -26,8 +32,33 @@ public class ClientesVentana extends javax.swing.JFrame {
         model.addColumn("Correo");
         model.addColumn("Provincia");
         tablaClientes.setModel(model);
-        
+        cargarClientesArchivo();
+    
       
+    }
+    private void cargarClientesArchivo() throws IOException{
+        
+        try{
+            FileReader archivoClientes = new FileReader ("Clientes.txt");
+            BufferedReader lectura = new BufferedReader(archivoClientes);
+            
+            String linea=lectura.readLine();
+            
+            while (linea!=null){
+                fila = linea.split(",");
+                model.addRow(fila);
+                linea=lectura.readLine();
+            
+            
+            
+        }
+            
+                    
+        }
+        catch(FileNotFoundException e) {
+            System.out.println(e);
+        }
+        
     }
 
     /**
@@ -162,6 +193,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         AgregarClienteVentana vent1= new AgregarClienteVentana();
         vent1.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     /**
@@ -201,7 +233,11 @@ public class ClientesVentana extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClientesVentana().setVisible(true);
+                try {
+                    new ClientesVentana().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientesVentana.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

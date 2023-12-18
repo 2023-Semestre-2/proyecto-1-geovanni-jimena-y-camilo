@@ -4,15 +4,15 @@ import java.io.Serializable; //Libreria para serializar objeto
 
 public class Cliente implements Serializable {
     
-    int codigo = 1;
-    String nombre;
-    String apellidos;
-    String telefono;
-    String correo;
-    String provincia;
-    String canton;
-    String distrito;
-    String fechaNacimiento;
+    private int codigo = 1;
+    private String nombre;
+    private String apellidos;
+    private String telefono;
+    private String correo;
+    private String provincia;
+    private String canton;
+    private String distrito;
+    private String fechaNacimiento;
 
     public Cliente(String nombre, String apellidos, String telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
         this.codigo = codigo++;
@@ -27,6 +27,10 @@ public class Cliente implements Serializable {
     }
 
     public Cliente() {
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     

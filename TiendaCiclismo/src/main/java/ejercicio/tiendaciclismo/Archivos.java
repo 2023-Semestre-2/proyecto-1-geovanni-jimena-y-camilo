@@ -5,23 +5,56 @@
 package ejercicio.tiendaciclismo;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.Buffer;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Eliecer Fitoria
- */
+
 public class Archivos {
-
+    
+    File archivo;
+    
     Articulo a;
-
+    
+    
+    
+    
     public Archivos() {
         a = new Articulo();
     }
-
+    
+    public void crearArchivo(String nombreArchivo){
+        
+        try{
+            archivo = new File(nombreArchivo);
+            if (archivo.createNewFile()){
+                JOptionPane.showMessageDialog(null, "Archivo creado");
+            }
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void escribirEnArchivo(Cliente cliente,String nombreArchivo){
+        try{
+            
+            FileWriter escribir = new FileWriter(nombreArchivo,true);
+            escribir.write(String.valueOf(cliente.getCodigo())+","+cliente.getNombre()+","+cliente.getApellidos()+","+cliente.getTelefono()+","+
+                    cliente.getCorreo()+","+cliente.getProvincia()+","+cliente.getCanton()+","+cliente.getDistrito()+","+
+                    cliente.getFechaNacimiento()+"\r\n");
+            escribir.close();
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    
+    
     public void escrituraArticulo(String nombre, String apellido, int edad, String marca, double precio, int cantidad, String doc, boolean sobreescritura) {
         try {
             FileWriter archivo = new FileWriter(doc + ".acc", sobreescritura);

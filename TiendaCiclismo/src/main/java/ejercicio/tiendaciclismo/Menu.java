@@ -4,6 +4,10 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luisc
@@ -113,7 +117,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBicicletasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        ClientesVentana v1 = new ClientesVentana();
+        ClientesVentana v1 = null;
+        try {
+            v1 = new ClientesVentana();
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v1.setVisible(true);
     }//GEN-LAST:event_btnClienteActionPerformed
 

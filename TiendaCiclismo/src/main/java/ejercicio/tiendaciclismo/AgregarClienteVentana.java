@@ -5,9 +5,12 @@ import ejercicio.tiendaciclismo.OperacionesCliente;
 import ejercicio.tiendaciclismo.ClientesVentana;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.management.Query.or;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
@@ -85,11 +88,6 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 textApellidosFocusLost(evt);
-            }
-        });
-        textApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textApellidosActionPerformed(evt);
             }
         });
         textApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -264,8 +262,13 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
         
+        Archivos archivoClientes = new Archivos();
+        archivoClientes.crearArchivo("Clientes.txt");
+        
         java.util.Date date= new java.util.Date();
+        
         SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
+     
         //Se asignan las variables
         String nombreCliente= textNombre.getText();
         String apellidosCliente= textApellidos.getText();
@@ -280,38 +283,42 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         if ("Ingrese su nombre".equals(nombreCliente) || "Ingrese sus apellidos".equals(apellidosCliente) || "Solo inicia (2,4,6,8)".equals(telefono) || "un@ejemplo.com".equals(correo) || "Seleccione".equals(provincia) 
                 || "Seleccione".equals(canton) || "Seleccione".equals(distrito)||fechaNacimiento.isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-        }     else {
+            }else {}
                    if ( telefono.length() < 8 ){
                        JOptionPane.showMessageDialog(null, "El numero debe ser de 8 digitos", "Error", JOptionPane.ERROR_MESSAGE);
-                   }
-                   if (!verificarNumero(telefono)){
+                        
+                   }else{
+                        if (!verificarNumero(telefono)){
                                JOptionPane.showMessageDialog(null, "El numero de telefono debe empezar con (2,4,6,8)", "Error", JOptionPane.ERROR_MESSAGE);
-                   }
-                   if (nombreCliente!=nombreCliente.trim()){
-                    JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos del nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                if (nombreCliente!=nombreCliente.trim()){
+                                JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos del nombre", "Error", JOptionPane.ERROR_MESSAGE);
 
-                   }
-                   if (apellidosCliente != apellidosCliente.trim()){
-                       JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+                                }else{
+                                    if (apellidosCliente != apellidosCliente.trim()){
+                                    JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
                        
+                                    }else{
+                                        if (correo != correo.trim()){
+                                        JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
+                                        }else{
+                                        try {
+                                            Cliente clienteNuevo = new Cliente(nombreCliente,apellidosCliente,telefono,correo,provincia,canton,distrito,fechaNacimiento);
+                                            archivoClientes.escribirEnArchivo(clienteNuevo,"Clientes.txt");
+                           
+                                            ClientesVentana ventana = new ClientesVentana();
+                                            ventana.setVisible(true);
+                                            this.setVisible(false);
+                                            
+                                            } catch (IOException ex) {
+                                            Logger.getLogger(AgregarClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                        
+                   
                    }
-                   if (correo != correo.trim()){
-                    JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
-                   }
-                   else{
-                   Cliente clienteNuevo = new Cliente(nombreCliente,apellidosCliente,telefono,correo,provincia,canton,distrito,fechaNacimiento);
-                   OperacionesCliente añadir= new OperacionesCliente ();
-                   //añadir.guardarClienteCSV(clienteNuevo);
-                   operacion.agregarClienteLista(clienteNuevo);
-                   }
-        }
-     
+        }}}}                     
         
     }//GEN-LAST:event_botonTerminarActionPerformed
-
-    private void textApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textApellidosActionPerformed
 
     private void textCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCorreoActionPerformed
         // TODO add your handling code here:
