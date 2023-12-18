@@ -87,7 +87,6 @@ public class FileManager {
                m1.setEstado(mantenimiento[8]);
                m1.setNombre(mantenimiento[9]);
                line = br.readLine();
-               
                arreglo1.add(m1); 
             }
             

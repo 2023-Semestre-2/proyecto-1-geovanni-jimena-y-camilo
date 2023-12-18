@@ -29,7 +29,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Cliente> clientes;
     private ArrayList<Mantenimiento> taller;
     private Mantenimiento m1;
-    private ArrayList<String> lista;
     private DefaultTableModel model;
     
     /**
@@ -39,7 +38,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         initComponents();
         clientes = new ArrayList<>();
         taller = new ArrayList<>();
-        lista = new ArrayList<>();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         loadFileToArray();
         loadClientes();
