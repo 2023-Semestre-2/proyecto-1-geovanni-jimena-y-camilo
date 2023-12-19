@@ -4,7 +4,9 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -57,8 +59,6 @@ public class ProductosVentana extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -69,22 +69,15 @@ public class ProductosVentana extends javax.swing.JFrame{
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Registro de productos");
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setText("Filtros:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Codigo" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,11 +137,21 @@ public class ProductosVentana extends javax.swing.JFrame{
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
             }
         });
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Código:");
+
+        jLabel7.setText("Nombre:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,54 +163,51 @@ public class ProductosVentana extends javax.swing.JFrame{
                 .addGap(57, 57, 57))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton3))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton1))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(44, 44, 44)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(365, 365, 365))
-                                            .addComponent(jScrollPane1))))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jButton2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jLabel5)))))
-                        .addGap(42, 42, 42))))
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabel5)))))
+                .addGap(42, 42, 42))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel3)
-                .addGap(10, 10, 10)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -246,16 +246,48 @@ public class ProductosVentana extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String seleccion=(String) jComboBox2.getSelectedItem();
-        if (seleccion=="Nombre"){
-            if (!jTextField2.getText().isEmpty()){
-                if (verificarNombre(jTextField2.getText())){
+        if (!jTextField3.getText().isEmpty() && !jTextField1.getText().isEmpty()){
+            ArrayList<Articulo> articulosBuscados=new ArrayList<>();
+            ArrayList<TipoProducto> productosBuscados=new ArrayList<>();
+            if (verificarNombre(jTextField3.getText())){
+                articulosBuscados=registro.buscarNombreArticulo(jTextField3.getText());
+                productosBuscados=registro.buscarNombreProducto(jTextField3.getText());
+           
+            }else{
+                JOptionPane.showMessageDialog(jPanel1, "El nombre contiene caracteres no permitidos.");
+                return;
+            }
+                
+            if(esEntero(jTextField1.getText())){
+                articulosBuscados.addAll(registro.buscarCodigoArticulo(Integer.parseInt(jTextField1.getText())));
+                productosBuscados.addAll(registro.buscarCodigoProducto(Integer.parseInt(jTextField1.getText())));
+                
+            }else{
+                    JOptionPane.showMessageDialog(jPanel1, "Debe ingresar el codigo como un numero entero.");
+                    return;
+            }
+            
+            if (articulosBuscados==null && productosBuscados==null){
+                JOptionPane.showMessageDialog(jPanel1, "Los datos no se encuentran entre los productos o artículos.");
+                return;
+            }else{
+                if(articulosBuscados!=null){
+                    seleccionaArticulos(articulosBuscados);
+                }
+                if (productosBuscados!=null){
+                    seleccionaProductos(productosBuscados);
+                } 
+            }
+        }else{
+            if (!jTextField3.getText().isEmpty()){
+                if (verificarNombre(jTextField3.getText())){
                     ArrayList<Articulo> articulosBuscados=new ArrayList<>();
                     ArrayList<TipoProducto> productosBuscados=new ArrayList<>();
-                    articulosBuscados=registro.buscarNombreArticulo(jTextField2.getText());
-                    productosBuscados=registro.buscarNombreProducto(jTextField2.getText());
+                    articulosBuscados=registro.buscarNombreArticulo(jTextField3.getText());
+                    productosBuscados=registro.buscarNombreProducto(jTextField3.getText());
                     if (articulosBuscados==null && productosBuscados==null){
                         JOptionPane.showMessageDialog(jPanel1, "El nombre no se encuentra entre los productos o artículos.");
+                        return;
                     }else{
                         if(articulosBuscados!=null){
                             seleccionaArticulos(articulosBuscados);
@@ -268,18 +300,12 @@ public class ProductosVentana extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(jPanel1, "El nombre contiene caracteres no permitidos.");
                 }
             }else{
-                tablaArticulo.setRowCount(0);
-                tablaProducto.setRowCount(0);
-                iniciarTablas();
-            }                   
-            
-        }else{
-            if (!jTextField2.getText().isEmpty()){
-                if (esEntero(jTextField2.getText())){
+                if (!jTextField1.getText().isEmpty()){
+                if (esEntero(jTextField1.getText())){
                     ArrayList<Articulo> articulosBuscados=new ArrayList<>();
                     ArrayList<TipoProducto> productosBuscados=new ArrayList<>();
-                    articulosBuscados=registro.buscarCodigoArticulo(Integer.parseInt(jTextField2.getText()));
-                    productosBuscados=registro.buscarCodigoProducto(Integer.parseInt(jTextField2.getText()));
+                    articulosBuscados=registro.buscarCodigoArticulo(Integer.parseInt(jTextField1.getText()));
+                    productosBuscados=registro.buscarCodigoProducto(Integer.parseInt(jTextField1.getText()));
                     if (articulosBuscados==null && productosBuscados==null){
                         JOptionPane.showMessageDialog(jPanel1, "El nombre no se encuentra entre los productos o artículos.");
                     }else{
@@ -293,12 +319,13 @@ public class ProductosVentana extends javax.swing.JFrame{
                 }else{
                     JOptionPane.showMessageDialog(jPanel1, "Debe ingresar el codigo como un numero entero.");
                 }
-            }else{
-                tablaArticulo.setRowCount(0);
-                tablaProducto.setRowCount(0);
-                iniciarTablas();            
+                }else{
+                    tablaArticulo.setRowCount(0);
+                    tablaProducto.setRowCount(0);
+                    iniciarTablas();            
             
             }
+        }
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -324,7 +351,14 @@ public class ProductosVentana extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
     
+    /**
+     *
+     * @param listaConDuplicados
+     * @return
+     */
+
     
     private boolean verificarNombre(String nombre) {
         // Utilizar una expresión regular para verificar que el nombre solo tenga letras
@@ -356,13 +390,13 @@ public class ProductosVentana extends javax.swing.JFrame{
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jTextField3ActionPerformed
     
     
     
@@ -423,18 +457,19 @@ public class ProductosVentana extends javax.swing.JFrame{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
     static class setVisible {

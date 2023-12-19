@@ -37,12 +37,12 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblBienvenido.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        lblBienvenido.setText("Bienvenido usuario");
+        lblBienvenido.setText("Bienvenido a Tienda Ciclismo");
 
         lblDeseaHacer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblDeseaHacer.setText("¿Qué desea hacer?");
+        lblDeseaHacer.setText("Escoja una de las siguientes opciones:");
 
-        btnBicicletas.setText("Registro de Bicicletas y Accesorios");
+        btnBicicletas.setText("Registro de Productos");
         btnBicicletas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBicicletasActionPerformed(evt);
@@ -65,9 +65,6 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(188, 188, 188)
                         .addComponent(lblBienvenido))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(lblDeseaHacer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(btnBicicletas, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -78,8 +75,11 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(btnServicioTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(btnFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                        .addComponent(btnFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblDeseaHacer, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

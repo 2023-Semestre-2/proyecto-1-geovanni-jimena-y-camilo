@@ -4,6 +4,8 @@
 
 package ejercicio.tiendaciclismo;
 
+import java.text.ParseException;
+
 
 
 /**
@@ -12,11 +14,10 @@ package ejercicio.tiendaciclismo;
  */
 public class TiendaCiclismo {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException{
         UsuarioVentana ventana=new UsuarioVentana();
         ventana.setVisible(true);
+       
         
-        
-    
     }
 }

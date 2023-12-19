@@ -8,8 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-
 
 public class RegistroProductos{
     private ArrayList<TipoProducto> tiposProductos= new ArrayList<>();
@@ -44,20 +42,23 @@ public class RegistroProductos{
         
     
     @SuppressWarnings("empty-statement")
-    public void verifyTipoProducto(String nombre) {
+    public void agregarTipoProducto(String nombre) {
         int codigo = tiposProductos.size() + 1;
         
-        for(TipoProducto producto:tiposProductos){
+        for(TipoProducto producto:tiposProductos){//En caso de que un producto se elimine
             int codigoExiste=producto.getCodigo();
             if (codigoExiste==codigo){
                 codigo++;
             }
         }
         
-        if(tiposProductos.getLast().getCodigo()>codigo){
-            codigo=tiposProductos.getLast().getCodigo()+1;
-            if (codigo==(tiposProductos.getLast().getCodigo())){
-                codigo++;
+        
+        if (!tiposProductos.isEmpty()){
+            if(tiposProductos.getLast().getCodigo()>codigo){
+                codigo=tiposProductos.getLast().getCodigo()+1;
+                if (codigo==(tiposProductos.getLast().getCodigo())){
+                    codigo++;
+                }
             }
         }
         
@@ -103,7 +104,7 @@ public class RegistroProductos{
 
     }
 
-    public void verifyArticulo(int codigoTipoProducto, String nombre, String tipo, int tamano, String marca, int precio, int cantidad) {
+    public void agregarArticulo(int codigoTipoProducto, String nombre, String tipo, int tamano, String marca, int precio, int cantidad) {
         try{
             
        

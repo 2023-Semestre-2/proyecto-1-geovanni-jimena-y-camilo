@@ -10,6 +10,7 @@ public class Articulo {
     private String marca;
     private int precio;
     private int cantidad;
+    
 
     public Articulo() {
     }
@@ -23,6 +24,7 @@ public class Articulo {
         this.marca = marca.trim();
         this.precio = precio;
         this.cantidad = cantidad;
+        
     }
 
 

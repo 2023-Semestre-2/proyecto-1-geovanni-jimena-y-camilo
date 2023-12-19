@@ -23,12 +23,12 @@ public class Archivos {
         
     }
 
-    public void escrituraArticulo(int codigo, int codigoProducto,String nombre, String tipo, int edad, String marca, int precio, int cantidad, boolean sobreescritura) {
+    public void escrituraArticulo(int codigo, int codigoProducto,String nombre, String tipo, int tamano, String marca, int precio, int cantidad, boolean sobreescritura) {
         try {
             FileWriter archivo = new FileWriter("Articulos.acc", sobreescritura);
             BufferedWriter flujo = new BufferedWriter(archivo);
             PrintWriter escribir = new PrintWriter(flujo);
-            escribir.println(new Articulo(codigo,codigoProducto,nombre, tipo, edad, marca, precio, cantidad));
+            escribir.println(new Articulo(codigo,codigoProducto,nombre, tipo, tamano, marca, precio, cantidad));
             escribir.flush();
 
         } catch (IOException e) {
@@ -49,6 +49,20 @@ public class Archivos {
             System.err.println("Error al escribir" + e.getMessage());
             
         }      
+    }
+    
+    public void escrituraFactura(Factura factura,boolean sobreescritura){
+        try {
+            FileWriter archivo = new FileWriter("Facturas.acc", sobreescritura);
+            BufferedWriter flujo = new BufferedWriter(archivo);
+            PrintWriter escribir = new PrintWriter(flujo);
+            escribir.println(factura);
+            escribir.flush();
+
+        } catch (IOException e) {
+            System.err.println("Error al escribir" + e.getMessage());
+            
+        } 
     }
     
     
@@ -75,7 +89,7 @@ public class Archivos {
         return data.toString();
     }
     
-    public void eliminarEscritura(String linea, String doc){
+        public void eliminarEscritura(String linea, String doc){
         String contenido=leer(doc);
         StringBuilder contenidoNuevo=new StringBuilder();
         StringReader stringReader = new StringReader(contenido);
