@@ -42,7 +42,7 @@ public class RegistroFacturacion {
                         
                 
                 // Crear un objeto ObjetoDatos y agregarlo a la lista.
-                Factura objeto = new Factura(numFactura, codigoCliente,fecha,Estado,codigoArticulo,codigoProducto,cantidad);
+                Factura objeto = new Factura(numFactura, codigoCliente,fecha,Estado,codigoArticulo,codigoProducto,cantidad,0);
                 facturas.add(objeto);
             }
         } catch (IOException e) {
@@ -90,7 +90,7 @@ public class RegistroFacturacion {
             Date fechaBuena = formatoFecha.parse(fecha);
         
             // Crear el objeto factura
-            Factura factura=new Factura(numeroFactura,codigoCliente, fechaBuena, estado, codigoArticulo,codigoProducto, cantidad);
+            Factura factura=new Factura(numeroFactura,codigoCliente, fechaBuena, estado, codigoArticulo,codigoProducto, cantidad,0);
             reg.escrituraFactura(factura, true);
             facturas.add(factura);
             

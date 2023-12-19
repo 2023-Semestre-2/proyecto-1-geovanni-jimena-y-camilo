@@ -15,6 +15,7 @@ public class Factura {
     private int codigoArticulo;
     private int codigoProducto;
     private int cantidad;
+    private int precio;
     private Archivos reg = new Archivos();
     private RegistroProductos registro = new RegistroProductos();
 
@@ -23,7 +24,7 @@ public class Factura {
 
 
 
-    public Factura(int numeroFactura, int codigoCliente, Date fecha, String Estado, int codigoArticulo,int codigoProducto, int cantidad) {
+    public Factura(int numeroFactura, int codigoCliente, Date fecha, String Estado, int codigoArticulo,int codigoProducto, int cantidad, int precio) {
         this.numeroFactura = numeroFactura;
         this.codigoCliente = codigoCliente;
         this.fecha = fecha;

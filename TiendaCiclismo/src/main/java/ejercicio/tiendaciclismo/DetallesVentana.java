@@ -111,7 +111,7 @@ public class DetallesVentana extends javax.swing.JFrame {
 
         jLabel20.setText("jLabel20");
 
-        jLabel21.setText("jLabel21");
+        jLabel21.setText("-");
 
         jLabel22.setText("jLabel22");
 
