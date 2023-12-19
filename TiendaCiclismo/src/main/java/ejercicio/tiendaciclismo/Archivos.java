@@ -4,6 +4,7 @@
  */
 package ejercicio.tiendaciclismo;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -18,13 +19,11 @@ public class Archivos {
     
     File archivo;
     
-    Articulo a;
-    
-    
-    
+   
+  
     
     public Archivos() {
-        a = new Articulo();
+       
     }
     
     public void crearArchivo(String nombreArchivo){
@@ -40,6 +39,17 @@ public class Archivos {
         }
     }
     
+    public void actualizarCodigoCliente(String nombreArchivo,int codigoActualizado){
+      try{           
+            FileWriter escribir = new FileWriter(nombreArchivo,false);
+            escribir.write(String.valueOf(codigoActualizado));
+            escribir.close();
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }  
+    
     public void escribirEnArchivo(Cliente cliente,String nombreArchivo){
         try{
             
@@ -53,23 +63,59 @@ public class Archivos {
             System.out.println(e);
         }
     }
-    
-    
-    public void escrituraArticulo(String nombre, String apellido, int edad, String marca, double precio, int cantidad, String doc, boolean sobreescritura) {
-        try {
-            FileWriter archivo = new FileWriter(doc + ".acc", sobreescritura);
-            BufferedWriter flujo = new BufferedWriter(archivo);
-            PrintWriter escribir = new PrintWriter(flujo);
-            escribir.println(new Articulo(nombre, apellido, edad, marca, precio, cantidad));
-            escribir.flush();
+    public String leer(String document) {
+        StringBuilder data = new StringBuilder();
 
-        } catch (Exception e) {
-            System.err.println("Error al escribir" + e.getMessage());
-            
+        try {
+            FileReader archivo = new FileReader(document);
+            BufferedReader flujo = new BufferedReader(archivo);
+            String salida;
+
+            while ((salida = flujo.readLine()) != null) {
+                String[] partes = salida.split(","); 
+                for (String parte : partes) {
+                    data.append(parte.trim()).append(",");
+                }
+                data.append("\n");
+            }
+            flujo.close(); 
+        } catch (IOException e) {
+            System.err.println("Error al leer: " + e.getMessage());
         }
-            
+
+        return data.toString();
     }
+    
+    
+    public void modificarEscritura(String lineaNueva,String lineaReemplazar, String doc){
+        try {
+            // Leer el archivo original
+            StringBuilder contenidoNuevo=new StringBuilder();
+            BufferedReader reader = new BufferedReader(new FileReader(doc));
+            String lineaActual;
+
+            while ((lineaActual = reader.readLine()) != null) {
+                if (lineaActual.equals(lineaReemplazar)) {
+                    // Reemplazar la línea específica
+                    contenidoNuevo.append(lineaNueva).append("\n");
+                } else {
+                    contenidoNuevo.append(lineaActual).append("\n");
+                }
+            }
+            FileWriter writer = new FileWriter(doc+".acc");
+            BufferedWriter bufferWriter = new BufferedWriter(writer);
+            bufferWriter.write(contenidoNuevo.toString());
+
+            // Cierra los recursos
+            bufferWriter.close();
+            writer.close();
+        }catch(IOException e){
+            System.err.println("Error al leer: " + e.getMessage());
+
+        }
         
+    }
+
 }
 
  

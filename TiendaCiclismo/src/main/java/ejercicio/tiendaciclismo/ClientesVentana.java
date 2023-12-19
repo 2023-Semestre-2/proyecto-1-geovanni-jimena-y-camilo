@@ -1,16 +1,12 @@
 package ejercicio.tiendaciclismo;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.OperacionesCliente;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,12 +15,16 @@ public class ClientesVentana extends javax.swing.JFrame {
     
     
     DefaultTableModel model = new DefaultTableModel();
-    private String[] fila;
+    
+    private Archivos arch= new Archivos();
+    private OperacionesCliente operacion= new OperacionesCliente();
+    
+    
     
     public ClientesVentana() throws IOException {
-        initComponents();
+        boolean primerIngreso=true;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        
+        initComponents();
         model.addColumn("Codigo");
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
@@ -32,35 +32,15 @@ public class ClientesVentana extends javax.swing.JFrame {
         model.addColumn("Correo");
         model.addColumn("Provincia");
         tablaClientes.setModel(model);
-        cargarClientesArchivo();
-    
-      
-    }
-    private void cargarClientesArchivo() throws IOException{
-        
-        try{
-            FileReader archivoClientes = new FileReader ("Clientes.txt");
-            BufferedReader lectura = new BufferedReader(archivoClientes);
-            
-            String linea=lectura.readLine();
-            
-            while (linea!=null){
-                fila = linea.split(",");
-                model.addRow(fila);
-                linea=lectura.readLine();
-            
-            
-            
-        }
-            
-                    
-        }
-        catch(FileNotFoundException e) {
-            System.out.println(e);
-        }
-        
-    }
+       }
+  
 
+     public void iniciarTablas(ArrayList<Cliente>lista){
+         for (Cliente cliente:lista){
+            Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
+            model.addRow(fila);
+         }    
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +84,11 @@ public class ClientesVentana extends javax.swing.JFrame {
         });
 
         botonModificar.setText("Modificar Cliente");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setText("Eliminar Cliente");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +181,11 @@ public class ClientesVentana extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+         //DefaultTableModel modeloModificar=(DefaultTableModel)tablaClientes.getModel();
+          //int fila=tablaClientes.getSelectedRow();
+          
+    }//GEN-LAST:event_botonModificarActionPerformed
     /**
      * @param args the command line arguments
      */

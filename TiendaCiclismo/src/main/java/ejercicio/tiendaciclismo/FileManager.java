@@ -28,10 +28,7 @@ import java.util.logging.Logger;
 
 
 
-/**
- *
- * @author sap1
- */
+
 public class FileManager {
  
     

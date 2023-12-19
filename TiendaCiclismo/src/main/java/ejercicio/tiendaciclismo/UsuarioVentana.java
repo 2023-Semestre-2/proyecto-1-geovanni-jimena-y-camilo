@@ -8,10 +8,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author luisc
- */
 public class UsuarioVentana extends javax.swing.JFrame {
 
     private LeerUsuario leerUsuario;

@@ -1,0 +1,2 @@
+1,Geovanni,Gonzalez,63723384,geo@gmail.com,Limón,Pococí,Guápiles,01/12/2023
+2,Cris,Aguilar,87673893,cris@gmail.com,Cartago,Cartago,Oriental,14/12/2023

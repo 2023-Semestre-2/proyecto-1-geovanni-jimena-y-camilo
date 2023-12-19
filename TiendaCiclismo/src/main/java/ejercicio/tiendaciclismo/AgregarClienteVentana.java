@@ -262,10 +262,8 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
         
-        Archivos archivoClientes = new Archivos();
-        archivoClientes.crearArchivo("Clientes.txt");
-        
-        java.util.Date date= new java.util.Date();
+        Archivos arch= new Archivos();
+
         
         SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
      
@@ -303,10 +301,15 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
                                         }else{
                                         try {
-                                            Cliente clienteNuevo = new Cliente(nombreCliente,apellidosCliente,telefono,correo,provincia,canton,distrito,fechaNacimiento);
-                                            archivoClientes.escribirEnArchivo(clienteNuevo,"Clientes.txt");
-                           
+                                            
+                                            operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+                                            operacion.AgregarCliente(nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
+                                            System.out.println("El tamaño de la lista de los clientes es :"+Integer.toString(operacion.listaClientes.size()));
+                                            
+                                            
+                    
                                             ClientesVentana ventana = new ClientesVentana();
+                                            ventana.iniciarTablas(operacion.listaClientes);
                                             ventana.setVisible(true);
                                             this.setVisible(false);
                                             

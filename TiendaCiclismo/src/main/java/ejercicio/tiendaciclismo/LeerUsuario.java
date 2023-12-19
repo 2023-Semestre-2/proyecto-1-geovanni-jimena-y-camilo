@@ -10,10 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-/**
- *
- * @author Eliecer Fitoria
- */
+
 public class LeerUsuario {
     
       private ArrayList<String> arrayUsers;
