@@ -26,7 +26,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,7 +97,6 @@ public class FileManager {
     
     public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {
-       
         String patronFecha = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
         try(BufferedReader br = new BufferedReader(new FileReader(path))) 
@@ -120,7 +121,8 @@ public class FileManager {
                arreglo1.add(m1); 
             }
             
-        }   
+        }
+        System.out.println(arreglo1.size());
         return arreglo1;
     }
     

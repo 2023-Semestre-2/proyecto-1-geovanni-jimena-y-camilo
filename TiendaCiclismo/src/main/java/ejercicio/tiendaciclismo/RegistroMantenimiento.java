@@ -15,9 +15,9 @@ import javax.swing.table.DefaultTableModel;
  * @author luisc
  */
 public class RegistroMantenimiento {
-    private ArrayList<Mantenimiento> taller;
+    private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
-    private final ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientes = new ArrayList<>();
     private final DefaultTableModel model;
     private int codigo_servicio;
 
@@ -28,9 +28,11 @@ public class RegistroMantenimiento {
         model = (DefaultTableModel)refVentana.getTblTablaMantenimiento().getModel();
     }
     
-    public ArrayList<Mantenimiento> loadFileToArray(){
+    public ArrayList<Mantenimiento> loadFileToArray(ArrayList<Mantenimiento> taller){
         try {
             taller = FileManager.readFileToArray("mantenimiento.csv");
+            System.out.println("");
+            System.out.println(taller.size());
             agregarClientes();
             return taller;
         } catch (IOException ex) {

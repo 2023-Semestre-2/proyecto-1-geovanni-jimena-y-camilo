@@ -42,32 +42,36 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="ftfFechaEntrega" min="-2" pref="239" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txfMarca" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblNombreCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cmbClientes" pref="239" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                          <Component id="txfObservaciones" min="-2" pref="247" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="ftfFechaEntrega" min="-2" pref="239" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txfMarca" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNombreCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbClientes" pref="239" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="txfObservaciones" min="-2" pref="247" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                          </Group>
+                          <Component id="lblObservaciones" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btRegresar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="dcsFechaEntrega" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -138,11 +142,14 @@
                   <Component id="lblFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ftfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ftfFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ftfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ftfFechaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="dcsFechaEntrega" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblEstado" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -152,7 +159,7 @@
                   <Component id="cmbEstado" min="-2" max="-2" attributes="0"/>
                   <Component id="txfObservaciones" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="134" max="32767" attributes="0"/>
+              <EmptySpace pref="125" max="32767" attributes="0"/>
               <Component id="btnGuardar" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
@@ -306,6 +313,8 @@
           <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="dcsFechaEntrega">
     </Component>
   </SubComponents>
 </Form>

@@ -32,14 +32,14 @@ public class MantenimientoVentana extends javax.swing.JFrame {
      */
     public MantenimientoVentana() {
         initComponents();
-        clientes = new ArrayList<>();
-        taller = new ArrayList<>();
+        clientes = new ArrayList<Cliente>();
+        taller = new ArrayList<Mantenimiento>();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
-        taller = registroMantenimiento.loadFileToArray();
-        System.out.println("Al cargarlo");
+        taller = registroMantenimiento.loadFileToArray(taller);
         System.out.println(taller.size());
+        reloadClientes();
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -263,9 +263,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
         
-        if(taller.size() == 0){
+        if(taller.isEmpty()){
             FileManager.deleteFile("mantenimiento.csv");
         }
+        else{
         
         for (int i = 0; i < taller.size(); i++) {
             try {
@@ -277,6 +278,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

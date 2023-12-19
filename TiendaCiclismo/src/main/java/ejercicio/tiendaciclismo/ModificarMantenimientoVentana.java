@@ -289,6 +289,8 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         
         // eso es uno
         FileManager.modifyEscritura(m1.toString(), miembroModificar.toString(), "mantenimiento.csv");
+        refVentana.eraseTable();
+        loadClientes();
         codigo_servicio++;
         ftfCodigoServicio.setText("" + codigo_servicio);
     }//GEN-LAST:event_btnGuardarActionPerformed
