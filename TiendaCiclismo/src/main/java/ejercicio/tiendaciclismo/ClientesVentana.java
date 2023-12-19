@@ -16,13 +16,13 @@ public class ClientesVentana extends javax.swing.JFrame {
     
     DefaultTableModel model = new DefaultTableModel();
     
+
     private Archivos arch= new Archivos();
     private OperacionesCliente operacion= new OperacionesCliente();
-    
-    
+  
+   
     
     public ClientesVentana() throws IOException {
-        boolean primerIngreso=true;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
         model.addColumn("Codigo");
@@ -32,9 +32,19 @@ public class ClientesVentana extends javax.swing.JFrame {
         model.addColumn("Correo");
         model.addColumn("Provincia");
         tablaClientes.setModel(model);
+        
+        
        }
   
-
+    public void cargarClientesTabla(){
+            
+            operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+            for (Cliente cliente:operacion.listaClientes){
+            Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
+            model.addRow(fila);
+        
+            }
+    }
      public void iniciarTablas(ArrayList<Cliente>lista){
          for (Cliente cliente:lista){
             Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
@@ -63,6 +73,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         textoFiltro = new javax.swing.JTextField();
         comboxFiltro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        botonCargar = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -110,6 +121,13 @@ public class ClientesVentana extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CLIENTES");
 
+        botonCargar.setText("Cargar clientes");
+        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +147,8 @@ public class ClientesVentana extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,7 +175,9 @@ public class ClientesVentana extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -182,10 +203,26 @@ public class ClientesVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-         //DefaultTableModel modeloModificar=(DefaultTableModel)tablaClientes.getModel();
-          //int fila=tablaClientes.getSelectedRow();
-          
+ 
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
+        int filaSeleccionada=tablaClientes.getSelectedRow();
+        ModificarClienteVentana ventanaModificar= new ModificarClienteVentana ();       
+        ventanaModificar.setFilaSeleccionada(filaSeleccionada);
+        ventanaModificar.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+            
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
+
+        if (modeloTabla.getRowCount()!=0){
+            botonCargar.setEnabled(false);
+        }else{
+        cargarClientesTabla();
+        }
+    }//GEN-LAST:event_botonCargarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -235,6 +272,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JComboBox<String> comboxFiltro;

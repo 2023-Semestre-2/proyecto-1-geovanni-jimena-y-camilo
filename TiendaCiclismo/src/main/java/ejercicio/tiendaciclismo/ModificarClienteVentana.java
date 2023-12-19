@@ -15,15 +15,19 @@ import javax.swing.JOptionPane;
 
 public class ModificarClienteVentana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ModificarClienteVentana
-     */
+    int filaSeleccionada;
+    OperacionesCliente operacion= new OperacionesCliente();
+    
     public ModificarClienteVentana() {
         initComponents();
     }
        private static boolean verificarNumero(String texto) {
         // Verificar si el texto comienza con 2, 4, 6 u 8
         return texto.startsWith("2") || texto.startsWith("4") || texto.startsWith("6") || texto.startsWith("8");
+    }
+
+    public void setFilaSeleccionada(int filaSeleccionada) {
+        this.filaSeleccionada = filaSeleccionada;
     }
 
     /**
@@ -915,12 +919,12 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
                         }else{
                             try {
-
-                                //operacion.ClientesArchivo(arch.leer("Clientes.txt"));
-                               // operacion.AgregarCliente(nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
-
+                                int codigo=operacion.getClientes().get(filaSeleccionada).getCodigo();
+                                operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+                                operacion.modificarCliente(codigo,nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
+                                
                                 ClientesVentana ventana = new ClientesVentana();
-                              //  ventana.iniciarTablas(operacion.listaClientes);
+                                ventana.iniciarTablas(operacion.listaClientes);
                                 ventana.setVisible(true);
                                 this.setVisible(false);
 

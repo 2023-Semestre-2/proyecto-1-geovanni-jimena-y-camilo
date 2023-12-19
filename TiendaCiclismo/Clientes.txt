@@ -1,2 +1,6 @@
 1,Geovanni,Gonzalez,63723384,geo@gmail.com,Limón,Pococí,Guápiles,01/12/2023
 2,Cris,Aguilar,87673893,cris@gmail.com,Cartago,Cartago,Oriental,14/12/2023
+3,Yasi,Diaz Gomez,89383294,dddd,Puntarenas,Puntarenas,Puntarenas,01/12/2023
+4,dvdvdfv,vfvfd,24343243,ffds,San José,San José,Carmen,01/12/2023
+5,fsfdf,fsfs,43242332,dsgsdg,Puntarenas,Puntarenas,Puntarenas,03/12/2023
+6,Jeremy,Mendez,63732734,grgrgr,Heredia,Heredia,Heredia,01/12/2023

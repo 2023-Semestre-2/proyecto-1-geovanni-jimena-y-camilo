@@ -85,9 +85,36 @@ public class OperacionesCliente  {
         
     }
      
-     public void modificarfCliente(int codigo){
+     public void modificarCliente(int codigo,String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
+             String fecha){
          
+        for (Cliente objeto:listaClientes){
+            int codigoExiste=objeto.getCodigo();
+            if (codigoExiste==codigo){
+                //Modificarlo en la lista
+                String lineaReemplazada=objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
+                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
+                int indice=listaClientes.indexOf(objeto);
+                listaClientes.remove(objeto);
+                objeto.setNombre(nombre);
+                objeto.setApellidos(apellidos);
+                objeto.setTelefono(telefono);
+                objeto.setCorreo(correo);
+                objeto.setProvincia(provincia);
+                objeto.setCanton(canton);
+                objeto.setDistrito(distrito);
+                
+                listaClientes.add(indice, objeto);
+                String lineaAñadirArchivo= objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
+                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
+                
+                Archivos registro = new Archivos();
+                registro.modificarEscritura(lineaAñadirArchivo, lineaReemplazada, "Clientes.txt");
+                break;
+            }
+        }      
      }
+     
      public void agregarClienteLista (Cliente clienteNuevo){
          listaClientes.add(clienteNuevo);
      }
