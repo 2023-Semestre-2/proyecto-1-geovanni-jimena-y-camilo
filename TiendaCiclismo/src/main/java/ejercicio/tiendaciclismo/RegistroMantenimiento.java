@@ -7,6 +7,8 @@ package ejercicio.tiendaciclismo;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,32 +30,19 @@ public class RegistroMantenimiento {
         model = (DefaultTableModel)refVentana.getTblTablaMantenimiento().getModel();
     }
     
-    public ArrayList<Mantenimiento> loadFileToArray(ArrayList<Mantenimiento> taller){
-        try {
-            taller = FileManager.readFileToArray("mantenimiento.csv");
-            System.out.println("");
-            System.out.println(taller.size());
-            agregarClientes();
-            return taller;
-        } catch (IOException ex) {
-            System.out.println("No funciono");
-        }
-        catch (ParseException ex) {
-            System.out.println("No hizo los parse a Date");
-        }
-        return null;
-    }
+    
     public void buscarCliente(String texto){
         String seleccionado = refVentana.getCmbBuscar().getSelectedItem().toString();
-        
-        if(seleccionado.equals("Codigo")){
+        System.out.println("text");
+        System.out.println(texto);
+        if(texto.isBlank()){
+                refVentana.eraseTable();
+                refVentana.reloadClientes();
+        }
+        else if(seleccionado.equals("Codigo")){
             // expresion regular para buscar si es solo numero
             if(texto.matches("\\d+")){
                 buscarClienteCodigo(Integer.parseInt(texto)); 
-            }
-            else if(texto.isBlank()){
-                refVentana.eraseTable();
-                refVentana.reloadClientes();
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error, contiene caracteres invalidos", "Error", JOptionPane.ERROR_MESSAGE);   

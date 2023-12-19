@@ -179,10 +179,10 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
                                 .addComponent(lblObservaciones)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(ftfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,16 +204,16 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(lblDescripcion)
                         .addGap(119, 119, 119)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFechaRecibido)
-                            .addComponent(ftfFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(199, Short.MAX_VALUE))
+                            .addComponent(ftfFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,9 +259,9 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(76, 76, 76))
         );
 
         pack();
@@ -290,9 +290,10 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         // eso es uno
         FileManager.modifyEscritura(m1.toString(), miembroModificar.toString(), "mantenimiento.csv");
         refVentana.eraseTable();
-        loadClientes();
-        codigo_servicio++;
-        ftfCodigoServicio.setText("" + codigo_servicio);
+        refVentana.eraseTable();
+        refVentana.reloadClientes();
+        refVentana.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void loadClientes(){

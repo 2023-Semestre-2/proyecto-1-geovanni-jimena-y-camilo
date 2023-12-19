@@ -37,7 +37,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
-        taller = registroMantenimiento.loadFileToArray(taller);
+        loadFileToArray();
         System.out.println(taller.size());
         reloadClientes();
         
@@ -74,6 +74,29 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     
     }
 
+    public ArrayList<Mantenimiento> loadFileToArray(){
+        try {
+            taller = FileManager.readFileToArray("mantenimiento.csv");
+            System.out.println("");
+            System.out.println(taller.size());
+           // reloadClientes();
+            return taller;
+        } catch (IOException ex) {
+            try {
+                System.out.println("No funciono");
+                FileManager.writeFile("mantenimiento.csv", "");
+            } catch (IOException ex1) {
+                System.out.println("Se murio");
+            }
+            
+        }
+        catch (ParseException ex) {
+            System.out.println("No hizo los parse a Date");
+        }
+        return null;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
