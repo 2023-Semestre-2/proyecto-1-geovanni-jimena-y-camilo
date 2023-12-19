@@ -23,8 +23,7 @@ public class RegistroProductos{
         // Crear el objeto TipoProducto
         TipoProducto tipoProducto = new TipoProducto(codigo, nombreSinEspacios);
         tiposProductos.add(tipoProducto);
-        guardarTipoProductoEnCSV(tipoProducto);
-        
+        guardarTipoProductoEnCSV(tipoProducto);    
     } 
     
     private void guardarTipoProductoEnCSV(TipoProducto tipoProducto) {

@@ -64,6 +64,34 @@ public class FileManager {
         return everything;
     }
     
+    public static void modifyEscritura(String lineaNueva,String lineaReemplazar, String path){
+        try {
+            // Leer el archivo original
+            StringBuilder contenidoNuevo=new StringBuilder();
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String lineaActual;
+
+            while ((lineaActual = reader.readLine()) != null) {
+                if (lineaActual.equals(lineaReemplazar)) {
+                    // Reemplazar la línea específica
+                    contenidoNuevo.append(lineaNueva).append("\n");
+                } else {
+                    contenidoNuevo.append(lineaActual).append("\n");
+                }
+            }
+            FileWriter writer = new FileWriter(path);
+            BufferedWriter bufferWriter = new BufferedWriter(writer);
+            bufferWriter.write(contenidoNuevo.toString());
+
+            // Cierra los recursos
+            bufferWriter.close();
+            writer.close();
+        }catch(IOException e){
+            System.err.println("Error al leer: " + e.getMessage());
+
+        }
+    }
+    
     
     public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {
@@ -93,7 +121,6 @@ public class FileManager {
             }
             
         }   
-        
         return arreglo1;
     }
     

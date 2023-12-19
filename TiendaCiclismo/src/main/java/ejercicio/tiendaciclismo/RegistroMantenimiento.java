@@ -16,9 +16,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller;
-    private MantenimientoVentana refVentana;
-    private ArrayList<Cliente> clientes;
-    private DefaultTableModel model;
+    private final MantenimientoVentana refVentana;
+    private final ArrayList<Cliente> clientes;
+    private final DefaultTableModel model;
+    private int codigo_servicio;
 
     public RegistroMantenimiento(ArrayList<Mantenimiento> taller, MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
         this.taller = taller;
@@ -27,16 +28,18 @@ public class RegistroMantenimiento {
         model = (DefaultTableModel)refVentana.getTblTablaMantenimiento().getModel();
     }
     
-    public void loadFileToArray(){
+    public ArrayList<Mantenimiento> loadFileToArray(){
         try {
             taller = FileManager.readFileToArray("mantenimiento.csv");
-            System.out.println(taller.size());
+            agregarClientes();
+            return taller;
         } catch (IOException ex) {
             System.out.println("No funciono");
         }
         catch (ParseException ex) {
             System.out.println("No hizo los parse a Date");
         }
+        return null;
     }
     public void buscarCliente(String texto){
         String seleccionado = refVentana.getCmbBuscar().getSelectedItem().toString();
@@ -49,7 +52,6 @@ public class RegistroMantenimiento {
             else if(texto.isBlank()){
                 refVentana.eraseTable();
                 refVentana.reloadClientes();
-            
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error, contiene caracteres invalidos", "Error", JOptionPane.ERROR_MESSAGE);   
@@ -87,7 +89,7 @@ public class RegistroMantenimiento {
         refVentana.repaint();
     }
     
-    public void loadClientes(){
+    public void agregarClientes(){
         for (int i = 0; i < taller.size(); i++) {
             model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
             taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 

@@ -37,7 +37,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
-        registroMantenimiento.loadFileToArray();
+        taller = registroMantenimiento.loadFileToArray();
+        System.out.println("Al cargarlo");
+        System.out.println(taller.size());
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -54,7 +56,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         repaint();
     }
     
-    private void centrarCeldas(){
+    public void centrarCeldas(){
     // funcion que centra todas las celdas
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
     centerRenderer.setHorizontalAlignment( JLabel.CENTER );
@@ -254,13 +256,12 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTablaMantenimientoMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+        model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         taller.remove(taller.get(tblTablaMantenimiento.getSelectedRow()));
         model.removeRow(tblTablaMantenimiento.getSelectedRow());
         repaint();
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
-        System.out.println(taller.size());
         
         if(taller.size() == 0){
             FileManager.deleteFile("mantenimiento.csv");
@@ -280,6 +281,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        System.out.println(taller.size());
+        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, taller, this, taller.get(tblTablaMantenimiento.getSelectedRow()));
+        m1.setVisible(true);
+        this.setVisible(false);
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
     }//GEN-LAST:event_btnModificarActionPerformed

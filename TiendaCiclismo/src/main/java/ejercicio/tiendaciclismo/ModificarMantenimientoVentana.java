@@ -5,20 +5,15 @@
 package ejercicio.tiendaciclismo;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
-public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
+public class ModificarMantenimientoVentana extends javax.swing.JFrame {
 
     /**
      * Creates new form AgregarClienteMantenimientoVentana
@@ -27,19 +22,22 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
+    private Mantenimiento miembroModificar;
     private int codigo_servicio = 0;
     String patronFecha = "dd/MM/yyyy";
     SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
-    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana) {
+    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, Mantenimiento m1) {
         initComponents();
         this.clientes = clientes;
         this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
+        this.miembroModificar = m1;
         loadClientes();
+        
     }
 
-    private AgregarClienteMantenimientoVentana() {
+    private ModificarMantenimientoVentana() {
         initComponents();
     }
     
@@ -138,6 +136,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
 
         lblNombreCliente.setText("NOMBRE DEL CLIENTE");
 
+        cmbClientes.setEnabled(false);
         cmbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbClientesActionPerformed(evt);
@@ -182,23 +181,25 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(ftfFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(cmbClientes, 0, 239, Short.MAX_VALUE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbClientes, 0, 239, Short.MAX_VALUE))
+                                        .addGap(6, 6, 6)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btRegresar)
                                 .addGap(102, 102, 102))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblFechaEntrega)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(lblFechaEntrega))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,26 +288,22 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         
         
         // eso es uno
-        
-        DefaultTableModel model = (DefaultTableModel) refVentana.getTblTablaMantenimiento().getModel();
-        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
-            m1.getDescripcion(), m1.getPrecio(), sdf.format(m1.getFecha_recibido()), sdf.format(m1.getFecha_entrega()), m1.getObservaciones(),
-            m1.getEstado()});
-        try {
-            FileManager.writeFile("mantenimiento.csv", m1.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FileManager.modifyEscritura(m1.toString(), miembroModificar.toString(), "mantenimiento.csv");
         codigo_servicio++;
         ftfCodigoServicio.setText("" + codigo_servicio);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void loadClientes(){
-        for (int i = 0; i < clientes.size(); i++) {
-            cmbClientes.addItem(clientes.get(i).getNombre());
-        }
-        txfCodigoCliente.setText("" + clientes.get(0).getCodigo());
-        ftfCodigoServicio.setText("" + codigo_servicio);
+       cmbClientes.addItem(miembroModificar.getNombre());
+       ftfCodigoServicio.setText("" + miembroModificar.getCodigo_servicio());
+       txfCodigoCliente.setText("" + miembroModificar.getCodigo_cliente());
+       txfDescripcion.setText(miembroModificar.getDescripcion());
+       txfMarca.setText(miembroModificar.getMarca_bicicleta());
+       txfObservaciones.setText(miembroModificar.getObservaciones());
+       ftfPrecio.setValue(miembroModificar.getPrecio());
+       ftfFechaEntrega.setValue(miembroModificar.getFecha_entrega());
+       ftfFechaRecibido.setValue(miembroModificar.getFecha_recibido());
+       cmbEstado.addItem(miembroModificar.getEstado());
     }
     
     private void ftfPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyPressed
@@ -332,7 +329,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
 
-                /*
+        /*
         for (int i = 0; i < clientes.size(); i++) {
             if(clientes.get(i).getNombre().equals(cliente)){
                 txfCodigoCliente.setText("" + clientes.get(i).getCodigo());
@@ -364,20 +361,21 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMantenimientoVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarClienteMantenimientoVentana().setVisible(true);
+                new ModificarMantenimientoVentana().setVisible(true);
             }
         });
     }

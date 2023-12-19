@@ -26,7 +26,6 @@ public class Mantenimiento {
     SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
    
     // aparte de los atributos, necesita de la referencia al menu y al arreglo
-    private Menu menu;
 
     public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, Date fecha_recibido, Date fecha_entrega, String observaciones, String estado, String nombre) {
         this.codigo_servicio = codigo_servicio;
@@ -131,19 +130,6 @@ public class Mantenimiento {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-    
-    
-        
-    
-        
+    }      
       
 }
