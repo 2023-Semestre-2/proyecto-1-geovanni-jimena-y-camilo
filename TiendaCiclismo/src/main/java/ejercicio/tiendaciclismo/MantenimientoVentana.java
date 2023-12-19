@@ -4,23 +4,17 @@
  */
 package ejercicio.tiendaciclismo;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.HeadlessException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -30,8 +24,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private ArrayList<Cliente> clientes;
     private ArrayList<Mantenimiento> taller;
-    private Mantenimiento m1;
     private DefaultTableModel model;
+    private RegistroMantenimiento registroMantenimiento;
     
     /**
      * Creates new form MantenimientoVentana
@@ -41,51 +35,16 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         clientes = new ArrayList<>();
         taller = new ArrayList<>();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
-        loadFileToArray();
-        loadClientes();
-        centrarCeldas();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
+        registroMantenimiento.loadFileToArray();
         
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-        clientes.add(new Cliente(2, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-    }
-    private void loadFileToArray(){
-        try {
-            taller = FileManager.readFileToArray("mantenimiento.csv");
-            System.out.println(taller.size());
-        } catch (IOException ex) {
-            System.out.println("No funciono");
-        }
-        catch (ParseException ex) {
-            System.out.println("No hizo los parse a Date");
-        }
+        clientes.add(new Cliente(2, "Pepe1", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
     }
     
-    private void buscarCliente(String texto){
-        String seleccionado = cmbBuscar.getSelectedItem().toString();
-        
-        if(seleccionado.equals("Codigo")){
-            // expresion regular para buscar si es solo numero
-            if(texto.matches("\\d+")){
-                buscarClienteCodigo(Integer.parseInt(texto)); 
-            }
-            else if(texto.isBlank()){
-                eraseTable();
-                loadClientes();
-            
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Error, contiene caracteres invalidos", "Error", JOptionPane.ERROR_MESSAGE);   
-            }
-        }
-        else{
-            buscarClienteNombre(texto);
-        }
-    }
-    
-    private void loadClientes(){
+    public void reloadClientes(){
         for (int i = 0; i < taller.size(); i++) {
             model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
             taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
@@ -93,52 +52,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             taller.get(i).getEstado()});
         }
         repaint();
-    }
-    
-    
-    private void buscarClienteCodigo(int codigo_buscar){
-        boolean buscado = false;
-        int contador = 0;
-        for (int i = 0; i < taller.size(); i++) {
-            if(taller.get(i).getCodigo_cliente() == codigo_buscar){
-                if(contador == 0){
-                   eraseTable();
-                }
-                System.out.println("Cliente encontrado: ");
-                mostrarClientes(taller.get(i));
-                System.out.println(taller.get(i).toString());
-                buscado = true;
-                contador++;
-               // break;
-            }
-        }
-        if(buscado == false){
-            JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
-        } 
-    }
-    
-    private void mostrarClientes(Mantenimiento m1){
-        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
-        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
-            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
-            m1.getEstado()});
-        repaint();
-    
-    }
-    
-    private void buscarClienteNombre(String nombre_buscar){
-        boolean buscado = false;
-        for (int i = 0; i < clientes.size(); i++) {
-            if(clientes.get(i).getNombre().equals(nombre_buscar)){
-                System.out.println("Cliente encontrado: ");
-                System.out.println(clientes.get(i).toString());
-                buscado = true;
-            }
-        }
-        if(buscado == false){
-            JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
-   
-        }
     }
     
     private void centrarCeldas(){
@@ -150,8 +63,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
     
-    private void eraseTable(){
-        DefaultTableModel model = (DefaultTableModel)tblTablaMantenimiento.getModel();
+    public void eraseTable(){
+        model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         int rowCount = tblTablaMantenimiento.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
                 model.removeRow(i);
@@ -323,7 +236,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        buscarCliente(txfBuscar.getText());
+        registroMantenimiento.buscarCliente(txfBuscar.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -331,7 +244,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this);
         m1.setVisible(true);
         System.out.println(taller.size());
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void tblTablaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMantenimientoMouseClicked
@@ -415,6 +328,11 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     public JTable getTblTablaMantenimiento() {
         return tblTablaMantenimiento;
     }
+
+    public JComboBox<String> getCmbBuscar() {
+        return cmbBuscar;
+    }
+    
     
     
 

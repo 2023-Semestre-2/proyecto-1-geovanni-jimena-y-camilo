@@ -38,7 +38,6 @@ import java.util.logging.Logger;
  */
 public class FileManager {
  
-    private static ArrayList<String> arreglo = new ArrayList<>();
     private static ArrayList<Mantenimiento> arreglo1 = new ArrayList<>();
     
     
@@ -69,7 +68,7 @@ public class FileManager {
     public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {
        
-        String patronFecha = "dd/MM-yyyy";
+        String patronFecha = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
         try(BufferedReader br = new BufferedReader(new FileReader(path))) 
         {

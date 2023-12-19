@@ -101,6 +101,7 @@ public class Mantenimiento {
     }
 
     public Date getFecha_recibido() {
+        
         return fecha_recibido;
     }
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class LeerUsuario {
     
-      private ArrayList<String> arrayUsers;
+    private ArrayList<String> arrayUsers;
 
        public LeerUsuario() {
         arrayUsers = new ArrayList<>();
