@@ -67,7 +67,7 @@ public class FileManager {
         return everything;
     }
     
-    public static void modifyEscritura(String lineaNueva,String lineaReemplazar, String path){
+    public static void modificarEscritura(String lineaNueva,String lineaReemplazar, String path){
         try {
             // Leer el archivo original
             StringBuilder contenidoNuevo=new StringBuilder();

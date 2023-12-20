@@ -292,7 +292,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         
         
         // eso es uno
-        FileManager.modifyEscritura(m1.toString(), miembroModificar.toString(), "mantenimiento.csv");
+        FileManager.modificarEscritura(m1.toString(), miembroModificar.toString(), "mantenimiento.csv");
         refVentana.eraseTable();
         refVentana.eraseTable();
         refVentana.reloadClientes();
@@ -333,7 +333,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
 
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
-        
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
 
         /*
