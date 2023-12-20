@@ -4,6 +4,8 @@
  */
 package ejercicio.tiendaciclismo;
 
+import ServicioMantenimiento.MantenimientoVentana;
+import ServicioMantenimiento.Mantenimiento;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

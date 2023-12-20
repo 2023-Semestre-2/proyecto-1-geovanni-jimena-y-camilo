@@ -4,6 +4,8 @@
  */
 package ejercicio.tiendaciclismo;
 
+import ServicioMantenimiento.MantenimientoVentana;
+import ServicioMantenimiento.Mantenimiento;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.ParseException;

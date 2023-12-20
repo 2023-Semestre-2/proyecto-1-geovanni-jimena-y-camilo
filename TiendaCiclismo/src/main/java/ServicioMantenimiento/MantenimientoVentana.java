@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ejercicio.tiendaciclismo;
+package ServicioMantenimiento;
 
+import ejercicio.tiendaciclismo.AgregarClienteMantenimientoVentana;
+import ejercicio.tiendaciclismo.Cliente;
+import ejercicio.tiendaciclismo.FileManager;
+import ejercicio.tiendaciclismo.Menu;
+import ejercicio.tiendaciclismo.ModificarMantenimientoVentana;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;

@@ -4,6 +4,8 @@
 
 package ejercicio.tiendaciclismo;
 
+import ServicioMantenimiento.MantenimientoVentana;
+
 /**
  *
  * @author luisc
@@ -11,16 +13,8 @@ package ejercicio.tiendaciclismo;
 public class TiendaCiclismo {
 
     public static void main(String[] args) {
-        
-        
-        RegistroProductos reg1= new RegistroProductos();
-        
-        reg1.agregarTipoProducto("Jimena");
-        
-     //   UsuarioVentana v1 = new UsuarioVentana();
-     //   v1.setVisible(true);
-        
-      //  System.out.println(reg1.toString());
+       // UsuarioVentana v1 = new UsuarioVentana();
+      //  v1.setVisible(true);  
       MantenimientoVentana m1 = new MantenimientoVentana();
       m1.setVisible(true);
     
