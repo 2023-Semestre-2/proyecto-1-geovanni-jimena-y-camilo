@@ -299,8 +299,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
-        codigo_servicio++;
-        ftfCodigoServicio.setText("" + codigo_servicio);
         
         refVentana.setVisible(true);
         dispose();

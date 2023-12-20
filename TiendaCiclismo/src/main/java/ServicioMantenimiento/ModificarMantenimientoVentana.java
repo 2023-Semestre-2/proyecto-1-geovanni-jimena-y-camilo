@@ -31,7 +31,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
-    private int codigo_servicio = 0;
     
     public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, Mantenimiento miembroModificar) {
         initComponents();

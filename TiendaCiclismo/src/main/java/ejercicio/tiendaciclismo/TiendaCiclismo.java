@@ -23,5 +23,4 @@ public class TiendaCiclismo {
       m1.setVisible(true);
     }
     
-    
 }
