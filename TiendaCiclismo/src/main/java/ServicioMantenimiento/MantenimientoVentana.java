@@ -7,6 +7,7 @@ package ServicioMantenimiento;
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
 import ejercicio.tiendaciclismo.Menu;
+import ejercicio.tiendaciclismo.TiendaCiclismo;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -36,14 +37,12 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     public MantenimientoVentana() {
         initComponents();
         clientes = new ArrayList<Cliente>();
-        taller = new ArrayList<Mantenimiento>();
+        taller = TiendaCiclismo.arregloMantenimiento;
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
-        loadFileToArray();
+        inicializarArreglo();
         System.out.println(taller.size());
-        reloadClientes();
-        
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
         clientes.add(new Cliente(2, "Pepe1", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -56,7 +55,18 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
             taller.get(i).getEstado()});
         }
-        repaint();
+    }
+    
+    
+    public void inicializarArreglo(){
+    
+        if (taller.isEmpty()) {
+            loadFileToArray();
+        }
+        eraseTable();
+        System.out.println( "Pureba");
+        System.out.println( taller.size());
+        reloadClientes();
     }
     
     public void centrarCeldas(){
@@ -90,8 +100,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                 FileManager.writeFile("mantenimiento.csv", "");
             } catch (IOException ex1) {
                 System.out.println("Se murio");
-            }
-            
+            }  
         }
         catch (ParseException ex) {
             System.out.println("No hizo los parse a Date");

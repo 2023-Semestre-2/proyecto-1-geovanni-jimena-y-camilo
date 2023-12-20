@@ -40,6 +40,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
         loadClientes();
+        setLocationRelativeTo(null);
     }
 
     private AgregarClienteMantenimientoVentana() {
