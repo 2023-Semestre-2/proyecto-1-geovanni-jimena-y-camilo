@@ -157,6 +157,10 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
             }
         });
 
+        dcsFechaEntrega.setDateFormatString("dd/MM/yyyy");
+
+        dcsFechaRecibido.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

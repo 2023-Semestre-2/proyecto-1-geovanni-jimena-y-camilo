@@ -294,8 +294,14 @@
       </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcsFechaEntrega">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+      </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcsFechaRecibido">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -32,8 +32,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
     private int codigo_servicio = 0;
-    String patronFecha = "dd/MM/yyyy";
-    SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
     public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, Mantenimiento miembroModificar) {
         initComponents();
@@ -313,8 +311,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
                 System.out.println("Pos no se pudo gg");
             }
         }
-        
-        
         refVentana.eraseTable();
         refVentana.reloadClientes();
         refVentana.setVisible(true);
