@@ -919,8 +919,10 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
                         }else{
                             try {
-                                int codigo=operacion.getClientes().get(filaSeleccionada).getCodigo();
+                                
                                 operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+                                System.out.println(operacion.getClientes());
+                                int codigo=operacion.getClientes().get(filaSeleccionada).getCodigo();
                                 operacion.modificarCliente(codigo,nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
                                 
                                 ClientesVentana ventana = new ClientesVentana();
