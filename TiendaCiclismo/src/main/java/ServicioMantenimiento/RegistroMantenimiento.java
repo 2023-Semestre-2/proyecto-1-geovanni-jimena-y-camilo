@@ -26,9 +26,10 @@ import javax.swing.JTextField;
  * @author luisc
  */
 public class RegistroMantenimiento {
+    
+    // Atributos de la clase, el arreglo del servicio de mantenimiento junto con la referencia a su ventana
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
-    private int codigoServicio = 0;
 
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
@@ -37,8 +38,8 @@ public class RegistroMantenimiento {
     /**
      * Funcion que inicializa el arreglo, lo lee del archivo primero
      * No recibe ningun parametro
-     * @return El arreglo de tipo mantenimiento cargado
-     * @see #leerArchivoArreglo(java.lang.String) 
+     * @return El arreglo de tipo mantenimiento cargado 
+     * @see #leerArchivoArreglo(java.lang.String) que sirve para leer el archivo y colocar sus atributos en los objetos
      */
     
     private ArrayList<Mantenimiento> inicializarArreglo(){
@@ -51,19 +52,19 @@ public class RegistroMantenimiento {
         catch (ParseException ex) {
             System.out.println("No hizo los parse a Date");
         }
+        // si retorna el taller es que no habia nada guardado y por ende solo devuelve un arrayList inicializado
         return taller;
     }
     
     /**
-     * 
-     * 
-     * 
-     * @return max + 1
+     *
+     * @return max + 1 ya que el nuevo codigo seria el siguiente 
      */
     
     public int calcularCodigoServicio(){
         int max = 0;
         for (int i = 0; i < taller.size(); i++) {
+            // verifica el elemento con el codigo mayor
             if (taller.get(i).getCodigo_servicio() > max) {
                 max = taller.get(i).getCodigo_servicio();
             }
@@ -71,6 +72,22 @@ public class RegistroMantenimiento {
         return max + 1; // retorna uno mayor al codigo maximo del archivo
     }
     
+    
+    /**
+     * Metodo que sirve para convertir los parametros seleccionados a atributos para modificar el 
+     * objeto de mantenimiento
+     * 
+     * @param codigoServicio
+     * @param txfCodigoCliente
+     * @param txfMarca
+     * @param txfDescripcion
+     * @param ftfPrecio
+     * @param dcsFechaRecibido
+     * @param dcsFechaEntrega
+     * @param txfObservaciones
+     * @param cmbEstado
+     * @param cmbClientes 
+     */
     public void convertirMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
         JTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, 
         JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes)
@@ -93,6 +110,14 @@ public class RegistroMantenimiento {
         }
     }
     
+    /**
+     * Metodo que permite verifcar los datos a la hora de agregar o modificar un elemento 
+     * Los unicos datos que no se permiten dejar vacios o sin formato son el precio y las fechas
+     * @param @{@link  dcsFechaRecibido
+     * @param dcsFechaEntrega
+     * @param ftfPrecio
+     * @return 
+     */
     public boolean verificarDatos(JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField ftfPrecio)
     {
        if((ftfPrecio.getText().isEmpty()) || 
@@ -106,8 +131,13 @@ public class RegistroMantenimiento {
        }
     }
     
+    /**
+     * 
+     * @param texto es el texto que se escribe en el textfield de buscar
+     */
     public void buscarCliente(String texto){
         String seleccionado = refVentana.getCmbBuscar().getSelectedItem().toString();
+        // si el texto 
         if(texto.isBlank()){
                 refVentana.eraseTable();
                 refVentana.reloadClientes();
@@ -197,7 +227,6 @@ public class RegistroMantenimiento {
                 System.out.println("Pos no se pudo gg");
             }
         }
-    
     }
     
     private void agregarClienteTabla(Mantenimiento m1){

@@ -3,7 +3,6 @@ package ejercicio.tiendaciclismo;
 
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio.tiendaciclismo.AgregarClienteVentana;
 
 public class AgregarCliente {
     

@@ -8,6 +8,7 @@ import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
 import ejercicio.tiendaciclismo.Menu;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Mantenimiento> taller;
     private DefaultTableModel model;
     private RegistroMantenimiento registroMantenimiento;
+    private String patronFecha = "dd/MM/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
     /**
      * Creates new form MantenimientoVentana
@@ -52,7 +55,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         for (int i = 0; i < taller.size(); i++) {
             model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
             taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
-            taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
+            sdf.format(taller.get(i).getFecha_recibido()), sdf.format(taller.get(i).getFecha_entrega()), taller.get(i).getObservaciones(),
             taller.get(i).getEstado()});
         }
     }

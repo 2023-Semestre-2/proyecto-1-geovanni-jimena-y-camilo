@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 
 /**
- *
- * @author Eliecer Fitoria
+ *Clase que se encarga de leer las credenciales del usuario y validarlas
+ * @author Camilo Orocu
+ * 
+ * 
+ * 
  */
 public class LeerUsuario {
     
@@ -22,6 +25,12 @@ public class LeerUsuario {
         arrayUsers = new ArrayList<>();
     }
 
+    /**
+     * 
+     * @param usuario es el string del usuario
+     * @param password es el string de la contraseña
+     * @return true si el usuario y contraseña son validos, false sino
+     */
     public boolean verifyUser(String usuario, String password) {
         for (String userCredentials : arrayUsers) {
             String[] usersCredentials = userCredentials.split(",");

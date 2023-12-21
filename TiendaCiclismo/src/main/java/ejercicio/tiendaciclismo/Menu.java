@@ -120,15 +120,19 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBicicletasActionPerformed
+        /*
         ProductosVentana v1 = new ProductosVentana(this);
         v1.setVisible(true);
         btnBicicletas.setEnabled(false);
+        */
     }//GEN-LAST:event_btnBicicletasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        /*
         ClientesVentana v1 = new ClientesVentana();
         v1.setVisible(true);
         btnCliente.setEnabled(false);
+        */
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnServicioTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicioTallerActionPerformed
