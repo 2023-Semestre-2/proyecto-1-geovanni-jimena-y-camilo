@@ -119,6 +119,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         lblFechaEntrega.setText("FECHA DE ENTREGA");
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
+        cmbEstado.setEnabled(false);
 
         ftfCodigoServicio.setEditable(false);
 
@@ -296,15 +297,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
-
-        /*
-        for (int i = 0; i < clientes.size(); i++) {
-            if(clientes.get(i).getNombre().equals(cliente)){
-                txfCodigoCliente.setText("" + clientes.get(i).getCodigo());
-                break;
-            }
-        }
-        */
     }//GEN-LAST:event_cmbClientesActionPerformed
 
     private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed

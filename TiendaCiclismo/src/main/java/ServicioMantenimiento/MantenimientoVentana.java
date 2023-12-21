@@ -38,8 +38,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         registroMantenimiento = new RegistroMantenimiento(this, clientes);
         initComponents();
         clientes = new ArrayList<Cliente>();
-        taller = new ArrayList<>();
-        taller = registroMantenimiento.inicializarArreglo();
+        taller = registroMantenimiento.getListaMantenimiento();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         setLocationRelativeTo(null);
         eraseTable();
@@ -52,6 +51,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }
     
     public void reloadClientes(){
+
         for (int i = 0; i < taller.size(); i++) {
             model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
             taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
@@ -99,6 +99,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         lblServicioMantenimiento = new javax.swing.JLabel();
         lblFiltro = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
+        btnCerrarEstado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,6 +180,17 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             }
         });
 
+        btnCerrarEstado.setBackground(new java.awt.Color(204, 0, 51));
+        btnCerrarEstado.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarEstado.setText("Cerrar Estado");
+        btnCerrarEstado.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnCerrarEstado.setEnabled(false);
+        btnCerrarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,7 +218,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCerrarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(41, 41, 41))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
@@ -236,7 +251,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(btnCerrarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -258,6 +275,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
+        btnCerrarEstado.setEnabled(true);
     }//GEN-LAST:event_tblTablaMantenimientoMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -267,6 +285,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         repaint();
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
+        btnCerrarEstado.setEnabled(false);
         
         if(taller.isEmpty()){
             FileManager.deleteFile("mantenimiento.csv");
@@ -294,6 +313,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         this.setVisible(false);
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
+        btnCerrarEstado.setEnabled(false);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -301,6 +321,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         m1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnCerrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEstadoActionPerformed
+        // TODO add your handling code here:
+        btnCerrarEstado.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnModificar.setEnabled(false);
+        
+        registroMantenimiento.cerrarEstado(taller.get(tblTablaMantenimiento.getSelectedRow()), tblTablaMantenimiento.getSelectedRow());
+    }//GEN-LAST:event_btnCerrarEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,6 +380,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCerrarEstado;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;

@@ -131,6 +131,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         lblFechaEntrega.setText("FECHA DE ENTREGA");
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
+        cmbEstado.setEnabled(false);
 
         ftfCodigoServicio.setEditable(false);
 

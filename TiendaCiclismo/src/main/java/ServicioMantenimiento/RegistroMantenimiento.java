@@ -15,6 +15,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -24,21 +26,20 @@ import javax.swing.JTextField;
  * @author luisc
  */
 public class RegistroMantenimiento {
-    private ArrayList<Mantenimiento> taller;
+    private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
     public RegistroMantenimiento(MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
-        this.taller = new ArrayList<>();
+        this.taller = inicializarArreglo();
         this.refVentana = refVentana;
         this.clientes = clientes;
     }
     
     
-    
-    public ArrayList<Mantenimiento> inicializarArreglo(){
+    private ArrayList<Mantenimiento> inicializarArreglo(){
         try {
-            return leerArchivoArreglo("mantenimiento.csv", taller);
+            return leerArchivoArreglo("mantenimiento.csv");
         } 
         catch (IOException ex) {
             System.out.println("No se ha cargado el archivo");
@@ -188,7 +189,38 @@ public class RegistroMantenimiento {
     
     }
     
-private ArrayList<Mantenimiento> leerArchivoArreglo (String path, ArrayList<Mantenimiento> arreglo) throws FileNotFoundException, IOException, ParseException
+    
+    public void cerrarEstado(Mantenimiento m1, int posicion){
+        taller.remove(taller.get(posicion));
+        m1.setEstado("Cerrado");
+        refVentana.eraseTable();
+        refVentana.reloadClientes();
+        verificarArregloVacio();
+        
+    }
+    
+    private void verificarArregloVacio(){
+     if(taller.isEmpty()){
+            FileManager.deleteFile("mantenimiento.csv");
+        }
+    else{
+        
+        for (int i = 0; i < taller.size(); i++) {
+            try {
+                if(i == 0){
+                   FileManager.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
+                }
+                else
+                    FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+            } catch (IOException ex) {
+                Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    
+    private ArrayList<Mantenimiento> leerArchivoArreglo (String path) throws FileNotFoundException, IOException, ParseException
     {
         String patronFecha = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
@@ -211,12 +243,13 @@ private ArrayList<Mantenimiento> leerArchivoArreglo (String path, ArrayList<Mant
                m1.setEstado(mantenimiento[8]);
                m1.setNombre(mantenimiento[9]);
                line = br.readLine();
-               arreglo.add(m1); 
+               taller.add(m1); 
             }
             
         }
-        return arreglo;
+        return taller;
     }
+    
     
     
     public void agregarCliente(Mantenimiento m1){
@@ -227,6 +260,4 @@ private ArrayList<Mantenimiento> leerArchivoArreglo (String path, ArrayList<Mant
     public ArrayList<Mantenimiento> getListaMantenimiento() {
         return taller;
     }
-    
-    
 }
