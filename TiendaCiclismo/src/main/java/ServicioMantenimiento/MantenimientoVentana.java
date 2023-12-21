@@ -38,7 +38,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         registroMantenimiento = new RegistroMantenimiento(this, clientes);
         initComponents();
         clientes = new ArrayList<Cliente>();
-        taller = registroMantenimiento.getListaMantenimiento();
+        taller = new ArrayList<>();
+        taller = registroMantenimiento.inicializarArreglo();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         setLocationRelativeTo(null);
         eraseTable();

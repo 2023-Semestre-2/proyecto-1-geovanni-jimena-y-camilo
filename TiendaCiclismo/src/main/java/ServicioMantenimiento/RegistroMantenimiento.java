@@ -7,41 +7,41 @@ package ServicioMantenimiento;
 import com.toedter.calendar.JDateChooser;
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
 public class RegistroMantenimiento {
-    private ArrayList<Mantenimiento> taller = new ArrayList<>();
+    private ArrayList<Mantenimiento> taller;
     private final MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
     public RegistroMantenimiento(MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
-        this.taller = loadFileToArray();
+        this.taller = new ArrayList<>();
         this.refVentana = refVentana;
         this.clientes = clientes;
     }
     
-    private ArrayList<Mantenimiento> loadFileToArray(){
+    
+    
+    public ArrayList<Mantenimiento> inicializarArreglo(){
         try {
-            System.out.println("");
-            System.out.println(taller.size());
-           // reloadClientes();
-            return FileManager.readFileToArray("mantenimiento.csv");
+            return leerArchivoArreglo("mantenimiento.csv", taller);
         } 
         catch (IOException ex) {
+            System.out.println("No se ha cargado el archivo");
         }
         catch (ParseException ex) {
             System.out.println("No hizo los parse a Date");
@@ -151,7 +151,7 @@ public class RegistroMantenimiento {
     }
     
     public void modificarMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
-        JFormattedTextField ftfPrecio, JDateChooser dcsFechaRecibido, 
+        JTextField ftfPrecio, JDateChooser dcsFechaRecibido, 
         JDateChooser dcsFechaEntrega, JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes,
         Mantenimiento miembroModificar)
     {
@@ -188,20 +188,41 @@ public class RegistroMantenimiento {
     
     }
     
+private ArrayList<Mantenimiento> leerArchivoArreglo (String path, ArrayList<Mantenimiento> arreglo) throws FileNotFoundException, IOException, ParseException
+    {
+        String patronFecha = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
+        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
+        {
+            String line = br.readLine();
+
+            while (line != null) {
+               Mantenimiento m1 = new Mantenimiento();
+               String[] mantenimiento = line.split(",");
+               System.out.println(line);
+               m1.setCodigo_servicio(Integer.parseInt(mantenimiento[0]));
+               m1.setCodigo_cliente(Integer.parseInt(mantenimiento[1]));
+               m1.setMarca_bicicleta(mantenimiento[2]);
+               m1.setDescripcion(mantenimiento[3]);
+               m1.setPrecio(Integer.parseInt(mantenimiento[4]));
+               m1.setFecha_recibido(sdf.parse(mantenimiento[5]));
+               m1.setFecha_entrega(sdf.parse(mantenimiento[6]));
+               m1.setObservaciones(mantenimiento[7]);
+               m1.setEstado(mantenimiento[8]);
+               m1.setNombre(mantenimiento[9]);
+               line = br.readLine();
+               arreglo.add(m1); 
+            }
+            
+        }
+        return arreglo;
+    }
+    
     
     public void agregarCliente(Mantenimiento m1){
         taller.add(m1);
     }
-    /*
-    public void agregarClientes(){
-        for (int i = 0; i < taller.size(); i++) {
-            model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
-            taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
-            taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
-            taller.get(i).getEstado()});
-        }
-    }
-*/
+
 
     public ArrayList<Mantenimiento> getListaMantenimiento() {
         return taller;

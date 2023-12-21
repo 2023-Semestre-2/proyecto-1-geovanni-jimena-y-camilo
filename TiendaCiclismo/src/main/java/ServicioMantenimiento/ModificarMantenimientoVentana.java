@@ -71,7 +71,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         lblObservaciones = new javax.swing.JLabel();
         lblFechaRecibido = new javax.swing.JLabel();
         lblFechaEntrega = new javax.swing.JLabel();
-        ftfPrecio = new javax.swing.JFormattedTextField();
         cmbEstado = new javax.swing.JComboBox<>();
         ftfCodigoServicio = new javax.swing.JFormattedTextField();
         lblCodigoServicio = new javax.swing.JLabel();
@@ -81,6 +80,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         btRegresar = new javax.swing.JButton();
         dcsFechaEntrega = new com.toedter.calendar.JDateChooser();
         dcsFechaRecibido = new com.toedter.calendar.JDateChooser();
+        ftfPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,22 +118,6 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
 
         lblFechaEntrega.setText("FECHA DE ENTREGA");
 
-        ftfPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        ftfPrecio.setText("1");
-        ftfPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftfPrecioActionPerformed(evt);
-            }
-        });
-        ftfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ftfPrecioKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ftfPrecioKeyTyped(evt);
-            }
-        });
-
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
 
         ftfCodigoServicio.setEditable(false);
@@ -158,23 +142,28 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
             }
         });
 
+        ftfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftfPrecioKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ftfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(lblPrecio)
-                        .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(txfCodigoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(lblCodigoCliente)
-                        .addComponent(ftfCodigoServicio))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblPrecio)
+                    .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(txfCodigoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(lblCodigoCliente)
+                    .addComponent(ftfCodigoServicio)
                     .addComponent(lblCodigoServicio)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstado))
+                    .addComponent(lblEstado)
+                    .addComponent(ftfPrecio))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,30 +287,12 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
        txfDescripcion.setText(miembroModificar.getDescripcion());
        txfMarca.setText(miembroModificar.getMarca_bicicleta());
        txfObservaciones.setText(miembroModificar.getObservaciones());
-       ftfPrecio.setValue(miembroModificar.getPrecio());
+       ftfPrecio.setText("" + miembroModificar.getPrecio());
        dcsFechaEntrega.setDate(miembroModificar.getFecha_entrega());
        dcsFechaRecibido.setDate(miembroModificar.getFecha_recibido());
        cmbEstado.addItem(miembroModificar.getEstado());
     }
     
-    private void ftfPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyPressed
-        char numero = evt.getKeyChar();
-        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_ftfPrecioKeyPressed
-
-    private void ftfPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftfPrecioActionPerformed
-
-    private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
-        char numero = evt.getKeyChar();
-        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_ftfPrecioKeyTyped
-
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
@@ -340,6 +311,13 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
         refVentana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btRegresarActionPerformed
+
+    private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
+        char numero = evt.getKeyChar();
+        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ftfPrecioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -385,7 +363,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dcsFechaEntrega;
     private com.toedter.calendar.JDateChooser dcsFechaRecibido;
     private javax.swing.JFormattedTextField ftfCodigoServicio;
-    private javax.swing.JFormattedTextField ftfPrecio;
+    private javax.swing.JTextField ftfPrecio;
     private javax.swing.JLabel lblCodigoCliente;
     private javax.swing.JLabel lblCodigoServicio;
     private javax.swing.JLabel lblDescripcion;
