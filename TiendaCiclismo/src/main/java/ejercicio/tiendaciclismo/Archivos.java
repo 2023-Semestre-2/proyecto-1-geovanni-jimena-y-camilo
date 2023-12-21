@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.nio.Buffer;
 import javax.swing.JOptionPane;
 
@@ -74,7 +75,12 @@ public class Archivos {
             while ((salida = flujo.readLine()) != null) {
                 String[] partes = salida.split(","); 
                 for (String parte : partes) {
+                    
+                    if (!parte.equals(partes[partes.length-1])){
                     data.append(parte.trim()).append(",");
+                }else{
+                        data.append(parte.trim());
+                    }
                 }
                 data.append("\n");
             }
@@ -102,7 +108,7 @@ public class Archivos {
                     contenidoNuevo.append(lineaActual).append("\n");
                 }
             }
-            FileWriter writer = new FileWriter(doc+".acc");
+            FileWriter writer = new FileWriter(doc);
             BufferedWriter bufferWriter = new BufferedWriter(writer);
             bufferWriter.write(contenidoNuevo.toString());
 
@@ -114,6 +120,34 @@ public class Archivos {
 
         }
         
+    }
+    public void eliminarEscritura(String linea, String doc){
+        String contenido=leer(doc);
+        StringBuilder contenidoNuevo=new StringBuilder();
+        StringReader stringReader = new StringReader(contenido);
+        BufferedReader bufferedReader = new BufferedReader(stringReader);
+        
+   
+        try {
+            String salida;
+            while ((salida = bufferedReader.readLine()) != null) {
+                if (salida != null && !salida.equals(linea)){
+                    contenidoNuevo.append(salida).append("\n");
+                }
+            }
+                
+            FileWriter writer = new FileWriter(doc);
+            BufferedWriter bufferWriter = new BufferedWriter(writer);
+            bufferWriter.write(contenidoNuevo.toString());
+
+            // Cierra los recursos
+            bufferWriter.close();
+            writer.close();
+
+        }catch(IOException e){
+            System.err.println("Error al leer: " + e.getMessage());
+            
+        }
     }
 
 }

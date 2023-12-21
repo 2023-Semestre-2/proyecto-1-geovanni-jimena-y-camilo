@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ClientesVentana extends javax.swing.JFrame {
@@ -36,6 +37,18 @@ public class ClientesVentana extends javax.swing.JFrame {
         
        }
   
+     private boolean confirmacion(){
+        int opcion = JOptionPane.showConfirmDialog(jPanel1,
+                    "¿Desea realizar la acción?",
+                    "Confirmación",
+                    JOptionPane.OK_CANCEL_OPTION);
+
+            if (opcion == JOptionPane.OK_OPTION) {
+                return true;
+            } else {
+                return false;
+            }
+    }
     public void cargarClientesTabla(){
             
             operacion.ClientesArchivo(arch.leer("Clientes.txt"));
@@ -64,6 +77,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         botonBuscar = new javax.swing.JButton();
@@ -78,6 +92,17 @@ public class ClientesVentana extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jEditorPane1);
 
         jScrollPane3.setViewportView(jTextPane1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,7 +213,19 @@ public class ClientesVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
+       if (confirmacion()){
+            try{
+               DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
+        int filaSeleccionada=tablaClientes.getSelectedRow();
+        operacion.eliminarCliente(operacion.getClientes().get(filaSeleccionada).getCodigo());
+        modeloTabla.removeRow(filaSeleccionada);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(jPanel1, "Debe seleccionar una fila.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(jPanel1, "No se elimino el producto.");
+        }
+        
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void comboxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxFiltroActionPerformed
@@ -278,6 +315,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboxFiltro;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

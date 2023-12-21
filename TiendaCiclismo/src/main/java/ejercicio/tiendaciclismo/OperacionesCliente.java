@@ -92,7 +92,7 @@ public class OperacionesCliente  {
             int codigoExiste=objeto.getCodigo();
             if (codigoExiste==codigo){
                 //Modificarlo en la lista
-                String lineaReemplazada=objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
+                String lineaReemplazada=objeto.getCodigo()+","+objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
                         objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
                 int indice=listaClientes.indexOf(objeto);
                 listaClientes.remove(objeto);
@@ -105,7 +105,7 @@ public class OperacionesCliente  {
                 objeto.setDistrito(distrito);
                 
                 listaClientes.add(indice, objeto);
-                String lineaAñadirArchivo= objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
+                String lineaAñadirArchivo= objeto.getCodigo()+","+objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
                         objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
                 
                 Archivos registro = new Archivos();
@@ -114,6 +114,30 @@ public class OperacionesCliente  {
             }
         }      
      }
+     
+     public void eliminarCliente(int codigo){
+        Cliente objetoEliminado=null;
+        //Quitar del archivo
+        for (Cliente objeto:listaClientes){
+            int codigoExiste=objeto.getCodigo();
+            if (codigoExiste==codigo){
+                objetoEliminado=objeto;
+                break;
+            }
+        }
+                
+        if (objetoEliminado != null) {
+            listaClientes.remove(objetoEliminado);
+
+            String lineaEliminada = objetoEliminado.getCodigo()+","+objetoEliminado.getNombre()+","+objetoEliminado.getApellidos()+","+objetoEliminado.getTelefono()+","+objetoEliminado.getCorreo()+","+
+                        objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento();
+            Archivos registro = new Archivos();
+            registro.eliminarEscritura(lineaEliminada, "Clientes.txt");
+        } else {
+            System.out.println("No se encontró un cliente con el código proporcionado.");
+        }
+        
+    }
      
      public void agregarClienteLista (Cliente clienteNuevo){
          listaClientes.add(clienteNuevo);
