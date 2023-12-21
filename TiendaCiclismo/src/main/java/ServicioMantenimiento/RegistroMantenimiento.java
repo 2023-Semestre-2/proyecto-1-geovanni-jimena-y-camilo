@@ -29,14 +29,13 @@ public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes = new ArrayList<>();
+    private int codigoServicio = 0;
 
     public RegistroMantenimiento(MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
         this.taller = inicializarArreglo();
         this.refVentana = refVentana;
         this.clientes = clientes;
     }
-    
-    
     private ArrayList<Mantenimiento> inicializarArreglo(){
         try {
             return leerArchivoArreglo("mantenimiento.csv");

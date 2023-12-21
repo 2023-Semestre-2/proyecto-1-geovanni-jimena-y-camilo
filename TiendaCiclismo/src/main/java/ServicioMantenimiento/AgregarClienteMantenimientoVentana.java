@@ -44,6 +44,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         this.clientes = clientes;
         this.refVentana = refVentana;
         this.registroMantenimiento = registroMantenimiento;
+        codigo_servicio = registroMantenimiento.calcularCodigoServicio();
         loadClientes();
         setLocationRelativeTo(null);
     }

@@ -7,15 +7,8 @@ package ServicioMantenimiento;
 import ServicioMantenimiento.MantenimientoVentana;
 import ServicioMantenimiento.Mantenimiento;
 import ejercicio.tiendaciclismo.Cliente;
-import ejercicio.tiendaciclismo.FileManager;
-import ejercicio.tiendaciclismo.TiendaCiclismo;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
