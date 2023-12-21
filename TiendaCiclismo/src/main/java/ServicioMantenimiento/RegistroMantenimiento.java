@@ -36,6 +36,13 @@ public class RegistroMantenimiento {
         this.refVentana = refVentana;
         this.clientes = clientes;
     }
+    /**
+     * Funcion que inicializa el arreglo, lo lee del archivo primero
+     * No recibe ningun parametro
+     * @return El arreglo de tipo mantenimiento cargado
+     * @see #leerArchivoArreglo(java.lang.String) 
+     */
+    
     private ArrayList<Mantenimiento> inicializarArreglo(){
         try {
             return leerArchivoArreglo("mantenimiento.csv");
@@ -56,7 +63,7 @@ public class RegistroMantenimiento {
                 max = taller.get(i).getCodigo_servicio();
             }
         }
-        return max + 1;
+        return max + 1; // retorna uno mayor al codigo maximo del archivo
     }
     
     public void convertirMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
@@ -96,8 +103,6 @@ public class RegistroMantenimiento {
     
     public void buscarCliente(String texto){
         String seleccionado = refVentana.getCmbBuscar().getSelectedItem().toString();
-        System.out.println("text");
-        System.out.println(texto);
         if(texto.isBlank()){
                 refVentana.eraseTable();
                 refVentana.reloadClientes();
@@ -123,9 +128,7 @@ public class RegistroMantenimiento {
                 if(contador == 0){
                    refVentana.eraseTable();
                 }
-                System.out.println("Cliente encontrado: ");
-                agregarCliente(taller.get(i));
-                System.out.println(taller.get(i).toString());
+                agregarClienteTabla(taller.get(i));
                 buscado = true;
                 contador++;
                // break;
@@ -138,10 +141,14 @@ public class RegistroMantenimiento {
     
     private void buscarClienteNombre(String nombre_buscar){
         boolean buscado = false;
-        for (int i = 0; i < clientes.size(); i++) {
-            if(clientes.get(i).getNombre().equals(nombre_buscar)){
-                System.out.println("Cliente encontrado: ");
-                System.out.println(clientes.get(i).toString());
+        int contador = 0;
+        for (int i = 0; i < taller.size(); i++) {
+            if(taller.get(i).getNombre().equals(nombre_buscar)){
+                if(contador == 0){
+                   refVentana.eraseTable();
+                }
+                agregarClienteTabla(taller.get(i));
+                contador++;
                 buscado = true;
             }
         }
@@ -188,6 +195,14 @@ public class RegistroMantenimiento {
     
     }
     
+    private void agregarClienteTabla(Mantenimiento m1){
+        // agrega el cliente a la tabla
+        refVentana.getModel().addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), 
+            m1.getMarca_bicicleta(), m1.getDescripcion(), m1.getPrecio(), 
+            m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
+            m1.getEstado()});
+    }
+    
     
     public void cerrarEstado(Mantenimiento m1, int posicion){
         taller.remove(taller.get(posicion));
@@ -217,6 +232,17 @@ public class RegistroMantenimiento {
             }
         }
     }
+    
+    /**
+     * Funcion que lee un archivo y divide sus lineas y coloca sus strings como atributos para crear
+     * un objeto de tipo mantenimiento
+     * 
+     * @param path 
+     * @return ArrayList<Mantenimiento>
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ParseException 
+     */
     
     
     private ArrayList<Mantenimiento> leerArchivoArreglo (String path) throws FileNotFoundException, IOException, ParseException

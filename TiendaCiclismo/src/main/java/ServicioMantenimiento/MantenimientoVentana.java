@@ -373,6 +373,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     public JComboBox<String> getCmbBuscar() {
         return cmbBuscar;
     }
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
     
     
     
