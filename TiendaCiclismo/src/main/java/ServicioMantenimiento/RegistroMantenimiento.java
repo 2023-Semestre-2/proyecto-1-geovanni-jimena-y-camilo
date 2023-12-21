@@ -126,6 +126,10 @@ public class RegistroMantenimiento {
         JOptionPane.showMessageDialog(null, "Error, formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);   
         return false;
        }
+       else if(dcsFechaRecibido.getDate().after(dcsFechaEntrega.getDate())){
+           JOptionPane.showMessageDialog(null, "Error, la fecha de recibido no puede ser mayor a la fecha de entrega", "Error", JOptionPane.ERROR_MESSAGE);   
+        return false;
+       }
        else{
            return true;
        }
