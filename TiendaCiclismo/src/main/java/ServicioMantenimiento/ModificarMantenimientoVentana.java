@@ -4,8 +4,6 @@
  */
 package ServicioMantenimiento;
 
-import ServicioMantenimiento.MantenimientoVentana;
-import ServicioMantenimiento.Mantenimiento;
 import ejercicio.tiendaciclismo.Cliente;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

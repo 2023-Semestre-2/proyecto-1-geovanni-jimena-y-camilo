@@ -5,22 +5,14 @@
 package ServicioMantenimiento;
 
 import ServicioMantenimiento.MantenimientoVentana;
-import ServicioMantenimiento.Mantenimiento;
 import com.toedter.calendar.JDateChooser;
 import ejercicio.tiendaciclismo.Cliente;
-import ejercicio.tiendaciclismo.FileManager;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.chrono.Era;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *

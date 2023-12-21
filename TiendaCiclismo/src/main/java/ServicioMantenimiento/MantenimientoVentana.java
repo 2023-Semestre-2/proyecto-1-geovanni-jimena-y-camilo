@@ -7,15 +7,12 @@ package ServicioMantenimiento;
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
 import ejercicio.tiendaciclismo.Menu;
-import ejercicio.tiendaciclismo.TiendaCiclismo;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +32,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
      * Creates new form MantenimientoVentana
      */
     public MantenimientoVentana() {
-        registroMantenimiento = new RegistroMantenimiento(this, clientes);
+        registroMantenimiento = new RegistroMantenimiento(this);
         initComponents();
         clientes = new ArrayList<Cliente>();
         taller = registroMantenimiento.getListaMantenimiento();

@@ -5,7 +5,6 @@
 package ServicioMantenimiento;
 
 import com.toedter.calendar.JDateChooser;
-import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -22,19 +21,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
+ * Clase que se encarga de controlar el registro de mantenimiento
  *
  * @author luisc
  */
 public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
-    private ArrayList<Cliente> clientes = new ArrayList<>();
     private int codigoServicio = 0;
 
-    public RegistroMantenimiento(MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
+    public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
         this.refVentana = refVentana;
-        this.clientes = clientes;
     }
     /**
      * Funcion que inicializa el arreglo, lo lee del archivo primero
@@ -55,6 +53,13 @@ public class RegistroMantenimiento {
         }
         return taller;
     }
+    
+    /**
+     * 
+     * 
+     * 
+     * @return max + 1
+     */
     
     public int calcularCodigoServicio(){
         int max = 0;
