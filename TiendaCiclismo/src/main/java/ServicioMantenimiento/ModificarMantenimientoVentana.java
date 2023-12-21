@@ -31,18 +31,20 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
-    private int codigo_servicio;
+    private RegistroMantenimiento registroMantenimiento;
     
-    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, Mantenimiento miembroModificar) {
+    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, 
+    MantenimientoVentana refVentana, Mantenimiento miembroModificar, RegistroMantenimiento registroMantenimiento) 
+    {
         initComponents();
         this.clientes = clientes;
         this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
         this.miembroModificar = miembroModificar;
+        this.registroMantenimiento = registroMantenimiento;
         loadClientes();
         setLocationRelativeTo(null);      
     }
-
     private ModificarMantenimientoVentana() {
         initComponents();
     }
@@ -278,48 +280,18 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        int codigoServicio = Integer.parseInt(ftfCodigoServicio.getText());
-        int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
-        String marca = txfMarca.getText();
-        String descripcion = txfDescripcion.getText();
-        int precio = Integer.parseInt(ftfPrecio.getText());
-        Date fechaRecibido = dcsFechaRecibido.getDate();
-        Date fechaEntrega = dcsFechaEntrega.getDate();
-        String observaciones = txfObservaciones.getText();
-        String estado = cmbEstado.getSelectedItem().toString();
-        String nombre = cmbClientes.getSelectedItem().toString();
-       
-        // eso es uno
-        
-        miembroModificar.setCodigo_cliente(codigoCliente);
-        miembroModificar.setCodigo_servicio(codigoServicio);
-        miembroModificar.setMarca_bicicleta(marca);
-        miembroModificar.setDescripcion(descripcion);
-        miembroModificar.setPrecio(precio);
-        miembroModificar.setFecha_recibido(fechaRecibido);
-        miembroModificar.setFecha_entrega(fechaEntrega);
-        miembroModificar.setObservaciones(observaciones);
-        miembroModificar.setEstado(estado);
-        miembroModificar.setNombre(nombre);
-        
-        FileManager.deleteFile("mantenimiento.csv");
-        
-        for (int i = 0; i < clienteMantenimiento.size(); i++) {
-            try {
-                FileManager.writeFile("mantenimiento.csv", clienteMantenimiento.get(i).toString());
-            } catch (IOException ex) {
-                System.out.println("Pos no se pudo gg");
-            }
+
+        if(registroMantenimiento.verificarDatos(dcsFechaRecibido, dcsFechaEntrega, ftfPrecio))
+        {
+            registroMantenimiento.modificarMantenimiento(miembroModificar.getCodigo_servicio(), txfCodigoCliente, txfMarca, txfDescripcion, ftfPrecio, dcsFechaRecibido, dcsFechaEntrega, txfObservaciones, cmbEstado, cmbClientes, miembroModificar);
+            refVentana.eraseTable();
+            refVentana.reloadClientes();
+            refVentana.setVisible(true);
+            dispose();
         }
-        codigo_servicio++;
-        refVentana.eraseTable();
-        refVentana.reloadClientes();
-        refVentana.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void loadClientes(){
-       
        cmbClientes.addItem(miembroModificar.getNombre());
        ftfCodigoServicio.setText("" + miembroModificar.getCodigo_servicio());
        txfCodigoCliente.setText("" + miembroModificar.getCodigo_cliente());

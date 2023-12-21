@@ -32,7 +32,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
      * Creates new form AgregarClienteMantenimientoVentana
      */
     
-    private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private RegistroMantenimiento registroMantenimiento;
@@ -40,10 +39,9 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private String patronFecha = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
-    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, RegistroMantenimiento registroMantenimiento) {
+    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, MantenimientoVentana refVentana, RegistroMantenimiento registroMantenimiento) {
         initComponents();
         this.clientes = clientes;
-        this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
         this.registroMantenimiento = registroMantenimiento;
         loadClientes();
@@ -54,6 +52,13 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         initComponents();
     }
     
+    private void loadClientes(){
+        for (int i = 0; i < clientes.size(); i++) {
+            cmbClientes.addItem(clientes.get(i).getNombre());
+        }
+        txfCodigoCliente.setText("" + clientes.get(0).getCodigo());
+        ftfCodigoServicio.setText("" + codigo_servicio);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +83,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         lblObservaciones = new javax.swing.JLabel();
         lblFechaRecibido = new javax.swing.JLabel();
         lblFechaEntrega = new javax.swing.JLabel();
-        ftfPrecio = new javax.swing.JFormattedTextField();
         cmbEstado = new javax.swing.JComboBox<>();
         ftfCodigoServicio = new javax.swing.JFormattedTextField();
         lblCodigoServicio = new javax.swing.JLabel();
@@ -88,6 +92,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         btRegresar = new javax.swing.JButton();
         dcsFechaEntrega = new com.toedter.calendar.JDateChooser();
         dcsFechaRecibido = new com.toedter.calendar.JDateChooser();
+        ftfPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,22 +130,6 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
 
         lblFechaEntrega.setText("FECHA DE ENTREGA");
 
-        ftfPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        ftfPrecio.setText("1");
-        ftfPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftfPrecioActionPerformed(evt);
-            }
-        });
-        ftfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ftfPrecioKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ftfPrecioKeyTyped(evt);
-            }
-        });
-
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto", "Cerrado" }));
 
         ftfCodigoServicio.setEditable(false);
@@ -168,61 +157,66 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
 
         dcsFechaRecibido.setDateFormatString("dd/MM/yyyy");
 
+        ftfPrecio.setText("1");
+        ftfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftfPrecioKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(lblDescripcion)
-                        .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFechaRecibido)
-                            .addComponent(dcsFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(dcsFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(398, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ftfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(lblPrecio)
-                        .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(txfCodigoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addComponent(lblCodigoCliente)
-                        .addComponent(ftfCodigoServicio))
-                    .addComponent(lblCodigoServicio)
-                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstado))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ftfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(98, 98, 98)
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(81, 81, 81)
+                                        .addComponent(lblDescripcion)))
+                                .addGap(26, 26, 26)))
+                        .addContainerGap(317, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblPrecio)
+                                .addComponent(txfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                .addComponent(txfCodigoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                .addComponent(lblCodigoCliente)
+                                .addComponent(ftfCodigoServicio))
+                            .addComponent(lblCodigoServicio)
+                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEstado))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbClientes, 0, 239, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(txfObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblObservaciones))
+                            .addComponent(lblObservaciones)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txfMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cmbClientes, 0, 239, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(dcsFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dcsFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblFechaEntrega)
+                                    .addComponent(lblFechaRecibido))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btRegresar)
-                        .addGap(301, 301, 301))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblFechaEntrega)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(301, 301, 301))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,8 +252,8 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
                     .addComponent(lblFechaEntrega))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ftfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dcsFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcsFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblObservaciones)
@@ -281,41 +275,15 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-        if(registroMantenimiento.verificarDatos(codigo_servicio, txfCodigoCliente, txfMarca, txfDescripcion, 
-                ftfPrecio, dcsFechaRecibido, dcsFechaEntrega, txfObservaciones, cmbEstado, cmbClientes)){
-        refVentana.eraseTable();
-        refVentana.reloadClientes();
-        refVentana.setVisible(true);
-        dispose();
+        if(registroMantenimiento.verificarDatos(dcsFechaRecibido, dcsFechaEntrega, ftfPrecio))
+        {
+            registroMantenimiento.convertirMantenimiento(codigo_servicio, txfCodigoCliente, txfMarca, txfDescripcion, ftfPrecio, dcsFechaRecibido, dcsFechaEntrega, txfObservaciones, cmbEstado, cmbClientes);
+            refVentana.eraseTable();
+            refVentana.reloadClientes();
+            refVentana.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    public void loadClientes(){
-        for (int i = 0; i < clientes.size(); i++) {
-            cmbClientes.addItem(clientes.get(i).getNombre());
-        }
-        txfCodigoCliente.setText("" + clientes.get(0).getCodigo());
-        ftfCodigoServicio.setText("" + codigo_servicio);
-    }
-    
-    private void ftfPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyPressed
-        char numero = evt.getKeyChar();
-        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_ftfPrecioKeyPressed
-
-    private void ftfPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftfPrecioActionPerformed
-
-    private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
-        char numero = evt.getKeyChar();
-        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_ftfPrecioKeyTyped
  
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
@@ -336,6 +304,13 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         refVentana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btRegresarActionPerformed
+
+    private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
+        char numero = evt.getKeyChar();
+        if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ftfPrecioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -392,7 +367,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         return ftfCodigoServicio;
     }
 
-    public JFormattedTextField getFtfPrecio() {
+    public JTextField getFtfPrecio() {
         return ftfPrecio;
     }
 
@@ -423,7 +398,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dcsFechaEntrega;
     private com.toedter.calendar.JDateChooser dcsFechaRecibido;
     private javax.swing.JFormattedTextField ftfCodigoServicio;
-    private javax.swing.JFormattedTextField ftfPrecio;
+    private javax.swing.JTextField ftfPrecio;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel lblCodigoCliente;

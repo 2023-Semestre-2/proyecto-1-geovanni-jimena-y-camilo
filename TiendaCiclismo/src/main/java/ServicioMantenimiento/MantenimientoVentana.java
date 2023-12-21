@@ -59,7 +59,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
    
-    
     public void centrarCeldas(){
     // funcion que centra todas las celdas
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -248,7 +247,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         centrarCeldas();
-        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this, registroMantenimiento);
+        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, this, registroMantenimiento);
         m1.setVisible(true);
         System.out.println(taller.size());
         this.setVisible(false);
@@ -288,9 +287,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        System.out.println(taller.size());
-        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, taller, this, taller.get(tblTablaMantenimiento.getSelectedRow()));
+        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, taller, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
         m1.setVisible(true);
+        
         this.setVisible(false);
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);

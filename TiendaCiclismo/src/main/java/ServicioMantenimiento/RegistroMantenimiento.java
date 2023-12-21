@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -31,12 +33,6 @@ public class RegistroMantenimiento {
         this.refVentana = refVentana;
         this.clientes = clientes;
     }
-    
-    public void inicializarArreglo(){
-    
-        
-    }
-    
     
     private ArrayList<Mantenimiento> loadFileToArray(){
         try {
@@ -60,42 +56,42 @@ public class RegistroMantenimiento {
                 max = taller.get(i).getCodigo_servicio();
             }
         }
-        return max;
+        return max + 1;
     }
     
-    public void guardarCliente(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, Date fecha_recibido, Date fecha_entrega, String observaciones, String estado, String nombre){
-    
-    
-    
-    }
-    
-    public boolean verificarDatos(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
-        JFormattedTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes){
-       
+    public void convertirMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
+        JTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, 
+        JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes)
+    {
+        int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
+        String marca = txfMarca.getText();
+        String descripcion = txfDescripcion.getText();
+        int precio = Integer.parseInt(ftfPrecio.getText());
+        Date fechaRecibido = dcsFechaRecibido.getDate();
+        Date fechaEntrega = dcsFechaEntrega.getDate();
+        String observaciones = txfObservaciones.getText();
+        String estado = cmbEstado.getSelectedItem().toString();
+        String nombre = cmbClientes.getSelectedItem().toString();
+        Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
+        agregarCliente(m1);
         try {
-            
-            int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
-            String marca = txfMarca.getText();
-            String descripcion = txfDescripcion.getText();
-            int precio = Integer.parseInt(ftfPrecio.getText());
-            Date fechaRecibido = dcsFechaRecibido.getDate();
-            Date fechaEntrega = dcsFechaEntrega.getDate();
-            String observaciones = txfObservaciones.getText();
-            String estado = cmbEstado.getSelectedItem().toString();
-            String nombre = cmbClientes.getSelectedItem().toString();
-            Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
-            agregarCliente(m1);
-            
             FileManager.writeFile("mantenimiento.csv", m1.toString());
-            System.out.println("se fue por aqui");
-            return true;
-
-        } 
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error, formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);   
+        } catch (IOException ex) {
+            System.out.println("NO se ha podido escribir el archivo");
         }
-        return false;
+    }
     
+    public boolean verificarDatos(JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField ftfPrecio)
+    {
+       if((ftfPrecio.getText().isEmpty()) || 
+        (dcsFechaRecibido.getDate() == null) || (dcsFechaEntrega.getDate() == null))
+       {
+        JOptionPane.showMessageDialog(null, "Error, formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);   
+        return false;
+       }
+       else{
+           return true;
+       }
     }
     
     public void buscarCliente(String texto){
@@ -152,6 +148,44 @@ public class RegistroMantenimiento {
         if(buscado == false){
             JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
         }
+    }
+    
+    public void modificarMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
+        JFormattedTextField ftfPrecio, JDateChooser dcsFechaRecibido, 
+        JDateChooser dcsFechaEntrega, JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes,
+        Mantenimiento miembroModificar)
+    {
+        int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
+        String marca = txfMarca.getText();
+        String descripcion = txfDescripcion.getText();
+        int precio = Integer.parseInt(ftfPrecio.getText());
+        Date fechaRecibido = dcsFechaRecibido.getDate();
+        Date fechaEntrega = dcsFechaEntrega.getDate();
+        String observaciones = txfObservaciones.getText();
+        String estado = cmbEstado.getSelectedItem().toString();
+        String nombre = cmbClientes.getSelectedItem().toString();
+        
+        miembroModificar.setCodigo_cliente(codigoCliente);
+        miembroModificar.setCodigo_servicio(codigoServicio);
+        miembroModificar.setMarca_bicicleta(marca);
+        miembroModificar.setDescripcion(descripcion);
+        miembroModificar.setPrecio(precio);
+        miembroModificar.setFecha_recibido(fechaRecibido);
+        miembroModificar.setFecha_entrega(fechaEntrega);
+        miembroModificar.setObservaciones(observaciones);
+        miembroModificar.setEstado(estado);
+        miembroModificar.setNombre(nombre);
+        
+        FileManager.deleteFile("mantenimiento.csv");
+        
+        for (int i = 0; i < taller.size(); i++) {
+            try {
+                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+            } catch (IOException ex) {
+                System.out.println("Pos no se pudo gg");
+            }
+        }
+    
     }
     
     
