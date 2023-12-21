@@ -4,9 +4,17 @@
  */
 package ServicioMantenimiento;
 
+import com.toedter.calendar.JDateChooser;
 import ejercicio.tiendaciclismo.Cliente;
+import ejercicio.tiendaciclismo.FileManager;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,16 +25,78 @@ public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    private final DefaultTableModel model;
-    private int codigo_servicio;
 
-    public RegistroMantenimiento(ArrayList<Mantenimiento> taller, MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
-        this.taller = taller;
+    public RegistroMantenimiento(MantenimientoVentana refVentana, ArrayList<Cliente> clientes) {
+        this.taller = loadFileToArray();
         this.refVentana = refVentana;
         this.clientes = clientes;
-        model = (DefaultTableModel)refVentana.getTblTablaMantenimiento().getModel();
     }
     
+    public void inicializarArreglo(){
+    
+        
+    }
+    
+    
+    private ArrayList<Mantenimiento> loadFileToArray(){
+        try {
+            System.out.println("");
+            System.out.println(taller.size());
+           // reloadClientes();
+            return FileManager.readFileToArray("mantenimiento.csv");
+        } 
+        catch (IOException ex) {
+        }
+        catch (ParseException ex) {
+            System.out.println("No hizo los parse a Date");
+        }
+        return taller;
+    }
+    
+    public int calcularCodigoServicio(){
+        int max = 0;
+        for (int i = 0; i < taller.size(); i++) {
+            if (taller.get(i).getCodigo_servicio() > max) {
+                max = taller.get(i).getCodigo_servicio();
+            }
+        }
+        return max;
+    }
+    
+    public void guardarCliente(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, Date fecha_recibido, Date fecha_entrega, String observaciones, String estado, String nombre){
+    
+    
+    
+    }
+    
+    public boolean verificarDatos(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
+        JFormattedTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes){
+       
+        try {
+            
+            int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
+            String marca = txfMarca.getText();
+            String descripcion = txfDescripcion.getText();
+            int precio = Integer.parseInt(ftfPrecio.getText());
+            Date fechaRecibido = dcsFechaRecibido.getDate();
+            Date fechaEntrega = dcsFechaEntrega.getDate();
+            String observaciones = txfObservaciones.getText();
+            String estado = cmbEstado.getSelectedItem().toString();
+            String nombre = cmbClientes.getSelectedItem().toString();
+            Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
+            agregarCliente(m1);
+            
+            FileManager.writeFile("mantenimiento.csv", m1.toString());
+            System.out.println("se fue por aqui");
+            return true;
+
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error, formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);   
+        }
+        return false;
+    
+    }
     
     public void buscarCliente(String texto){
         String seleccionado = refVentana.getCmbBuscar().getSelectedItem().toString();
@@ -49,7 +119,7 @@ public class RegistroMantenimiento {
             buscarClienteNombre(texto);
         }
     }
-    public void buscarClienteCodigo(int codigo_buscar){
+    private void buscarClienteCodigo(int codigo_buscar){
         boolean buscado = false;
         int contador = 0;
         for (int i = 0; i < taller.size(); i++) {
@@ -70,22 +140,6 @@ public class RegistroMantenimiento {
         } 
     }
     
-    public void agregarCliente(Mantenimiento m1){
-        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
-            m1.getDescripcion(), m1.getPrecio(), m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
-            m1.getEstado()});
-        refVentana.repaint();
-    }
-    
-    public void agregarClientes(){
-        for (int i = 0; i < taller.size(); i++) {
-            model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
-            taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
-            taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
-            taller.get(i).getEstado()});
-        }
-    }
-    
     private void buscarClienteNombre(String nombre_buscar){
         boolean buscado = false;
         for (int i = 0; i < clientes.size(); i++) {
@@ -99,5 +153,25 @@ public class RegistroMantenimiento {
             JOptionPane.showMessageDialog(null, "No se ha encontrado al cliente", "Error", JOptionPane.ERROR_MESSAGE);   
         }
     }
+    
+    
+    public void agregarCliente(Mantenimiento m1){
+        taller.add(m1);
+    }
+    /*
+    public void agregarClientes(){
+        for (int i = 0; i < taller.size(); i++) {
+            model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
+            taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
+            taller.get(i).getFecha_recibido(), taller.get(i).getFecha_entrega(), taller.get(i).getObservaciones(),
+            taller.get(i).getEstado()});
+        }
+    }
+*/
+
+    public ArrayList<Mantenimiento> getListaMantenimiento() {
+        return taller;
+    }
+    
     
 }

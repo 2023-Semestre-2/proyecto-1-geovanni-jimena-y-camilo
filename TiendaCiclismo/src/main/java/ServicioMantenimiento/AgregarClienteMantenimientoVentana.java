@@ -6,15 +6,20 @@ package ServicioMantenimiento;
 
 import ServicioMantenimiento.MantenimientoVentana;
 import ServicioMantenimiento.Mantenimiento;
+import com.toedter.calendar.JDateChooser;
 import ejercicio.tiendaciclismo.Cliente;
 import ejercicio.tiendaciclismo.FileManager;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.chrono.Era;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,15 +35,17 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
-    private int codigo_servicio = 0;
-    String patronFecha = "dd/MM/yyyy";
-    SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
+    private RegistroMantenimiento registroMantenimiento;
+    private int codigo_servicio;
+    private String patronFecha = "dd/MM/yyyy";
+    private SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
-    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana) {
+    public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, RegistroMantenimiento registroMantenimiento) {
         initComponents();
         this.clientes = clientes;
         this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
+        this.registroMantenimiento = registroMantenimiento;
         loadClientes();
         setLocationRelativeTo(null);
     }
@@ -274,34 +281,14 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        int codigoServicio = Integer.parseInt(ftfCodigoServicio.getText());
-        int codigoCliente = Integer.parseInt(txfCodigoCliente.getText());
-        String marca = txfMarca.getText();
-        String descripcion = txfDescripcion.getText();
-        int precio = Integer.parseInt(ftfPrecio.getText());
-        Date fechaRecibido = dcsFechaRecibido.getDate();
-        Date fechaEntrega = dcsFechaEntrega.getDate();
-        String observaciones = txfObservaciones.getText();
-        String estado = cmbEstado.getSelectedItem().toString();
-        String nombre = cmbClientes.getSelectedItem().toString();
-       
-        Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
-        clienteMantenimiento.add(m1);
-        
-        // eso es uno
-        
-        DefaultTableModel model = (DefaultTableModel) refVentana.getTblTablaMantenimiento().getModel();
-        model.addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), m1.getMarca_bicicleta(), 
-            m1.getDescripcion(), m1.getPrecio(), sdf.format(m1.getFecha_recibido()), sdf.format(m1.getFecha_entrega()), m1.getObservaciones(),
-            m1.getEstado()});
-        try {
-            FileManager.writeFile("mantenimiento.csv", m1.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarClienteMantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
+        if(registroMantenimiento.verificarDatos(codigo_servicio, txfCodigoCliente, txfMarca, txfDescripcion, 
+                ftfPrecio, dcsFechaRecibido, dcsFechaEntrega, txfObservaciones, cmbEstado, cmbClientes)){
+        refVentana.eraseTable();
+        refVentana.reloadClientes();
         refVentana.setVisible(true);
         dispose();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void loadClientes(){
@@ -329,7 +316,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_ftfPrecioKeyTyped
-
+ 
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
         
@@ -385,6 +372,49 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         });
     }
 
+    public int getCodigo_servicio() {
+        return codigo_servicio;
+    }
+
+    public JComboBox<String> getCmbEstado() {
+        return cmbEstado;
+    }
+
+    public JDateChooser getDcsFechaEntrega() {
+        return dcsFechaEntrega;
+    }
+
+    public JDateChooser getDcsFechaRecibido() {
+        return dcsFechaRecibido;
+    }
+
+    public JFormattedTextField getFtfCodigoServicio() {
+        return ftfCodigoServicio;
+    }
+
+    public JFormattedTextField getFtfPrecio() {
+        return ftfPrecio;
+    }
+
+    public JTextField getTxfCodigoCliente() {
+        return txfCodigoCliente;
+    }
+
+    public JTextField getTxfDescripcion() {
+        return txfDescripcion;
+    }
+
+    public JTextField getTxfMarca() {
+        return txfMarca;
+    }
+
+    public JTextField getTxfObservaciones() {
+        return txfObservaciones;
+    }
+    
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegresar;
     private javax.swing.JButton btnGuardar;
@@ -412,3 +442,4 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private javax.swing.JTextField txfObservaciones;
     // End of variables declaration//GEN-END:variables
 }
+

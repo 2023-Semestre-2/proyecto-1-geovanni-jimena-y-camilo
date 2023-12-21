@@ -27,11 +27,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 
@@ -123,7 +119,6 @@ public class FileManager {
             }
             
         }
-        System.out.println(arreglo1.size());
         return arreglo1;
     }
     
@@ -143,8 +138,6 @@ public class FileManager {
     
     public static void writeFileTruncade (String path, String value) throws IOException 
     {
-
-
         try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, false))) 
         {
             bw.write(value);
@@ -167,55 +160,5 @@ public class FileManager {
             System.out.println("El archivo no existe en la ruta especificada.");
         }
     }
-    
-    
-    // escribe un objeto
-    public static void writeObject (Object obj, String filePath)
-    {
-        try{
-            //use buffering
-            OutputStream file = new FileOutputStream(filePath);
-            OutputStream buffer = new BufferedOutputStream(file);
-            ObjectOutput output = new ObjectOutputStream(buffer);
-            try{
-                // escribe el objeto
-              output.writeObject(obj);
-            }
-            finally{
-              output.close();
-            }
-          }  
-          catch(IOException ex){
-              
-          }
         
-    }
-    
-      // escribe un objeto
-    public static Object readObject(String filePath)
-    {
-        try{
-            //use buffering
-            InputStream file = new FileInputStream(filePath);
-            InputStream buffer = new BufferedInputStream(file);
-            ObjectInput input = new ObjectInputStream (buffer);
-            try{
-              //deserialize the List
-              return input.readObject();
-            }
-            finally{
-              input.close();
-            }
-          }
-          catch(ClassNotFoundException ex){
-           
-          }
-          catch(IOException ex){
-            
-          }
-        return null;
-    }  
-    
-    
-    
 }// fin clase

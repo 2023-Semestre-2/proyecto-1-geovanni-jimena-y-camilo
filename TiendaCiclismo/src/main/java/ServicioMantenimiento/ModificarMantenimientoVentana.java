@@ -31,6 +31,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
+    private int codigo_servicio;
     
     public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, MantenimientoVentana refVentana, Mantenimiento miembroModificar) {
         initComponents();
@@ -310,6 +311,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
                 System.out.println("Pos no se pudo gg");
             }
         }
+        codigo_servicio++;
         refVentana.eraseTable();
         refVentana.reloadClientes();
         refVentana.setVisible(true);

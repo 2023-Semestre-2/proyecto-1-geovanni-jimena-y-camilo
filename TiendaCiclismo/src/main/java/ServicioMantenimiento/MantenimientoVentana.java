@@ -35,13 +35,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
      * Creates new form MantenimientoVentana
      */
     public MantenimientoVentana() {
+        registroMantenimiento = new RegistroMantenimiento(this, clientes);
         initComponents();
         clientes = new ArrayList<Cliente>();
-        taller = TiendaCiclismo.arregloMantenimiento;
+        taller = registroMantenimiento.getListaMantenimiento();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
-        registroMantenimiento = new RegistroMantenimiento(taller, this, clientes);
         setLocationRelativeTo(null);
-        inicializarArreglo();
+        eraseTable();
+        reloadClientes();
+        centrarCeldas();
         System.out.println(taller.size());
         clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
         clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
@@ -56,18 +58,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
             taller.get(i).getEstado()});
         }
     }
-    
-    
-    public void inicializarArreglo(){
-    
-        if (taller.isEmpty()) {
-            loadFileToArray();
-        }
-        eraseTable();
-        System.out.println( "Pureba");
-        System.out.println( taller.size());
-        reloadClientes();
-    }
+   
     
     public void centrarCeldas(){
     // funcion que centra todas las celdas
@@ -85,27 +76,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
                 model.removeRow(i);
         }
     
-    }
-
-    public ArrayList<Mantenimiento> loadFileToArray(){
-        try {
-            taller = FileManager.readFileToArray("mantenimiento.csv");
-            System.out.println("");
-            System.out.println(taller.size());
-           // reloadClientes();
-            return taller;
-        } catch (IOException ex) {
-            try {
-                System.out.println("No funciono");
-                FileManager.writeFile("mantenimiento.csv", "");
-            } catch (IOException ex1) {
-                System.out.println("Se murio");
-            }  
-        }
-        catch (ParseException ex) {
-            System.out.println("No hizo los parse a Date");
-        }
-        return null;
     }
     
     
@@ -278,7 +248,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         centrarCeldas();
-        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this);
+        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, taller, this, registroMantenimiento);
         m1.setVisible(true);
         System.out.println(taller.size());
         this.setVisible(false);

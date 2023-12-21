@@ -14,7 +14,6 @@ import java.util.ArrayList;
  */
 public class TiendaCiclismo {
 
-    public static ArrayList<Mantenimiento> arregloMantenimiento = new ArrayList<>();
     
     public static void main(String[] args) {
        // UsuarioVentana v1 = new UsuarioVentana();
