@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
+ * Clase que contiene el JFrame para modificar el objeto de mantenimiento
  *
  * @author luisc
  */

@@ -96,13 +96,13 @@ public class FileManager {
     }
     
     /**
-     * Metodo que se encarga
+     * Metodo que se encarga de leer el archivo y lo
      * 
-     * @param path reci
+     * @param path Es la ruta del archivo a modificar
      * @return El arreglo de tipo Mantenimiento ya cargado
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws ParseException 
+     * @throws FileNotFoundException Cuando no encuentra el archivo
+     * @throws IOException Cuando no puede leer el archivo
+     * @throws ParseException Cuando no puede convertir los strings a los respectivos atributos
      */
     public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {

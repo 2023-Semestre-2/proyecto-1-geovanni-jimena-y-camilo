@@ -90,6 +90,9 @@ public class RegistroMantenimiento {
      * @param txfObservaciones
      * @param cmbEstado
      * @param cmbClientes 
+     * 
+     * Los parametros provienen de los combobox, textfields o datechooser de los diferentes metodos
+     * 
      */
     public void convertirMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
         JTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, 
