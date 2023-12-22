@@ -324,33 +324,6 @@ public class RegistroMantenimiento {
         
         
     }
-    
-    /**
-     * Funcion que verifica si el arreglo se encuentra vacio
-     * Si esta vacio elimina el archivo asociado de mantenimiento
-     * Sino esta vacio lo reescribe
-     * 
-     */
-    private void verificarArregloVacio(){
-     if(taller.isEmpty()){
-            FileManager.deleteFile("mantenimiento.csv");
-        }
-    else{
-        
-        for (int i = 0; i < taller.size(); i++) {
-            try {
-                if(i == 0){
-                   FileManager.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
-                }
-                else
-                    FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
-            } catch (IOException ex) {
-                Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
-    
     /**
      * Funcion que lee un archivo y divide sus lineas y coloca sus strings como atributos para crear
      * un objeto de tipo mantenimiento
