@@ -32,8 +32,8 @@ public class RegistroFacturacion {
      * Construye un objeto `RegistroFacturacion` inicializando los productos y artículos del registro.
      */
     public RegistroFacturacion() {
-        registro.ProductosArchivo(reg.leer("tiposProductos"));
-        registro.ArticulosArchivo(reg.leer("Articulos"));
+        registro.ProductosArchivo(reg.leer("tiposProductos.csv"));
+        registro.ArticulosArchivo(reg.leer("Articulos.csv"));
     }
     
     /**

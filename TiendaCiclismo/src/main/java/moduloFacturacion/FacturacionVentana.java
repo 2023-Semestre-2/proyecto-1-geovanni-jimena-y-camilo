@@ -31,7 +31,7 @@ public class FacturacionVentana extends javax.swing.JFrame {
      * Inicializa la ventana de facturación, carga datos de facturas desde archivos y configura la tabla.
      */
     public FacturacionVentana() {
-        registro.FacturasArchivo(reg.leer("Facturas"));
+        registro.FacturasArchivo(reg.leer("Facturas.csv"));
         
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

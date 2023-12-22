@@ -280,7 +280,6 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         else{
             AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, this, registroMantenimiento);
             m1.setVisible(true);
-            System.out.println(taller.size());
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -327,8 +326,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         btnCerrarEstado.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
-        
         registroMantenimiento.cerrarEstado(taller.get(tblTablaMantenimiento.getSelectedRow()), tblTablaMantenimiento.getSelectedRow());
+        
+        
     }//GEN-LAST:event_btnCerrarEstadoActionPerformed
 
     /**

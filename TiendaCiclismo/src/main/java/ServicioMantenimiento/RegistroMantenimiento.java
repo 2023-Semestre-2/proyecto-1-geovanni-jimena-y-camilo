@@ -15,14 +15,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import moduloClientes.Cliente;
 import moduloClientes.OperacionesCliente;
+import moduloFacturacion.RegistroFacturacion;
 
 /**
  * Clase que se encarga de controlar el registro de mantenimiento
@@ -319,8 +318,11 @@ public class RegistroMantenimiento {
     public void cerrarEstado(Mantenimiento m1, int posicion){
         taller.remove(taller.get(posicion));
         m1.setEstado("Cerrado");
-        refVentana.eraseTable();
-        refVentana.reloadClientes();
+        refVentana.getModel().removeRow(posicion);
+        RegistroFacturacion registro = new RegistroFacturacion();
+        
+        registro.FacturasArchivo(Archivos.leer("Facturas.csv"));
+        registro.agregarFactura(m1.getNombre(), sdf.format(m1.getFecha_entrega()).toString(), "Valido", 0, 0 + "", m1.getPrecio(), "Servicio");
         
         
     }
@@ -347,7 +349,6 @@ public class RegistroMantenimiento {
             while (line != null) {
                Mantenimiento m1 = new Mantenimiento();
                String[] mantenimiento = line.split(",");
-               System.out.println(line);
                m1.setCodigo_servicio(Integer.parseInt(mantenimiento[0]));
                m1.setCodigo_cliente(Integer.parseInt(mantenimiento[1]));
                m1.setMarca_bicicleta(mantenimiento[2]);
