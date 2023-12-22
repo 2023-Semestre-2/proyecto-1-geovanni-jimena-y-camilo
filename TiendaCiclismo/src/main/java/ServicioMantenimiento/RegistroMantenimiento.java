@@ -58,12 +58,14 @@ public class RegistroMantenimiento {
     }
     
     /**
+     * Metodo que se encarga de calcular el codigo de servicio de acuerdo
+     * Al codigo maximo que contiene un elemento del arrayList
      *
-     * @return max + 1 ya que el nuevo codigo seria el siguiente 
+     * @return retorna el codigo con el elemento mayor + 1 ya que queremos que el codigo de servicio sea uno mayor al anterior
      */
     
     public int calcularCodigoServicio(){
-        int max = 0;
+        int max = 1;
         for (int i = 0; i < taller.size(); i++) {
             // verifica el elemento con el codigo mayor
             if (taller.get(i).getCodigo_servicio() > max) {
@@ -137,6 +139,8 @@ public class RegistroMantenimiento {
     }
     
     /**
+     * Metodo que se llama cuando el cliente le da click al boton de buscar
+     * Verifica si selecciono el cuadro de Nombre o Codigo
      * 
      * @param texto es el texto que se escribe en el textfield de buscar
      */
@@ -160,6 +164,13 @@ public class RegistroMantenimiento {
             buscarClienteNombre(texto);
         }
     }
+    
+    
+    /**
+     * Metodo que se encarga de buscar el cliente por codigo de servicio
+     * 
+     * @param codigo_buscar Es el codigo escrito en la barra de buscar
+     */
     private void buscarClienteCodigo(int codigo_buscar){
         boolean buscado = false;
         int contador = 0;
@@ -179,6 +190,10 @@ public class RegistroMantenimiento {
         } 
     }
     
+    /**
+     * Metodo que busca el cliente dentro del arrayList por su nombre de cliente
+     * @param nombre_buscar es el nombre escrito en la barra de buscar
+     */
     private void buscarClienteNombre(String nombre_buscar){
         boolean buscado = false;
         int contador = 0;
@@ -197,6 +212,24 @@ public class RegistroMantenimiento {
         }
     }
     
+    /**
+     * Metodo que se encarga de modificar los atributos de dicho objeto mediante las selecciones
+     * En el textfield de dichos atributos
+     * Cuando lo hace elimina el archivo asociado para reescribirlo
+     * 
+     * 
+     * @param codigoServicio
+     * @param txfCodigoCliente
+     * @param txfMarca
+     * @param txfDescripcion
+     * @param ftfPrecio
+     * @param dcsFechaRecibido
+     * @param dcsFechaEntrega
+     * @param txfObservaciones
+     * @param cmbEstado
+     * @param cmbClientes
+     * @param miembroModificar 
+     */
     public void modificarMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
         JTextField ftfPrecio, JDateChooser dcsFechaRecibido, 
         JDateChooser dcsFechaEntrega, JTextField txfObservaciones, JComboBox cmbEstado, JComboBox cmbClientes,
@@ -233,7 +266,11 @@ public class RegistroMantenimiento {
             }
         }
     }
-    
+   /**
+    * Metodo que sirve para agregar un cliente especifico en la tabla de mantenimiento
+    * 
+    * @param m1 es el objeto de tipo mantenimiento que se agrega en la tabla
+    */ 
     private void agregarClienteTabla(Mantenimiento m1){
         // agrega el cliente a la tabla
         refVentana.getModel().addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), 
@@ -242,7 +279,12 @@ public class RegistroMantenimiento {
             m1.getEstado()});
     }
     
-    
+    /**
+     * Metodo que cierra el estado de un objeto de mantenimiento
+     * 
+     * @param m1 es el objeto de mantenimiento
+     * @param posicion  es la posicion de dicho objeto en el arrayList
+     */
     public void cerrarEstado(Mantenimiento m1, int posicion){
         taller.remove(taller.get(posicion));
         m1.setEstado("Cerrado");
@@ -252,6 +294,12 @@ public class RegistroMantenimiento {
         
     }
     
+    /**
+     * Funcion que verifica si el arreglo se encuentra vacio
+     * Si esta vacio elimina el archivo asociado de mantenimiento
+     * Sino esta vacio lo reescribe
+     * 
+     */
     private void verificarArregloVacio(){
      if(taller.isEmpty()){
             FileManager.deleteFile("mantenimiento.csv");
@@ -276,11 +324,11 @@ public class RegistroMantenimiento {
      * Funcion que lee un archivo y divide sus lineas y coloca sus strings como atributos para crear
      * un objeto de tipo mantenimiento
      * 
-     * @param path 
-     * @return ArrayList<Mantenimiento>
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws ParseException 
+     * @param path  Es la ruta de dicho archivo 
+     * @return ArrayList<Mantenimiento>   retorna el arrayList de mantenimiento ya cargagado
+     * @throws FileNotFoundException      Cuando el archivo no existe
+     * @throws IOException                Cuando el archivo no se puede leer
+     * @throws ParseException             Cuando no se pueden convertir los Strings a los objetos especificos
      */
     
     
@@ -315,7 +363,10 @@ public class RegistroMantenimiento {
     }
     
     
-    
+    /**
+     * Metodo que se encarga de agregar un objeto al arrayList
+     * @param m1 es el objeto a agregar 
+     */
     public void agregarCliente(Mantenimiento m1){
         taller.add(m1);
     }

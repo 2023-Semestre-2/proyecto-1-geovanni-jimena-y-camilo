@@ -50,6 +50,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         clientes.add(new Cliente(2, "Pepe1", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
     }
     
+    /**
+     * Metodo que se encarga de agregar los clientes de la lista dentro de la tabla de servicios
+     */
     public void reloadClientes(){
 
         for (int i = 0; i < taller.size(); i++) {
@@ -60,6 +63,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
    
+    /**
+     * Metodo que se encarga de centrar las celdas
+     */
     public void centrarCeldas(){
     // funcion que centra todas las celdas
     DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -69,6 +75,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Metodo que se encarga de borrar los elementos solamente de la tabla
+     */
     public void eraseTable(){
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         int rowCount = tblTablaMantenimiento.getRowCount();

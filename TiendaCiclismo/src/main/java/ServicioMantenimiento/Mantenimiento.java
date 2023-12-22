@@ -7,7 +7,7 @@ package ServicioMantenimiento;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
+/** Clase que se encarga de crear el objeto de Mantenimiento con sus respectivos atributos
  *
  * @author luisc
  */
@@ -25,10 +25,11 @@ public class Mantenimiento {
     private String observaciones;
     private String estado;
     private String nombre;
+    
+    // Estos atributos son para darle formato a las variables de tipo Date en forma de dd/MM/yyyy
     String patronFecha = "dd/MM/yyyy";
     SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
    
-    // aparte de los atributos, necesita de la referencia al menu y al arreglo
 
     public Mantenimiento(int codigo_servicio, int codigo_cliente, String marca_bicicleta, String descripcion, int precio, Date fecha_recibido, Date fecha_entrega, String observaciones, String estado, String nombre) {
         this.codigo_servicio = codigo_servicio;
