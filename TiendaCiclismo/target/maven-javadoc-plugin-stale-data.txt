@@ -1,0 +1,51 @@
+@options
+@packages
+-classpath
+'C:/Users/luisc/.m2/repository/com/toedter/jcalendar/1.4/jcalendar-1.4.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'19'
+-sourcepath
+'D:/TEC/Verano 2023/proyecto-1-geovanni-jimena-y-camilo/TiendaCiclismo/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/TEC/Verano 2023/proyecto-1-geovanni-jimena-y-camilo/TiendaCiclismo/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'TiendaCiclismo 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'TiendaCiclismo 1.0-SNAPSHOT API'
+ejercicio.tiendaciclismo
+ServicioMantenimiento
+C:\Users\luisc\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar = 1702955957494
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\src\main\java = 1703027971255
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\allclasses-index.html = 1703203213956
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\allpackages-index.html = 1703203213959
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\copy.svg = 1703203214001
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\element-list = 1703203213806
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\help-doc.html = 1703203213993
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\index-all.html = 1703203213983
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\index.html = 1703203213940
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\jquery-ui.overrides.css = 1703203214018
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\member-search-index.js = 1703203213965
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\module-search-index.js = 1703203213960
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\overview-summary.html = 1703203213988
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\overview-tree.html = 1703203213936
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\package-search-index.js = 1703203213962
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\script.js = 1703203213998
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\search-page.js = 1703203214007
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\search.html = 1703203213986
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\search.js = 1703203214005
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\serialized-form.html = 1703203213873
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\stylesheet.css = 1703203213996
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\tag-search-index.js = 1703203213967
+D:\TEC\Verano 2023\proyecto-1-geovanni-jimena-y-camilo\TiendaCiclismo\target\site\apidocs\type-search-index.js = 1703203213963
