@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Ventana de clientes
+ * @author geova
+ */
 public class ClientesVentana extends javax.swing.JFrame {
     
     
@@ -23,8 +27,10 @@ public class ClientesVentana extends javax.swing.JFrame {
     private Archivos arch= new Archivos();
     private OperacionesCliente operacion= new OperacionesCliente();
   
-   
-    
+    /**
+     * Inicializa la ventana
+     * @throws IOException
+     */
     public ClientesVentana() throws IOException {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
@@ -38,7 +44,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         cargarClientesTabla();
         
        }
-  
+  /**
+   * Muestra un cuadro de dialogo para confirmar una accion
+   * @return True o False 
+   */
      private boolean confirmacion(){
         int opcion = JOptionPane.showConfirmDialog(jPanel1,
                     "¿Desea realizar la acción?",
@@ -51,6 +60,10 @@ public class ClientesVentana extends javax.swing.JFrame {
                 return false;
             }
     }
+
+    /**
+     * Carga los clientes en la tabla
+     */
     public void cargarClientesTabla(){
             
             operacion.ClientesArchivo(arch.leer("Clientes.csv"));
@@ -60,18 +73,31 @@ public class ClientesVentana extends javax.swing.JFrame {
         
             }
     }
-     public void iniciarTablas(ArrayList<Cliente>lista){
+
+    /**
+     *Inicia la tabla a partir de una lista 
+     * @param lista lista de clientes
+     */
+    public void iniciarTablas(ArrayList<Cliente>lista){
          for (Cliente cliente:lista){
             Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
             model.addRow(fila);
          }    
  }
      
-     public JTable obtenerTabla(){
+    /**
+     * 
+     * @return retorna la tabla de la ventana de clientes
+     */
+    public JTable obtenerTabla(){
          return tablaClientes;
      }
 
-     public void limpiarTabla(JTable tabla){     
+    /**
+     * Limpia la tabla de clientes
+     * @param tabla tabla de clientes
+     */
+    public void limpiarTabla(JTable tabla){     
          DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();        
          modeloTabla.setRowCount(0);  // Elimina todas las filas del modelo        
            }
@@ -151,16 +177,6 @@ public class ClientesVentana extends javax.swing.JFrame {
         });
 
         textoFiltro.setToolTipText("");
-        textoFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textoFiltroFocusGained(evt);
-            }
-        });
-        textoFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoFiltroActionPerformed(evt);
-            }
-        });
         textoFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textoFiltroKeyTyped(evt);
@@ -242,7 +258,10 @@ public class ClientesVentana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ *  Elimina el cliente seleccionado 
+ * @param evt Evento
+ */
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
             try{
                DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();                
@@ -264,15 +283,19 @@ public class ClientesVentana extends javax.swing.JFrame {
     private void comboxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboxFiltroActionPerformed
-
+/**
+ * Retorna la ventana para agregar un cliente
+ * @param evt Evento
+ */
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
         AgregarClienteVentana vent1= new AgregarClienteVentana();
         vent1.setVisible(true);
         this.setVisible(false);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_botonAgregarActionPerformed
-
+/**
+ * Retorna la ventana para modificar un cliente seleccionado
+ * @param evt 
+ */
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
  
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
@@ -287,7 +310,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonModificarActionPerformed
-
+/**
+ * Retorna los clientes buscados en la tabla
+ * @param evt Evento
+ */
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
                     
         String filtro = (String) comboxFiltro.getSelectedItem();
@@ -325,11 +351,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonBuscarActionPerformed
-
-    private void textoFiltroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoFiltroFocusGained
-        
-    }//GEN-LAST:event_textoFiltroFocusGained
-
+/**
+ * Verifica los caracteres qe se ingresan segun el flitro
+ * @param evt Evento
+ */
     private void textoFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFiltroKeyTyped
 
         String filtro = (String) comboxFiltro.getSelectedItem();
@@ -345,17 +370,16 @@ public class ClientesVentana extends javax.swing.JFrame {
         }
             
                 }//GEN-LAST:event_textoFiltroKeyTyped
-
+/**
+ * Retorna la ventana de clientes
+ * @param evt Evento
+ */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        Menu ventana = new Menu();
-        ventana.setVisible(true);
-        this.setVisible(false);
+//        Menu ventana = new Menu();
+  //      ventana.setVisible(true);
+    //    this.setVisible(false);
 
     }//GEN-LAST:event_botonVolverActionPerformed
-
-    private void textoFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoFiltroActionPerformed
     /**
      * @param args the command line arguments
      */

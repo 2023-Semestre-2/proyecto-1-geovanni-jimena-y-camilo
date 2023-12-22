@@ -15,31 +15,19 @@ import java.io.StringReader;
 import java.nio.Buffer;
 import javax.swing.JOptionPane;
 
-
+/** Manipula las operaciones de escribir,modificar, y eliminar el contenido de los archivos
+ *
+ * @author geova
+ */
 public class Archivos {
     
-    File archivo;
-    
-   
-  
-    
-    public Archivos() {
-       
-    }
     
     
-    
-    public void actualizarCodigoCliente(String nombreArchivo,int codigoActualizado){
-      try{           
-            FileWriter escribir = new FileWriter(nombreArchivo,false);
-            escribir.write(String.valueOf(codigoActualizado));
-            escribir.close();
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-    }  
-    
+    /**
+     * Añade los atributos del objeto del cliente al archivo 
+     * @param cliente Objeto de cliente
+     * @param nombreArchivo Nombre del archivo
+     */
     public void escribirEnArchivo(Cliente cliente,String nombreArchivo){
         try{
             
@@ -53,6 +41,12 @@ public class Archivos {
             System.out.println(e);
         }
     }
+
+    /**
+     * Lee todo el contenido de un archivo
+     * @param document nombre del documento
+     * @return retorna todo el contenido del archivo en una string
+     */
     public String leer(String document) {
         StringBuilder data = new StringBuilder();
 
@@ -81,7 +75,12 @@ public class Archivos {
         return data.toString();
     }
     
-    
+    /**
+     * Remplaza una linea de un archivo
+     * @param lineaNueva Linea que se va a agregar
+     * @param lineaReemplazar Linea que se va a reemplazar
+     * @param doc Nombre del documento
+     */
     public void modificarEscritura(String lineaNueva,String lineaReemplazar, String doc){
         try {
             // Leer el archivo original
@@ -110,6 +109,12 @@ public class Archivos {
         }
         
     }
+
+    /**
+     * Elimina una linea del archivo
+     * @param linea Linea que se va  a eliminar
+     * @param doc Nombre del archivo
+     */
     public void eliminarEscritura(String linea, String doc){
         String contenido=leer(doc);
         StringBuilder contenidoNuevo=new StringBuilder();
