@@ -81,7 +81,7 @@ public class Archivos {
             
         }      
     }
-    
+    /*
     public static String leerArchivo (String path) throws FileNotFoundException, IOException
     {
        
@@ -103,6 +103,7 @@ public class Archivos {
 
         return everything;
     }
+    */
     
     /**
      * Escribe la información de una factura en el archivo "Facturas.acc".
@@ -133,7 +134,7 @@ public class Archivos {
      * @param document   El nombre del archivo a leer.
      * @return           Una cadena que representa el contenido del archivo.
      */
-    public String leer(String document) {
+    public static String leer(String document) {
         StringBuilder data = new StringBuilder();
 
         try {

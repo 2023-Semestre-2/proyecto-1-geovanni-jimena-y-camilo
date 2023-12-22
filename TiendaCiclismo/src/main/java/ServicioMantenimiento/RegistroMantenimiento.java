@@ -49,13 +49,8 @@ public class RegistroMantenimiento {
      */
     
     protected ArrayList<Cliente> inicializarClientes(){
-        try {
-            String total = Archivos.leerArchivo("Clientes.csv");
-            clientes.ClientesArchivo(total);
-            return clientes.listaClientes;
-        } catch (IOException ex) {
-            System.out.println("No ha cargado los clientes");
-        }
+        String total = Archivos.leer("Clientes.csv");
+        clientes.ClientesArchivo(total);
         return clientes.listaClientes;
     }
     

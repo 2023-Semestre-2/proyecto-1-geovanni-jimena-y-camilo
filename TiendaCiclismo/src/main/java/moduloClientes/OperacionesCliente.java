@@ -14,7 +14,7 @@ public class OperacionesCliente  {
         
     }
      public void ClientesArchivo(String data){
-         System.out.println(data);
+        System.out.println(data);
         StringReader stringReader = new StringReader(data);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
 
