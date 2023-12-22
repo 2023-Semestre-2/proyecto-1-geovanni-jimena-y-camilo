@@ -105,6 +105,19 @@ public class Archivos {
     }
     */
     
+    
+    public static void escribirArchivo (String path, String value) throws IOException 
+    {
+
+
+        try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, true))) 
+        {
+            bw.write(value);
+            bw.close();
+        }
+        
+    }
+    
     /**
      * Escribe la información de una factura en el archivo "Facturas.acc".
      *
@@ -219,7 +232,7 @@ public class Archivos {
                     contenidoNuevo.append(lineaActual).append("\n");
                 }
             }
-            FileWriter writer = new FileWriter(doc+".csv");
+            FileWriter writer = new FileWriter(doc);
             BufferedWriter bufferWriter = new BufferedWriter(writer);
             bufferWriter.write(contenidoNuevo.toString());
 
@@ -232,30 +245,9 @@ public class Archivos {
         }
     }
     
-        // read txt file, para ller el query
-    public static void escribirArchivo (String path, String value) throws IOException 
-    {
 
-
-        try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, true))) 
-        {
-            bw.write(value);
-            bw.close();
-        }
-        
-    }
     
-    public static void writeFileTruncade (String path, String value) throws IOException 
-    {
-        try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, false))) 
-        {
-            bw.write(value);
-            bw.close();
-        }
-        
-    }
-    
-    public static void deleteFile(String path){
+    public static void eliminarArchivo(String path){
         File archivo = new File(path);
         
         if (archivo.exists()) {

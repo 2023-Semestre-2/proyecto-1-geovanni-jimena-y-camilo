@@ -6,7 +6,6 @@ package ServicioMantenimiento;
 
 import com.toedter.calendar.JDateChooser;
 import ejercicio.tiendaciclismo.Archivos;
-import ejercicio.tiendaciclismo.FileManager;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -121,7 +120,7 @@ public class RegistroMantenimiento {
         Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
         agregarCliente(m1);
         try {
-            FileManager.writeFile("mantenimiento.csv", m1.toString());
+            Archivos.escribirArchivo("mantenimiento.csv", m1.toString());
         } catch (IOException ex) {
             System.out.println("NO se ha podido escribir el archivo");
         }
@@ -227,11 +226,11 @@ public class RegistroMantenimiento {
     }
     
     private void actualizarArchivo(){
-    FileManager.deleteFile("mantenimiento.csv");
+        Archivos.eliminarArchivo("mantenimiento.csv");
         
         for (int i = 0; i < taller.size(); i++) {
             try {
-                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+                Archivos.escribirArchivo("mantenimiento.csv", taller.get(i).toString());
             } catch (IOException ex) {
                 System.out.println("Pos no se pudo gg");
             }
@@ -317,8 +316,10 @@ public class RegistroMantenimiento {
      */
     public void cerrarEstado(Mantenimiento m1, int posicion){
         taller.remove(taller.get(posicion));
+        System.out.println(taller.size());
         m1.setEstado("Cerrado");
         refVentana.getModel().removeRow(posicion);
+        actualizarArchivo();
         RegistroFacturacion registro = new RegistroFacturacion();
         
         registro.FacturasArchivo(Archivos.leer("Facturas.csv"));
