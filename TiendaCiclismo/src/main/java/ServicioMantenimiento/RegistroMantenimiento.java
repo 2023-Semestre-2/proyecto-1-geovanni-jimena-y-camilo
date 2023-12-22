@@ -57,7 +57,10 @@ public class RegistroMantenimiento {
         return clientes.listaClientes;
     }
     
-    
+    /**
+     * Metodo que inicializa el arreglo de mantenimiento en caso de existir
+     * @return El arreglo de mantenimiento
+     */
     private ArrayList<Mantenimiento> inicializarArreglo(){
         try {
             return leerArchivoArreglo("mantenimiento.csv");
