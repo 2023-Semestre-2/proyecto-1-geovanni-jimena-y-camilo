@@ -18,7 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -274,6 +273,11 @@ public class RegistroMantenimiento {
         miembroModificar.setNombre(nombre);
         actualizarArchivo();
     }
+    /**
+     * Metodo que se encarga de eliminar el objeto seleccionado
+     * @param model Es el modelo de la tabla de mantenimiento, se necesita para eliminar
+     * @param posicion Es la posicion de dicho objeto a eliminar
+     */
     public void eliminarMantenimiento(DefaultTableModel model, int posicion){
         taller.remove(posicion);
         model.removeRow(posicion);
@@ -306,7 +310,7 @@ public class RegistroMantenimiento {
         m1.setEstado("Cerrado");
         refVentana.eraseTable();
         refVentana.reloadClientes();
-        verificarArregloVacio();
+        
         
     }
     

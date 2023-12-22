@@ -4,7 +4,6 @@
 
 package ejercicio.tiendaciclismo;
 
-import ServicioMantenimiento.MantenimientoVentana;
 
 /**
  *
@@ -14,10 +13,9 @@ public class TiendaCiclismo {
 
     
     public static void main(String[] args) {
-       // UsuarioVentana v1 = new UsuarioVentana();
-      //  v1.setVisible(true);  
-      MantenimientoVentana m1 = new MantenimientoVentana();
-      m1.setVisible(true);
+        UsuarioVentana v1 = new UsuarioVentana();
+        v1.setVisible(true);  
+      
     }
     
 }

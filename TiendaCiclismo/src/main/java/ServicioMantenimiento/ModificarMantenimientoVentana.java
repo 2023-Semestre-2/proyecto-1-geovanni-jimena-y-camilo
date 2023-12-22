@@ -18,19 +18,16 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     /**
      * Creates new form AgregarClienteMantenimientoVentana
      */
-    
-    private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
     private RegistroMantenimiento registroMantenimiento;
     
-    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, 
+    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, 
     MantenimientoVentana refVentana, Mantenimiento miembroModificar, RegistroMantenimiento registroMantenimiento) 
     {
         initComponents();
         this.clientes = clientes;
-        this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
         this.miembroModificar = miembroModificar;
         this.registroMantenimiento = registroMantenimiento;

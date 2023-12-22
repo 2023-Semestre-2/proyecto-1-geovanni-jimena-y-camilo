@@ -6,6 +6,9 @@ package ejercicio.tiendaciclismo;
 
 import ServicioMantenimiento.MantenimientoVentana;
 import javax.swing.JButton;
+import moduloClientes.ClientesVentana;
+import moduloFacturacion.FacturacionVentana;
+import moduloProductos.ProductosVentana;
 
 /**
  *
@@ -71,6 +74,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnFacturacion.setText("Facturación de Productos");
+        btnFacturacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,19 +128,21 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBicicletasActionPerformed
-        /*
-        ProductosVentana v1 = new ProductosVentana(this);
+
+        ProductosVentana v1 = new ProductosVentana();
         v1.setVisible(true);
-        btnBicicletas.setEnabled(false);
-        */
+        dispose();
+        
     }//GEN-LAST:event_btnBicicletasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        /*
-        ClientesVentana v1 = new ClientesVentana();
-        v1.setVisible(true);
-        btnCliente.setEnabled(false);
-        */
+        try{
+        ClientesVentana v2 = new ClientesVentana();
+        v2.setVisible(true);
+        dispose();
+        }catch (Exception e){
+            
+        }
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnServicioTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicioTallerActionPerformed
@@ -140,6 +150,12 @@ public class Menu extends javax.swing.JFrame {
         m1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnServicioTallerActionPerformed
+
+    private void btnFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturacionActionPerformed
+        FacturacionVentana f1= new FacturacionVentana();
+        f1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFacturacionActionPerformed
 
     /**
      * 

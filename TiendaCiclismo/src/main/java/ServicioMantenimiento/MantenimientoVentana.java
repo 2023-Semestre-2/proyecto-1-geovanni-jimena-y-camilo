@@ -310,7 +310,7 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, taller, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
+        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
         m1.setVisible(true);
         
         this.setVisible(false);
