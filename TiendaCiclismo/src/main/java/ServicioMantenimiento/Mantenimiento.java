@@ -49,10 +49,17 @@ public class Mantenimiento {
     
 
     @Override
+    /** retorna el objeto a tipo string con dicho separado por comas (,)
+     * 
+     */
     public String toString() {
         return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + sdf.format(fecha_recibido) + "," + sdf.format(fecha_entrega) + "," + observaciones + "," + estado + ',' + nombre + '\n';
     }
-
+    
+    /**
+     * 
+     * @return el codigo de servicio
+     */
     public int getCodigo_servicio() {
         return codigo_servicio;
     }

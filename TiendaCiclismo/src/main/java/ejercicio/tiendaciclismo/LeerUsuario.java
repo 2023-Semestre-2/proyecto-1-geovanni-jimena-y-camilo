@@ -41,7 +41,12 @@ public class LeerUsuario {
         return false;
     }
 
-    public void readFileLine(String path) throws IOException {
+    /**
+     * Metodo que se encarga de leer el archivo y carga cada linea en un arreglo de usuarios
+     * @param path es la ruta del archivo de usuarios.acc
+     * @throws IOException cuando no puede leer el archivo
+     */
+    private void readFileLine(String path) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
 
@@ -51,7 +56,12 @@ public class LeerUsuario {
             }
         }
     }
-
+    /**
+     * Metodo que se encarga de inicializar el arreglo de usuarios
+     * 
+     * @param filePath es la ruta del archivo de usuarios.acc
+     * @throws IOException cuando no puede leer el archivo
+     */
     public void initializeUsers(String filePath) throws IOException {
         readFileLine(filePath);
     }

@@ -32,7 +32,13 @@ public class FileManager {
     
     
     
-    // read txt file, para ller el query
+    /**
+     * 
+     * @param path
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static String readFile (String path) throws FileNotFoundException, IOException
     {
        
@@ -54,6 +60,13 @@ public class FileManager {
         return everything;
     }
     
+    /**
+     * Metodo que se encarga de modificar una linea de un archivo dado
+     * 
+     * @param lineaNueva es un String con la nueva linea
+     * @param lineaReemplazar es el String con la linea a reemplazar
+     * @param path es la ruta del archivo a modificar
+     */
     public static void modificarEscritura(String lineaNueva,String lineaReemplazar, String path){
         try {
             // Leer el archivo original
@@ -82,7 +95,15 @@ public class FileManager {
         }
     }
     
-    
+    /**
+     * Metodo que se encarga
+     * 
+     * @param path reci
+     * @return El arreglo de tipo Mantenimiento ya cargado
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ParseException 
+     */
     public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
     {
         String patronFecha = "dd/MM/yyyy";

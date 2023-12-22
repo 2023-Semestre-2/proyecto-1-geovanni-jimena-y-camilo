@@ -142,7 +142,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServicioTallerActionPerformed
 
     /**
-     * @param args the command line arguments
+     * 
      */
 
     public JButton getBtnBicicletas() {
@@ -158,7 +158,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     /**
-     * @param args the command line arguments
+     * 
      */
     public JButton getBtnServicioTaller() {
         return btnServicioTaller;

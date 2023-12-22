@@ -163,7 +163,7 @@ public class RegistroMantenimiento {
         boolean buscado = false;
         int contador = 0;
         for (int i = 0; i < taller.size(); i++) {
-            if(taller.get(i).getCodigo_cliente() == codigo_buscar){
+            if(taller.get(i).getCodigo_servicio()== codigo_buscar){
                 if(contador == 0){
                    refVentana.eraseTable();
                 }
