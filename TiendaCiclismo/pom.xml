@@ -19,5 +19,5 @@
         <exec.mainClass>ejercicio.tiendaciclismo.TiendaCiclismo</exec.mainClass>
         <arguments>-Dmaven.javadoc.skip=false</arguments>
     </properties>
-    <name>TiendaCiclismoCamilo</name>
+    <name>TiendaCiclismo</name>
 </project>

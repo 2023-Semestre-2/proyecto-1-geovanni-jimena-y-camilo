@@ -26,7 +26,7 @@ public class LeerUsuario {
     }
 
     /**
-     * 
+     * Metodo que verifica las creendiales del usuario
      * @param usuario es el string del usuario
      * @param password es el string de la contraseña
      * @return true si el usuario y contraseña son validos, false sino

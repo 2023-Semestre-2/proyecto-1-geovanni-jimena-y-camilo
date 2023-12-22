@@ -32,8 +32,8 @@ public class ProductosVentana extends javax.swing.JFrame{
      * Inicializa y muestra la interfaz gráfica de registro y búsqueda de productos y artículos.
      */
     public ProductosVentana() {
-        registro.ArticulosArchivo(reg.leer("Articulos"));
-        registro.ProductosArchivo(reg.leer("tiposProductos"));
+        registro.ArticulosArchivo(reg.leer("Articulos.csv"));
+        registro.ProductosArchivo(reg.leer("tiposProductos.csv"));
         
         initComponents();
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
