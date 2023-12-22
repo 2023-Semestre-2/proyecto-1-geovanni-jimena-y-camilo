@@ -62,9 +62,9 @@ public class OperacionesCliente  {
             }
         }
         if (!listaClientes.isEmpty()){
-            if(listaClientes.getLast().getCodigo()>codigo){
-                codigo=listaClientes.getLast().getCodigo()+1;
-                if (codigo==(listaClientes.getLast().getCodigo())){
+            if(listaClientes.get(listaClientes.size()-1).getCodigo()>codigo){
+                codigo=listaClientes.get(listaClientes.size()-1).getCodigo()+1;
+                if (codigo==(listaClientes.get(listaClientes.size()-1).getCodigo())){
                     codigo++;
             }}
         }

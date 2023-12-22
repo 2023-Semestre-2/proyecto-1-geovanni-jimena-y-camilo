@@ -104,9 +104,9 @@ public class RegistroFacturacion {
                 }
             }
         
-            if(facturas.getLast().getNumeroFactura()>numeroFactura){//Verificar si el numero de la ultima factura es mayor
-                numeroFactura=facturas.getLast().getNumeroFactura()+1;
-                if (numeroFactura==(facturas.getLast().getNumeroFactura())){
+            if(facturas.get(facturas.size()-1).getNumeroFactura()>numeroFactura){//Verificar si el numero de la ultima factura es mayor
+                numeroFactura=facturas.get(facturas.size()-1).getNumeroFactura()+1;
+                if (numeroFactura==(facturas.get(facturas.size()-1).getNumeroFactura())){
                     numeroFactura++;
                 }
             }

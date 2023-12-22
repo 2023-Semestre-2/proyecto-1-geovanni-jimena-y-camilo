@@ -6,16 +6,17 @@ package ServicioMantenimiento;
 
 import ServicioMantenimiento.MantenimientoVentana;
 import com.toedter.calendar.JDateChooser;
+import ejercicio.tiendaciclismo.Cliente;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
-import moduloClientes.Cliente;
 
 /**
- *
+ * Clase que contiene la ventana para agregar un servicio de mantenimiento
+ * 
  * @author luisc
  */
 public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
@@ -45,6 +46,10 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Metodo que se encarga de cargar los nombres de los clientes dentro del combobox y 
+     * setea el codigo del servicio y cliente en sus respectivos textfields
+     */
     private void loadClientes(){
         for (int i = 0; i < clientes.size(); i++) {
             cmbClientes.addItem(clientes.get(i).getNombre());

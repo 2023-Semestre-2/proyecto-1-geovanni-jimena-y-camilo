@@ -4,12 +4,12 @@
  */
 package ServicioMantenimiento;
 
-
+import ejercicio.tiendaciclismo.Cliente;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import moduloClientes.Cliente;
 
 /**
+ * Clase que contiene el JFrame para modificar el objeto de mantenimiento
  *
  * @author luisc
  */
@@ -18,19 +18,16 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     /**
      * Creates new form AgregarClienteMantenimientoVentana
      */
-    
-    private ArrayList<Mantenimiento> clienteMantenimiento;
     private MantenimientoVentana refVentana;
     private ArrayList<Cliente> clientes;
     private Mantenimiento miembroModificar;
     private RegistroMantenimiento registroMantenimiento;
     
-    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, ArrayList<Mantenimiento> clientesMantenimiento, 
+    public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, 
     MantenimientoVentana refVentana, Mantenimiento miembroModificar, RegistroMantenimiento registroMantenimiento) 
     {
         initComponents();
         this.clientes = clientes;
-        this.clienteMantenimiento = clientesMantenimiento;
         this.refVentana = refVentana;
         this.miembroModificar = miembroModificar;
         this.registroMantenimiento = registroMantenimiento;
@@ -272,8 +269,12 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    public void loadClientes(){
+    /**
+     * Metodo que se encarga de cargar todos los atributos del objeto dentro de sus respectivos
+     * textfields para que el usuario pueda modificarlos
+     * 
+     */
+    private void loadClientes(){
        cmbClientes.addItem(miembroModificar.getNombre());
        ftfCodigoServicio.setText("" + miembroModificar.getCodigo_servicio());
        txfCodigoCliente.setText("" + miembroModificar.getCodigo_cliente());

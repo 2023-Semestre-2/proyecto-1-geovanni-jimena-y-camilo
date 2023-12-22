@@ -4,8 +4,8 @@
  */
 package ServicioMantenimiento;
 
-
-import ejercicio.tiendaciclismo.Archivos;
+import ejercicio.tiendaciclismo.Cliente;
+import ejercicio.tiendaciclismo.FileManager;
 import ejercicio.tiendaciclismo.Menu;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -17,10 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import moduloClientes.Cliente;
 
-/**
- *
+/** Clase que se encarga de la interfaz del Servicio de Mantenimiento
+ * 
  * @author luisc
  */
 public class MantenimientoVentana extends javax.swing.JFrame {
@@ -33,7 +32,8 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     private SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
     /**
-     * Creates new form MantenimientoVentana
+     * Constructor que se llama desde el boton de Servicio Mantenimiento
+     * Se inicializan los registros de mantenimiento
      */
     public MantenimientoVentana() {
         registroMantenimiento = new RegistroMantenimiento(this);
@@ -46,6 +46,9 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         reloadClientes();
         centrarCeldas();
         System.out.println(taller.size());
+        clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
+        clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
+        clientes.add(new Cliente(2, "Pepe1", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
     }
     
     /**
@@ -265,11 +268,18 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/** Metodo cuando se da click al boton de buscar
+ * 
+ * @param evt 
+ */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         registroMantenimiento.buscarCliente(txfBuscar.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /**
+     * Metodo cuando se le da click al boton de agregar
+     * @param evt 
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         centrarCeldas();
         AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, this, registroMantenimiento);
@@ -277,7 +287,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         System.out.println(taller.size());
         this.setVisible(false);
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    /**
+     * Metodo para saber si se le da click a la tabla de mantenimiento
+     * @param evt 
+     */
     private void tblTablaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMantenimientoMouseClicked
         // TODO add your handling code here:
         btnModificar.setEnabled(true);
@@ -285,36 +298,19 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         btnCerrarEstado.setEnabled(true);
     }//GEN-LAST:event_tblTablaMantenimientoMouseClicked
 
+    /**
+     * Metodo cuando se le da click al boton de eliminar 
+     * @param evt 
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        model = (DefaultTableModel)tblTablaMantenimiento.getModel();
-        taller.remove(taller.get(tblTablaMantenimiento.getSelectedRow()));
-        model.removeRow(tblTablaMantenimiento.getSelectedRow());
-        repaint();
+        registroMantenimiento.eliminarMantenimiento(model, tblTablaMantenimiento.getSelectedRow());
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
         btnCerrarEstado.setEnabled(false);
-        
-        if(taller.isEmpty()){
-            Archivos.deleteFile("mantenimiento.csv");
-        }
-        else{
-        
-        for (int i = 0; i < taller.size(); i++) {
-            try {
-                if(i == 0){
-                   Archivos.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
-                }
-                else
-                    Archivos.escribirArchivo("mantenimiento.csv", taller.get(i).toString());
-            } catch (IOException ex) {
-                Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, taller, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
+        ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
         m1.setVisible(true);
         
         this.setVisible(false);

@@ -54,7 +54,7 @@ public class Mantenimiento {
      * 
      */
     public String toString() {
-        return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + sdf.format(fecha_recibido) + "," + sdf.format(fecha_entrega) + "," + observaciones + "," + estado + ',' + nombre + '\n';
+        return codigo_servicio + "," + codigo_cliente + "," + marca_bicicleta + "," + descripcion + "," + precio + "," + sdf.format(fecha_recibido) + "," + sdf.format(fecha_entrega) + "," + observaciones + "," + estado + ',' + nombre + ',' + '\n';
     }
     
     /**

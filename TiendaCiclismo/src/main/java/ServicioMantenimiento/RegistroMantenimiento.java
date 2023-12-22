@@ -5,7 +5,7 @@
 package ServicioMantenimiento;
 
 import com.toedter.calendar.JDateChooser;
-import ejercicio.tiendaciclismo.Archivos;
+import ejercicio.tiendaciclismo.FileManager;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Clase que se encarga de controlar el registro de mantenimiento
@@ -31,7 +32,6 @@ public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    private Archivos archivo= new Archivos();
 
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
@@ -91,6 +91,9 @@ public class RegistroMantenimiento {
      * @param txfObservaciones
      * @param cmbEstado
      * @param cmbClientes 
+     * 
+     * Los parametros provienen de los combobox, textfields o datechooser de los diferentes metodos
+     * 
      */
     public void convertirMantenimiento(int codigoServicio, JTextField txfCodigoCliente, JTextField txfMarca, JTextField txfDescripcion, 
         JTextField ftfPrecio, JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, 
@@ -108,7 +111,7 @@ public class RegistroMantenimiento {
         Mantenimiento m1 = new Mantenimiento(codigoServicio, codigoCliente, marca, descripcion, precio, fechaRecibido, fechaEntrega, observaciones, estado, nombre);
         agregarCliente(m1);
         try {
-            Archivos.escribirArchivo("mantenimiento.csv", m1.toString());
+            FileManager.writeFile("mantenimiento.csv", m1.toString());
         } catch (IOException ex) {
             System.out.println("NO se ha podido escribir el archivo");
         }
@@ -117,10 +120,10 @@ public class RegistroMantenimiento {
     /**
      * Metodo que permite verifcar los datos a la hora de agregar o modificar un elemento 
      * Los unicos datos que no se permiten dejar vacios o sin formato son el precio y las fechas
-     * @param dcsFechaRecibido es la fecha de recibido
-     * @param dcsFechaEntrega
-     * @param ftfPrecio
-     * @return 
+     * @param dcsFechaRecibido Es la fecha de recibido
+     * @param dcsFechaEntrega Es la fecha de entrega
+     * @param ftfPrecio Es el precio
+     * @return Retorna true si no hubo problemas, false si los elementos estaban vacios o en un formato invalido
      */
     public boolean verificarDatos(JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField ftfPrecio)
     {
@@ -213,6 +216,18 @@ public class RegistroMantenimiento {
         }
     }
     
+    private void actualizarArchivo(){
+    FileManager.deleteFile("mantenimiento.csv");
+        
+        for (int i = 0; i < taller.size(); i++) {
+            try {
+                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+            } catch (IOException ex) {
+                System.out.println("Pos no se pudo gg");
+            }
+        }
+    }
+    
     /**
      * Metodo que se encarga de modificar los atributos de dicho objeto mediante las selecciones
      * En el textfield de dichos atributos
@@ -256,17 +271,21 @@ public class RegistroMantenimiento {
         miembroModificar.setObservaciones(observaciones);
         miembroModificar.setEstado(estado);
         miembroModificar.setNombre(nombre);
-        
-        Archivos.deleteFile("mantenimiento.csv");
-        
-        for (int i = 0; i < taller.size(); i++) {
-            try {
-                Archivos.escribirArchivo("mantenimiento.csv", taller.get(i).toString());
-            } catch (IOException ex) {
-                System.out.println("Pos no se pudo gg");
-            }
-        }
+        actualizarArchivo();
     }
+    /**
+     * Metodo que se encarga de eliminar el objeto seleccionado
+     * @param model Es el modelo de la tabla de mantenimiento, se necesita para eliminar
+     * @param posicion Es la posicion de dicho objeto a eliminar
+     */
+    public void eliminarMantenimiento(DefaultTableModel model, int posicion){
+        taller.remove(posicion);
+        model.removeRow(posicion);
+        actualizarArchivo();
+    }
+    
+    
+    
    /**
     * Metodo que sirve para agregar un cliente especifico en la tabla de mantenimiento
     * 
@@ -291,7 +310,7 @@ public class RegistroMantenimiento {
         m1.setEstado("Cerrado");
         refVentana.eraseTable();
         refVentana.reloadClientes();
-        verificarArregloVacio();
+        
         
     }
     
@@ -303,17 +322,17 @@ public class RegistroMantenimiento {
      */
     private void verificarArregloVacio(){
      if(taller.isEmpty()){
-            Archivos.deleteFile("mantenimiento.csv");
+            FileManager.deleteFile("mantenimiento.csv");
         }
     else{
         
         for (int i = 0; i < taller.size(); i++) {
             try {
                 if(i == 0){
-                   Archivos.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
+                   FileManager.writeFileTruncade("mantenimiento.csv", taller.get(i).toString());
                 }
                 else
-                    Archivos.escribirArchivo("mantenimiento.csv", taller.get(i).toString());
+                    FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
             } catch (IOException ex) {
                 Logger.getLogger(MantenimientoVentana.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -1,23 +1,21 @@
 
-package moduloClientes;
-import java.io.Serializable; //Libreria para serializar objeto
+package ejercicio.tiendaciclismo;
+import java.io.Serializable; //Libreria para serializar objetos
 
 public class Cliente implements Serializable {
     
-    private int codigo;
-    private String nombre;
-    private String apellidos;
-    private String telefono;
-    private String correo;
-    private String provincia;
-    private String canton;
-    private String distrito;
-    private String fechaNacimiento;
-    
+    int codigo = 1;
+    String nombre;
+    String apellidos;
+    int telefono;
+    String correo;
+    String provincia;
+    String canton;
+    String distrito;
+    String fechaNacimiento;
 
-    public Cliente(int codigo,String nombre, String apellidos, String telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
-      
-        this.codigo =codigo;
+    public Cliente(int codigo, String nombre, String apellidos, int telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
+        this.codigo = codigo++;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
@@ -26,11 +24,6 @@ public class Cliente implements Serializable {
         this.canton = canton;
         this.distrito = distrito;
         this.fechaNacimiento = fechaNacimiento;
-        
-    
-    }
-
-    public Cliente() {
     }
 
     public int getCodigo() {
@@ -42,7 +35,6 @@ public class Cliente implements Serializable {
     }
 
     
-
     public String getNombre() {
         return nombre;
     }
@@ -59,11 +51,11 @@ public class Cliente implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -106,7 +98,15 @@ public class Cliente implements Serializable {
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", correo=" + correo + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", fechaNacimiento=" + fechaNacimiento + '}';
+    }
     
+    public String toNameCode(){
+        return codigo + '/' + nombre;
+    }
     
     
 }

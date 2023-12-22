@@ -76,9 +76,9 @@ public class RegistroProductos{
         
         
         if (!tiposProductos.isEmpty()){
-            if(tiposProductos.getLast().getCodigo()>codigo){
-                codigo=tiposProductos.getLast().getCodigo()+1;
-                if (codigo==(tiposProductos.getLast().getCodigo())){
+            if(tiposProductos.get(tiposProductos.size()-1).getCodigo()>codigo){
+                codigo=tiposProductos.get(tiposProductos.size()-1).getCodigo()+1;
+                if (codigo==(tiposProductos.get(tiposProductos.size()-1).getCodigo())){
                     codigo++;
                 }
             }
@@ -160,7 +160,7 @@ public class RegistroProductos{
         
             //Revisar que no haya ningun articulo con el codigo del nuevo articulo
             if (!articulosProducto.isEmpty()){
-                Articulo ultimoArticulo=articulosProducto.getLast();
+                Articulo ultimoArticulo=articulosProducto.get(articulosProducto.size()-1);
                 if (ultimoArticulo.getCodigo()>=codigo){
                     codigo=ultimoArticulo.getCodigo()+1;
                 }
