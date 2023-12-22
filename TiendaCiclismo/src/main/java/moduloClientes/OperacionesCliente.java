@@ -1,6 +1,7 @@
 
 package moduloClientes;
 
+import ejercicio.tiendaciclismo.Archivos;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -125,7 +126,7 @@ public class OperacionesCliente  {
 
             String lineaEliminada = objetoEliminado.getCodigo()+","+objetoEliminado.getNombre()+","+objetoEliminado.getApellidos()+","+objetoEliminado.getTelefono()+","+objetoEliminado.getCorreo()+","+
                         objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento();
-            ArchivosClientes registro = new ArchivosClientes();
+            Archivos registro = new Archivos();
             registro.eliminarEscritura(lineaEliminada, "Clientes.csv");
         } else {
             System.out.println("No se encontró un cliente con el código proporcionado.");

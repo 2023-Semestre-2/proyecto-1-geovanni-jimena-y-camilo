@@ -62,8 +62,8 @@ public class Factura {
         this.cantidad = cantidad;
         this.precio=precio;
         this.Tipo=Tipo;
-        registro.ProductosArchivo(reg.leer("tiposProductos"));
-        registro.ArticulosArchivo(reg.leer("Articulos"));
+        registro.ProductosArchivo(reg.leer("tiposProductos.csv"));
+        registro.ArticulosArchivo(reg.leer("Articulos.csv"));
         
     }
 

@@ -38,9 +38,9 @@ public class EditarFactura extends javax.swing.JFrame {
      * Inicializa la interfaz gráfica y carga datos iniciales.
      */
     public EditarFactura() {
-        registro.FacturasArchivo(reg.leer("Facturas"));
-        registroProductos.ProductosArchivo(reg.leer("tiposProductos"));
-        registroProductos.ArticulosArchivo(reg.leer("Articulos"));
+        registro.FacturasArchivo(reg.leer("Facturas.csv"));
+        registroProductos.ProductosArchivo(reg.leer("tiposProductos.csv"));
+        registroProductos.ArticulosArchivo(reg.leer("Articulos.csv"));
         
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +65,7 @@ public class EditarFactura extends javax.swing.JFrame {
         //Datos de las facturas
         for (Factura factura:registro.getFacturas()){
             
-            if (factura.getTipo().equals("Articulo")){
+            if (factura.getTipo().equals("Articulo.csv")){
                 Object[] fila={factura.getNumeroFactura(),factura.getNombre(),factura.getFecha(),factura.getEstado(),factura.calculaSubtotal(),factura.calculaImpuestoArticulo(),factura.calculaImpuestoArticulo()+factura.calculaSubtotal()};
                 tablaFactura.addRow(fila);
             }else{

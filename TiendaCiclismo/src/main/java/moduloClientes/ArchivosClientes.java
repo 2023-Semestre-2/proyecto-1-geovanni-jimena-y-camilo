@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.StringReader;
-import java.nio.Buffer;
-import javax.swing.JOptionPane;
 
 
 public class ArchivosClientes {
@@ -115,8 +112,6 @@ public class ArchivosClientes {
         StringBuilder contenidoNuevo=new StringBuilder();
         StringReader stringReader = new StringReader(contenido);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
-        
-   
         try {
             String salida;
             while ((salida = bufferedReader.readLine()) != null) {

@@ -4,38 +4,51 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import static javax.management.Query.or;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-
+/** Ventana para agregar clientes nuevo
+ * @author geova
+ */
 public class AgregarClienteVentana extends javax.swing.JFrame {
 
 
     OperacionesCliente operacion= new OperacionesCliente();
     
+    /**Inicializa la ventana de agregar los clientes
+     *
+     */
     public AgregarClienteVentana() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
+    /**
+     * Verifica que el numero de telefono comience con alguno de los siguientes numeros(2,4,6,8)
+     * @param texto String de numeros
+     * @return Regresa True o False
+     */
     private static boolean verificarNumero(String texto) {
         // Verificar si el texto comienza con 2, 4, 6 u 8
         return texto.startsWith("2") || texto.startsWith("4") || texto.startsWith("6") || texto.startsWith("8");
     }
-       public static boolean validarCorreo(String correo) {
+    
+    /**
+     *Valida que el correo ingresado tenga el formato correcto (unejemplo@mail.com)
+     * @param correo Correo electronico
+     * @return True o False
+     */
+    public static boolean validarCorreo(String correo) {
         // Expresión regular simple para validar direcciones de correo electrónico
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(correo);
 
-        return matcher.matches();}
+        return matcher.matches();
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -280,7 +293,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Crea el cliente y lo añade a la tabla
+     * @param evt Evento
+     */
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
         
         ArchivosClientes arch= new ArchivosClientes();
@@ -363,7 +379,11 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private void comboxDistritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxDistritoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboxDistritoActionPerformed
-
+    
+    /**
+     * Selecciona la provincia del cliente
+     * @param evt Evento
+     */
     private void comboxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxProvinciaActionPerformed
        String provincia = (String) comboxProvincia.getSelectedItem();
        
@@ -416,7 +436,11 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_comboxProvinciaActionPerformed
-
+    
+    /**
+     * Selecciona el cantón del cliente
+     * @param evt Evento
+     */
     private void comboxCantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxCantonActionPerformed
        String canton = (String) comboxCanton.getSelectedItem();
        if ("Limón" == canton){
@@ -925,7 +949,11 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
     private void textTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyPressed
         
     }//GEN-LAST:event_textTelefonoKeyPressed
-
+   
+    /**
+     * Verifica que se permita ingresar solamente digitos
+     * @param evt Evento
+     */
     private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
         char numero = evt.getKeyChar();
         if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
@@ -937,18 +965,29 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
          
     }//GEN-LAST:event_textTelefonoKeyTyped
 
+    /**
+     * Verifica que se permita ingresar solamente letras
+     * @param evt Evento
+     */
     private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
         char letra = evt.getKeyChar();
         if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
             evt.consume();        }
     }//GEN-LAST:event_textNombreKeyTyped
 
+    /**
+     * Verifica que se permita ingresar solamente letras
+     * @param evt Evento
+     */
     private void textApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textApellidosKeyTyped
         char letra = evt.getKeyChar();
         if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
             evt.consume();        }
     }//GEN-LAST:event_textApellidosKeyTyped
-
+    /**
+     * Cuando se enfoca se vacia la caja de texto del telefono
+     * @param evt Evento
+     */
     private void textTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textTelefonoFocusGained
         if (textTelefono.getText().equals("Solo inicia (2,4,6,8)")){
         textTelefono.setText("");
@@ -956,13 +995,20 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textTelefonoFocusGained
 
+    /**
+    * Cuando se desenfoca la caja de texto, aparece un mensaje en la caja (Solo inicia (2,4,6,8)
+    * @param evt Evento
+    */
     private void textTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textTelefonoFocusLost
         if (textTelefono.getText().equals("")){
             textTelefono.setText("Solo inicia (2,4,6,8)");
             textTelefono.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_textTelefonoFocusLost
-
+    /**
+     * Cuando se enfoca se vacia la caja de texto del nombre
+     * @param evt Evento
+     */
     private void textNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNombreFocusGained
         if (textNombre.getText().equals("Ingrese su nombre")){
         textNombre.setText("");
@@ -970,6 +1016,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textNombreFocusGained
 
+    /**
+    * Cuando se desenfoca la caja de texto, aparece un mensaje en la caja (Ingrese su nombre)
+    * @param evt Evento
+    */
     private void textNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNombreFocusLost
     if (textNombre.getText().equals("")){
         textNombre.setText("Ingrese su nombre");
@@ -977,6 +1027,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textNombreFocusLost
 
+    /**
+    * Cuando se enfoca se vacia la caja de texto del apellido
+    * @param evt Evento
+    */
     private void textApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textApellidosFocusGained
        if (textApellidos.getText().equals("Ingrese sus apellidos")){
         textApellidos.setText("");
@@ -984,6 +1038,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textApellidosFocusGained
 
+    /**
+    * Cuando se desefoca la caja de texto, aparece un mensaje en la caja (ingrese sus apellidos)
+    * @param evt Evento
+    */
     private void textApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textApellidosFocusLost
         if (textApellidos.getText().equals("")){
         textApellidos.setText("Ingrese sus apellidos");
@@ -991,6 +1049,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textApellidosFocusLost
 
+    /**
+    * Cuando se enfoca el correo se vacia la caja de texto del correo
+    * @param evt Evento
+    */
     private void textCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textCorreoFocusGained
         if (textCorreo.getText().equals("un@ejemplo.com")){
         textCorreo.setText("");
@@ -998,6 +1060,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textCorreoFocusGained
 
+    /**
+    * Cuando se desenfoca la caja de texto, aparece un mensaje (unejemplo@gmail)
+    * @param evt Evento
+    */
     private void textCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textCorreoFocusLost
         if (textCorreo.getText().equals("")){
         textCorreo.setText("un@ejemplo.com");
@@ -1005,6 +1071,10 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textCorreoFocusLost
 
+    /**
+    * Retorna la ventana de clientes
+    * @param evt Evento
+    */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         try {
             ClientesVentana ventana = new ClientesVentana();

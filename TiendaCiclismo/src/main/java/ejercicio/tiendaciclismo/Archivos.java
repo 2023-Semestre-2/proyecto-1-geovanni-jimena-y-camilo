@@ -4,19 +4,14 @@
  */
 package ejercicio.tiendaciclismo;
 
-import ServicioMantenimiento.Mantenimiento;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import moduloFacturacion.Factura;
 import moduloProductos.Articulo;
 import moduloProductos.TipoProducto;
@@ -81,29 +76,6 @@ public class Archivos {
             
         }      
     }
-    /*
-    public static String leerArchivo (String path) throws FileNotFoundException, IOException
-    {
-       
-        String everything;
-
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
-        {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-        everything = sb.toString();
-        }   
-
-        return everything;
-    }
-    */
     
     
     public static void escribirArchivo (String path, String value) throws IOException 
@@ -147,7 +119,8 @@ public class Archivos {
      * @param document   El nombre del archivo a leer.
      * @return           Una cadena que representa el contenido del archivo.
      */
-    public static String leer(String document) {
+    public String leer(String document) {
+        System.out.println(document);
         StringBuilder data = new StringBuilder();
 
         try {
@@ -179,12 +152,11 @@ public class Archivos {
      * @param doc     El nombre del archivo.
      */
     public void eliminarEscritura(String linea, String doc){
+        System.out.println(doc);
         String contenido=leer(doc);
         StringBuilder contenidoNuevo=new StringBuilder();
         StringReader stringReader = new StringReader(contenido);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
-        
-   
         try {
             String salida;
             while ((salida = bufferedReader.readLine()) != null) {
@@ -219,6 +191,7 @@ public class Archivos {
      */
     public void modificarEscritura(String lineaNueva,String lineaReemplazar, String doc){
         try {
+            System.out.println(doc);
             // Leer el archivo original
             StringBuilder contenidoNuevo=new StringBuilder();
             BufferedReader reader = new BufferedReader(new FileReader(doc));

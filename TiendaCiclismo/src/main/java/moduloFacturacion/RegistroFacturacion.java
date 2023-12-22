@@ -44,30 +44,30 @@ public class RegistroFacturacion {
     public void FacturasArchivo(String data){
         StringReader stringReader = new StringReader(data);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
-        
         try {
-            String linea;
-            while ((linea = bufferedReader.readLine()) != null) {
-                
-                // Dividir cada línea en partes utilizando " " como delimitador.
-                String[] partes = linea.split(","); 
-                int numFactura = Integer.parseInt(partes[0].trim());
-                String nombreCliente= partes[1].trim();
-               
-                String fecha =partes[2].trim();
-                
-                String Estado= partes[3].trim();
-                int codigoArticulo = Integer.parseInt(partes[4].trim());
-                int codigoProducto = Integer.parseInt(partes[5].trim());
-                int cantidad = Integer.parseInt(partes[6].trim());
-                int precio= Integer.parseInt(partes[7].trim());
-                String Tipo= partes[8].trim();
-                    
-                
-                // Crear un objeto ObjetoDatos y agregarlo a la lista.
-                Factura objeto = new Factura(numFactura, nombreCliente,fecha,Estado,codigoArticulo,codigoProducto,cantidad,precio,Tipo);
-                facturas.add(objeto);
-  
+            if(data.length() > 2){
+                String linea;
+                while ((linea = bufferedReader.readLine()) != null) {
+
+                    // Dividir cada línea en partes utilizando " " como delimitador.
+                    String[] partes = linea.split(","); 
+                    int numFactura = Integer.parseInt(partes[0].trim());
+                    String nombreCliente= partes[1].trim();
+
+                    String fecha =partes[2].trim();
+
+                    String Estado= partes[3].trim();
+                    int codigoArticulo = Integer.parseInt(partes[4].trim());
+                    int codigoProducto = Integer.parseInt(partes[5].trim());
+                    int cantidad = Integer.parseInt(partes[6].trim());
+                    int precio= Integer.parseInt(partes[7].trim());
+                    String Tipo= partes[8].trim();
+
+
+                    // Crear un objeto ObjetoDatos y agregarlo a la lista.
+                    Factura objeto = new Factura(numFactura, nombreCliente,fecha,Estado,codigoArticulo,codigoProducto,cantidad,precio,Tipo);
+                    facturas.add(objeto);
+                }
             }
         } catch (IOException e) {
             System.err.println("Error al leer el StringBuilder: " + e.getMessage());
@@ -97,20 +97,21 @@ public class RegistroFacturacion {
         try{
             int numeroFactura = facturas.size() + 1;
             
-            for(Factura objeto:facturas){
-                int numExiste=objeto.getNumeroFactura();
-                if (numExiste==numeroFactura){
-                    numeroFactura++;
+            if (!facturas.isEmpty()) {
+                for(Factura objeto:facturas){
+                    int numExiste=objeto.getNumeroFactura();
+                    if (numExiste==numeroFactura){
+                        numeroFactura++;
+                        }
                 }
-            }
-        
-            if(facturas.get(facturas.size()-1).getNumeroFactura()>numeroFactura){//Verificar si el numero de la ultima factura es mayor
+                if(facturas.get(facturas.size()-1).getNumeroFactura()>numeroFactura){//Verificar si el numero de la ultima factura es mayor
                 numeroFactura=facturas.get(facturas.size()-1).getNumeroFactura()+1;
                 if (numeroFactura==(facturas.get(facturas.size()-1).getNumeroFactura())){
                     numeroFactura++;
+                    }
                 }
             }
-        
+
             int codigoArticulo=0;
             int codigoProducto=0;
             
@@ -215,7 +216,7 @@ public class RegistroFacturacion {
             }
             //Eliminar la linea del archivo
             
-            reg.modificarEscritura(lineaActual, lineaPasada, "Facturas");
+            reg.modificarEscritura(lineaActual, lineaPasada, "Facturas.csv");
             
         }catch (Exception e) {
                 System.err.println(e.getMessage());

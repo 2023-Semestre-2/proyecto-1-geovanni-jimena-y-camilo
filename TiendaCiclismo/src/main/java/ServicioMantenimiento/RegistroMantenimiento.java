@@ -34,6 +34,7 @@ public class RegistroMantenimiento {
     private final MantenimientoVentana refVentana;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private final OperacionesCliente clientes = new OperacionesCliente();
+    private final Archivos archivos = new Archivos();
 
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
@@ -47,7 +48,7 @@ public class RegistroMantenimiento {
      */
     
     protected ArrayList<Cliente> inicializarClientes(){
-        String total = Archivos.leer("Clientes.csv");
+        String total = archivos.leer("Clientes.csv");
         clientes.ClientesArchivo(total);
         return clientes.listaClientes;
     }
@@ -322,7 +323,7 @@ public class RegistroMantenimiento {
         actualizarArchivo();
         RegistroFacturacion registro = new RegistroFacturacion();
         
-        registro.FacturasArchivo(Archivos.leer("Facturas.csv"));
+        registro.FacturasArchivo(archivos.leer("Facturas.csv"));
         registro.agregarFactura(m1.getNombre(), sdf.format(m1.getFecha_entrega()).toString(), "Valido", 0, 0 + "", m1.getPrecio(), "Servicio");
         
         

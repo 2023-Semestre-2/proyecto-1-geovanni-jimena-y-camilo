@@ -70,7 +70,6 @@ moduloFacturacion\FacturacionVentana.class
 moduloProductos\EditarArticulo$8.class
 moduloClientes\ClientesVentana$8.class
 ServicioMantenimiento\AgregarClienteMantenimientoVentana$4.class
-ejercicio\tiendaciclismo\FileManager.class
 moduloClientes\AgregarClienteVentana$16.class
 moduloFacturacion\Factura.class
 moduloClientes\ModificarClienteVentana.class
