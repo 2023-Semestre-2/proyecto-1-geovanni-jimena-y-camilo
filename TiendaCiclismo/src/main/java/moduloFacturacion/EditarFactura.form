@@ -209,14 +209,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="Lana"/>
-                <StringItem index="1" value="Sofia"/>
-                <StringItem index="2" value="Cory"/>
-                <StringItem index="3" value="Mina"/>
-                <StringItem index="4" value="Lola"/>
-                <StringItem index="5" value="Roberto"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

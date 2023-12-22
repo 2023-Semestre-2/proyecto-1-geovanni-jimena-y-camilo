@@ -36,6 +36,10 @@ public class RegistroMantenimiento {
     private final OperacionesCliente clientes = new OperacionesCliente();
     private final Archivos archivos = new Archivos();
 
+    /**
+     *
+     * @param refVentana
+     */
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
         this.refVentana = refVentana;
@@ -378,7 +382,10 @@ public class RegistroMantenimiento {
         taller.add(m1);
     }
 
-
+    /**
+     *
+     * @return
+     */
     public ArrayList<Mantenimiento> getListaMantenimiento() {
         return taller;
     }

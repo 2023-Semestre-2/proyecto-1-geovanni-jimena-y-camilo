@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ejercicio.tiendaciclismo.Archivos;
+import moduloClientes.Cliente;
+import moduloClientes.OperacionesCliente;
 import moduloProductos.RegistroProductos;
 import moduloProductos.TipoProducto;
 import moduloProductos.Articulo;
@@ -43,6 +45,7 @@ public class EditarFactura extends javax.swing.JFrame {
         registroProductos.ArticulosArchivo(reg.leer("Articulos.csv"));
         
         initComponents();
+        cargarClientes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         String facturas[]={"Numero","Nombre Cliente","Fecha","Estado","Subtotal","Impuesto","Total"};
         
@@ -163,7 +166,6 @@ public class EditarFactura extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Editar Facturas");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lana", "Sofia", "Cory", "Mina", "Lola", "Roberto" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -363,6 +365,15 @@ public class EditarFactura extends javax.swing.JFrame {
             }
     }
     
+    private void cargarClientes(){
+        String total = Archivos.leer("Clientes.csv");
+        OperacionesCliente clientes = new OperacionesCliente();
+        clientes.ClientesArchivo(total);
+        
+           for (int i = 0; i < clientes.listaClientes.size(); i++) {
+               jComboBox2.addItem(clientes.listaClientes.get(i).getNombre());
+        } 
+    }
     
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
@@ -408,17 +419,7 @@ public class EditarFactura extends javax.swing.JFrame {
      * Actualmente, solo permite seleccionar "Articulo".
      */
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String nombreArticulo = (String) jComboBox1.getSelectedItem();
-       
 
-        for(Articulo articulo:registroProductos.getArticulos()){
-            String nombreExiste= articulo.getNombre();
-            if (nombreExiste.equals(nombreArticulo)){
-                int precio=articulo.getPrecio();
-                jLabel14.setText(String.valueOf(precio));
-                break;
-            }
-        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
@@ -458,7 +459,9 @@ public class EditarFactura extends javax.swing.JFrame {
                 }
             }
             
-            registroProductos.modificarArticulo(articulo.getCodigo(), articulo.getCodigoTipoProducto(), articulo.getNombre(), articulo.getTipo(), articulo.getTamano(), articulo.getMarca(), articulo.getPrecio(), cantidadDisponible-cantidadIngresada);
+            registroProductos.modificarArticulo(articulo.getCodigo(), articulo.getCodigoTipoProducto(), 
+                    articulo.getNombre(), articulo.getTipo(), articulo.getTamano(), articulo.getMarca(), 
+                    articulo.getPrecio(), cantidadDisponible-cantidadIngresada);
            
             try{
             
@@ -481,7 +484,10 @@ public class EditarFactura extends javax.swing.JFrame {
      * JComboBox que permite la selección del nombre del cliente al editar la factura.
      */
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+        OperacionesCliente c1 = new OperacionesCliente();
+        for (int i = 0; i < c1.listaClientes.size(); i++) {
+            jComboBox2.addItem(c1.listaClientes.get(i).getNombre());
+        }  
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
