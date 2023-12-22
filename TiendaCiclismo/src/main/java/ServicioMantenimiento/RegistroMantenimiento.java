@@ -18,7 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Clase que se encarga de controlar el registro de mantenimiento
@@ -215,6 +217,18 @@ public class RegistroMantenimiento {
         }
     }
     
+    private void actualizarArchivo(){
+    FileManager.deleteFile("mantenimiento.csv");
+        
+        for (int i = 0; i < taller.size(); i++) {
+            try {
+                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
+            } catch (IOException ex) {
+                System.out.println("Pos no se pudo gg");
+            }
+        }
+    }
+    
     /**
      * Metodo que se encarga de modificar los atributos de dicho objeto mediante las selecciones
      * En el textfield de dichos atributos
@@ -258,17 +272,16 @@ public class RegistroMantenimiento {
         miembroModificar.setObservaciones(observaciones);
         miembroModificar.setEstado(estado);
         miembroModificar.setNombre(nombre);
-        
-        FileManager.deleteFile("mantenimiento.csv");
-        
-        for (int i = 0; i < taller.size(); i++) {
-            try {
-                FileManager.writeFile("mantenimiento.csv", taller.get(i).toString());
-            } catch (IOException ex) {
-                System.out.println("Pos no se pudo gg");
-            }
-        }
+        actualizarArchivo();
     }
+    public void eliminarMantenimiento(DefaultTableModel model, int posicion){
+        taller.remove(posicion);
+        model.removeRow(posicion);
+        actualizarArchivo();
+    }
+    
+    
+    
    /**
     * Metodo que sirve para agregar un cliente especifico en la tabla de mantenimiento
     * 
