@@ -45,6 +45,10 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Metodo que se encarga de cargar los nombres de los clientes dentro del combobox y 
+     * setea el codigo del servicio y cliente en sus respectivos textfields
+     */
     private void loadClientes(){
         for (int i = 0; i < clientes.size(); i++) {
             cmbClientes.addItem(clientes.get(i).getNombre());

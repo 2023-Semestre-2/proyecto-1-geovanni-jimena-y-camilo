@@ -271,8 +271,12 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    public void loadClientes(){
+    /**
+     * Metodo que se encarga de cargar todos los atributos del objeto dentro de sus respectivos
+     * textfields para que el usuario pueda modificarlos
+     * 
+     */
+    private void loadClientes(){
        cmbClientes.addItem(miembroModificar.getNombre());
        ftfCodigoServicio.setText("" + miembroModificar.getCodigo_servicio());
        txfCodigoCliente.setText("" + miembroModificar.getCodigo_cliente());
