@@ -30,6 +30,7 @@ public class RegistroMantenimiento {
     // Atributos de la clase, el arreglo del servicio de mantenimiento junto con la referencia a su ventana
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
@@ -237,7 +238,7 @@ public class RegistroMantenimiento {
         // agrega el cliente a la tabla
         refVentana.getModel().addRow(new Object[]{m1.getCodigo_servicio(), m1.getCodigo_cliente(), 
             m1.getMarca_bicicleta(), m1.getDescripcion(), m1.getPrecio(), 
-            m1.getFecha_recibido(), m1.getFecha_entrega(), m1.getObservaciones(),
+            sdf.format(m1.getFecha_recibido()), sdf.format(m1.getFecha_entrega()), m1.getObservaciones(),
             m1.getEstado()});
     }
     
