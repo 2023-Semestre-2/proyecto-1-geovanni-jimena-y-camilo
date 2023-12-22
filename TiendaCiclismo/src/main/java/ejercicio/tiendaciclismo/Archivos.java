@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import moduloClientes.Cliente;
 import moduloFacturacion.Factura;
 import moduloProductos.Articulo;
 import moduloProductos.TipoProducto;
@@ -119,7 +120,7 @@ public class Archivos {
      * @param document   El nombre del archivo a leer.
      * @return           Una cadena que representa el contenido del archivo.
      */
-    public String leer(String document) {
+    public static String leer(String document) {
         System.out.println(document);
         StringBuilder data = new StringBuilder();
 
@@ -179,6 +180,20 @@ public class Archivos {
         }
     }
     
+    
+    public void escribirEnArchivo(Cliente cliente,String nombreArchivo){
+        try{
+            
+            FileWriter escribir = new FileWriter(nombreArchivo,true);
+            escribir.write(String.valueOf(cliente.getCodigo())+","+cliente.getNombre()+","+cliente.getApellidos()+","+cliente.getTelefono()+","+
+                    cliente.getCorreo()+","+cliente.getProvincia()+","+cliente.getCanton()+","+cliente.getDistrito()+","+
+                    cliente.getFechaNacimiento()+"\r\n");
+            escribir.close();
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
     
     
     

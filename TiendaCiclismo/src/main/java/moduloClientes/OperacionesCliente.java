@@ -75,7 +75,7 @@ public class OperacionesCliente  {
         // Crear el objeto Cliente
         Cliente objeto = new Cliente(codigo,nombre.trim(),apellidos.trim(),telefono.trim(),correo.trim(),provincia.trim(),canton.trim(),distrito.trim(),fecha.trim());
         listaClientes.add(objeto);
-        ArchivosClientes reg= new ArchivosClientes();
+        Archivos reg= new Archivos();
         reg.escribirEnArchivo(objeto, "Clientes.csv");
         
     }
@@ -103,7 +103,7 @@ public class OperacionesCliente  {
                 String lineaAñadirArchivo= objeto.getCodigo()+","+objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
                         objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
                 
-                ArchivosClientes registro = new ArchivosClientes();
+                Archivos registro = new Archivos();
                 registro.modificarEscritura(lineaAñadirArchivo, lineaReemplazada, "Clientes.csv");
                 break;
             }
@@ -125,7 +125,7 @@ public class OperacionesCliente  {
             listaClientes.remove(objetoEliminado);
 
             String lineaEliminada = objetoEliminado.getCodigo()+","+objetoEliminado.getNombre()+","+objetoEliminado.getApellidos()+","+objetoEliminado.getTelefono()+","+objetoEliminado.getCorreo()+","+
-                        objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento();
+                        objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento() + ',';
             Archivos registro = new Archivos();
             registro.eliminarEscritura(lineaEliminada, "Clientes.csv");
         } else {

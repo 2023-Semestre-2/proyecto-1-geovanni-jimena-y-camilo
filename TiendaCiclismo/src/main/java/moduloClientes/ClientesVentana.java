@@ -1,6 +1,7 @@
 package moduloClientes;
 
 
+import ejercicio.tiendaciclismo.Archivos;
 import ejercicio.tiendaciclismo.Menu;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
@@ -21,7 +22,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel();
     
 
-    private ArchivosClientes arch= new ArchivosClientes();
+    private Archivos arch= new Archivos();
     private OperacionesCliente operacion= new OperacionesCliente();
   
    

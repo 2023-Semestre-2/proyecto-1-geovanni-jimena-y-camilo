@@ -1,5 +1,6 @@
 
 package moduloClientes;
+import ejercicio.tiendaciclismo.Archivos;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -298,10 +299,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
      * @param evt Evento
      */
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
-        
-        ArchivosClientes arch= new ArchivosClientes();
-
-        
+  
         SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
      
         //Se asignan las variables
@@ -343,7 +341,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                                             }else{
                                                 try {
                                             
-                                            operacion.ClientesArchivo(arch.leer("Clientes.csv"));
+                                            operacion.ClientesArchivo(Archivos.leer("Clientes.csv"));
                                             operacion.AgregarCliente(nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
                                             System.out.println("El tamaño de la lista de los clientes es :"+Integer.toString(operacion.listaClientes.size()));
                                             

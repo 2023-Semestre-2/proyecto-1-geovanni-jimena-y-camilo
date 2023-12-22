@@ -1,6 +1,7 @@
 
 package moduloClientes;
 
+import ejercicio.tiendaciclismo.Archivos;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -902,8 +903,6 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
 
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
 
-        ArchivosClientes arch= new ArchivosClientes();
-
         SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
 
         //Se asignan las variables
@@ -945,7 +944,7 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
                                     
                                 try {
                                 
-                                operacion.ClientesArchivo(arch.leer("Clientes.csv"));
+                                operacion.ClientesArchivo(Archivos.leer("Clientes.csv"));
                                 System.out.println(operacion.getClientes());
                                 int codigo=operacion.getClientes().get(filaSeleccionada).getCodigo();
                                 operacion.modificarCliente(codigo,nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
