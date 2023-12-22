@@ -109,8 +109,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBicicletasActionPerformed
-        ProductosVentana v1 = new ProductosVentana();
-        v1.setVisible(true);
+//        ProductosVentana v1 = new ProductosVentana();
+        //v1.setVisible(true);
     }//GEN-LAST:event_btnBicicletasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
