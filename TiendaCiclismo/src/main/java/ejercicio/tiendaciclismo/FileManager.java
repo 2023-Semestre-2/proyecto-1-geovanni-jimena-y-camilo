@@ -28,7 +28,6 @@ import java.util.ArrayList;
  */
 public class FileManager {
  
-    private static ArrayList<Mantenimiento> arreglo1 = new ArrayList<>();
     
     /**
      * Metodo que se encarga de modificar una linea de un archivo dado
@@ -37,6 +36,7 @@ public class FileManager {
      * @param lineaReemplazar es el String con la linea a reemplazar
      * @param path es la ruta del archivo a modificar
      */
+    
     public static void modificarEscritura(String lineaNueva,String lineaReemplazar, String path){
         try {
             // Leer el archivo original
@@ -64,46 +64,6 @@ public class FileManager {
 
         }
     }
-    
-    /**
-     * Metodo que se encarga de leer el archivo y lo
-     * 
-     * @param path Es la ruta del archivo a modificar
-     * @return El arreglo de tipo Mantenimiento ya cargado
-     * @throws FileNotFoundException Cuando no encuentra el archivo
-     * @throws IOException Cuando no puede leer el archivo
-     * @throws ParseException Cuando no puede convertir los strings a los respectivos atributos
-     */
-    public static ArrayList<Mantenimiento> readFileToArray (String path) throws FileNotFoundException, IOException, ParseException
-    {
-        String patronFecha = "dd/MM/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
-        {
-            String line = br.readLine();
-
-            while (line != null) {
-               Mantenimiento m1 = new Mantenimiento();
-               String[] mantenimiento = line.split(",");
-               System.out.println(line);
-               m1.setCodigo_servicio(Integer.parseInt(mantenimiento[0]));
-               m1.setCodigo_cliente(Integer.parseInt(mantenimiento[1]));
-               m1.setMarca_bicicleta(mantenimiento[2]);
-               m1.setDescripcion(mantenimiento[3]);
-               m1.setPrecio(Integer.parseInt(mantenimiento[4]));
-               m1.setFecha_recibido(sdf.parse(mantenimiento[5]));
-               m1.setFecha_entrega(sdf.parse(mantenimiento[6]));
-               m1.setObservaciones(mantenimiento[7]);
-               m1.setEstado(mantenimiento[8]);
-               m1.setNombre(mantenimiento[9]);
-               line = br.readLine();
-               arreglo1.add(m1); 
-            }
-            
-        }
-        return arreglo1;
-    }
-    
     
     /**
      * Metodo estatico que se encarga de escribir un string en un archivo 

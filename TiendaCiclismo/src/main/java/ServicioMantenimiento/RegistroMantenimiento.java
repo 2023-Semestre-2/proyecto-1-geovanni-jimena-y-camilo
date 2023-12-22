@@ -5,6 +5,7 @@
 package ServicioMantenimiento;
 
 import com.toedter.calendar.JDateChooser;
+import ejercicio.tiendaciclismo.Archivos;
 import ejercicio.tiendaciclismo.FileManager;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,6 +21,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import moduloClientes.Cliente;
+import moduloClientes.OperacionesCliente;
 
 /**
  * Clase que se encarga de controlar el registro de mantenimiento
@@ -32,6 +35,7 @@ public class RegistroMantenimiento {
     private ArrayList<Mantenimiento> taller = new ArrayList<>();
     private final MantenimientoVentana refVentana;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private final OperacionesCliente clientes = new OperacionesCliente();
 
     public RegistroMantenimiento(MantenimientoVentana refVentana) {
         this.taller = inicializarArreglo();
@@ -43,6 +47,18 @@ public class RegistroMantenimiento {
      * @return El arreglo de tipo mantenimiento cargado 
      * @see #leerArchivoArreglo(java.lang.String) que sirve para leer el archivo y colocar sus atributos en los objetos
      */
+    
+    protected ArrayList<Cliente> inicializarClientes(){
+        try {
+            String total = Archivos.leerArchivo("Clientes.csv");
+            clientes.ClientesArchivo(total);
+            return clientes.listaClientes;
+        } catch (IOException ex) {
+            System.out.println("No ha cargado los clientes");
+        }
+        return clientes.listaClientes;
+    }
+    
     
     private ArrayList<Mantenimiento> inicializarArreglo(){
         try {
@@ -66,7 +82,7 @@ public class RegistroMantenimiento {
      */
     
     public int calcularCodigoServicio(){
-        int max = 1;
+        int max = 0;
         for (int i = 0; i < taller.size(); i++) {
             // verifica el elemento con el codigo mayor
             if (taller.get(i).getCodigo_servicio() > max) {

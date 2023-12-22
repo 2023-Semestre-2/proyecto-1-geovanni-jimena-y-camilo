@@ -82,6 +82,28 @@ public class Archivos {
         }      
     }
     
+    public static String leerArchivo (String path) throws FileNotFoundException, IOException
+    {
+       
+        String everything;
+
+        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
+        {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
+            }
+        everything = sb.toString();
+        }   
+
+        return everything;
+    }
+    
     /**
      * Escribe la información de una factura en el archivo "Facturas.acc".
      *
@@ -208,31 +230,6 @@ public class Archivos {
 
         }
     }
-    
-    
-    public static String readFile (String path) throws FileNotFoundException, IOException
-    {
-       
-        String everything;
-
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
-        {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-        everything = sb.toString();
-        }   
-
-        return everything;
-    }
-    
-
-    
     
         // read txt file, para ller el query
     public static void escribirArchivo (String path, String value) throws IOException 

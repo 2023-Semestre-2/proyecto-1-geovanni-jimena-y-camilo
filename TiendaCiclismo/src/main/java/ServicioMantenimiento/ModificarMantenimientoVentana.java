@@ -3,10 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ServicioMantenimiento;
-
-import ejercicio.tiendaciclismo.Cliente;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import moduloClientes.Cliente;
 
 /**
  * Clase que contiene el JFrame para modificar el objeto de mantenimiento

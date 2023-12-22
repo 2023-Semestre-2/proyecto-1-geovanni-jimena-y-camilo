@@ -4,19 +4,17 @@
  */
 package ServicioMantenimiento;
 
-import ejercicio.tiendaciclismo.Cliente;
-import ejercicio.tiendaciclismo.FileManager;
 import ejercicio.tiendaciclismo.Menu;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import moduloClientes.Cliente;
+import moduloClientes.OperacionesCliente;
 
 /** Clase que se encarga de la interfaz del Servicio de Mantenimiento
  * 
@@ -38,24 +36,19 @@ public class MantenimientoVentana extends javax.swing.JFrame {
     public MantenimientoVentana() {
         registroMantenimiento = new RegistroMantenimiento(this);
         initComponents();
-        clientes = new ArrayList<Cliente>();
+        clientes = registroMantenimiento.inicializarClientes();
         taller = registroMantenimiento.getListaMantenimiento();
         model = (DefaultTableModel)tblTablaMantenimiento.getModel();
         setLocationRelativeTo(null);
         eraseTable();
         reloadClientes();
         centrarCeldas();
-        System.out.println(taller.size());
-        clientes.add(new Cliente(0, "Camilo", "Oro", 8596, "dlf@gmail.com", "Cartago", "Cartago", "Oriental", "12/03/03"));
-        clientes.add(new Cliente(1, "Pepe", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
-        clientes.add(new Cliente(2, "Pepe1", "Mati", 605, "az@gmail.com", "Cartago", "Cartago", "Occidental", "12/03/207"));
     }
     
     /**
      * Metodo que se encarga de agregar los clientes de la lista dentro de la tabla de servicios
      */
     public void reloadClientes(){
-
         for (int i = 0; i < taller.size(); i++) {
             model.addRow(new Object[]{taller.get(i).getCodigo_servicio(), taller.get(i).getCodigo_cliente(), 
             taller.get(i).getMarca_bicicleta(), taller.get(i).getDescripcion(), taller.get(i).getPrecio(), 
@@ -281,11 +274,15 @@ public class MantenimientoVentana extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        centrarCeldas();
-        AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, this, registroMantenimiento);
-        m1.setVisible(true);
-        System.out.println(taller.size());
-        this.setVisible(false);
+        if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error, no hay clientes agregados", "Error", JOptionPane.ERROR_MESSAGE);   
+        }
+        else{
+            AgregarClienteMantenimientoVentana m1 = new AgregarClienteMantenimientoVentana(clientes, this, registroMantenimiento);
+            m1.setVisible(true);
+            System.out.println(taller.size());
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
     /**
      * Metodo para saber si se le da click a la tabla de mantenimiento

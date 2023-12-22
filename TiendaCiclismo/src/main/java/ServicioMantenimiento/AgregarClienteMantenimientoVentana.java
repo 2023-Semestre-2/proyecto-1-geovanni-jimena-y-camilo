@@ -6,12 +6,13 @@ package ServicioMantenimiento;
 
 import ServicioMantenimiento.MantenimientoVentana;
 import com.toedter.calendar.JDateChooser;
-import ejercicio.tiendaciclismo.Cliente;
+import moduloClientes.Cliente;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -282,18 +283,7 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
  
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
-        String cliente = cmbClientes.getSelectedItem().toString();
-        
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
-
-                /*
-        for (int i = 0; i < clientes.size(); i++) {
-            if(clientes.get(i).getNombre().equals(cliente)){
-                txfCodigoCliente.setText("" + clientes.get(i).getCodigo());
-                break;
-            }
-        }
-        */
     }//GEN-LAST:event_cmbClientesActionPerformed
 
     private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed

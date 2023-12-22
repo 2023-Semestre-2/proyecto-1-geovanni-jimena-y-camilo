@@ -8,7 +8,7 @@ import java.io.StringReader;
 
 public class OperacionesCliente  {
     
-    public  ArrayList<Cliente> listaClientes = new ArrayList<>();
+    public ArrayList<Cliente> listaClientes = new ArrayList<>();
 
     public OperacionesCliente() {
         
