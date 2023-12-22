@@ -1,7 +1,7 @@
 package ejercicio.tiendaciclismo;
 
-import ejercicio.tiendaciclismo.Cliente;
-import ejercicio.tiendaciclismo.OperacionesCliente;
+
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class ClientesVentana extends javax.swing.JFrame {
@@ -33,7 +35,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         model.addColumn("Correo");
         model.addColumn("Provincia");
         tablaClientes.setModel(model);
-        
+        cargarClientesTabla();
         
        }
   
@@ -51,7 +53,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     }
     public void cargarClientesTabla(){
             
-            operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+            operacion.ClientesArchivo(arch.leer("Clientes.csv"));
             for (Cliente cliente:operacion.listaClientes){
             Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
             model.addRow(fila);
@@ -64,6 +66,16 @@ public class ClientesVentana extends javax.swing.JFrame {
             model.addRow(fila);
          }    
  }
+     
+     public JTable obtenerTabla(){
+         return tablaClientes;
+     }
+
+     public void limpiarTabla(JTable tabla){     
+         DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();        
+         modeloTabla.setRowCount(0);  // Elimina todas las filas del modelo        
+           }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +99,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         textoFiltro = new javax.swing.JTextField();
         comboxFiltro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        botonCargar = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -111,6 +123,11 @@ public class ClientesVentana extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tablaClientes);
 
         botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         botonAgregar.setText("Agregar Cliente");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +151,21 @@ public class ClientesVentana extends javax.swing.JFrame {
         });
 
         textoFiltro.setToolTipText("");
+        textoFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textoFiltroFocusGained(evt);
+            }
+        });
+        textoFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoFiltroActionPerformed(evt);
+            }
+        });
+        textoFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoFiltroKeyTyped(evt);
+            }
+        });
 
         comboxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtro", "Codigo", "Nombre" }));
         comboxFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -146,10 +178,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CLIENTES");
 
-        botonCargar.setText("Cargar clientes");
-        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCargarActionPerformed(evt);
+                botonVolverActionPerformed(evt);
             }
         });
 
@@ -158,73 +190,74 @@ public class ClientesVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(botonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscar)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonBuscar)))))
-                .addGap(0, 28, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(50, 50, 50)
                         .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-       if (confirmacion()){
             try{
-               DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
-        int filaSeleccionada=tablaClientes.getSelectedRow();
-        operacion.eliminarCliente(operacion.getClientes().get(filaSeleccionada).getCodigo());
-        modeloTabla.removeRow(filaSeleccionada);
+               DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();                
+               int filaSeleccionada=tablaClientes.getSelectedRow();
+               if (filaSeleccionada!=-1){
+                   if (confirmacion()){                   
+                       operacion.eliminarCliente(operacion.getClientes().get(filaSeleccionada).getCodigo());       
+                       modeloTabla.removeRow(filaSeleccionada);
+               }}else{                             
+                   JOptionPane.showMessageDialog(jPanel1, "Cliente no seleccionado");
+               }
             }catch (Exception e){
                 JOptionPane.showMessageDialog(jPanel1, "Debe seleccionar una fila.");
             }
-        }else{
-            JOptionPane.showMessageDialog(jPanel1, "No se elimino el producto.");
-        }
+    
         
     }//GEN-LAST:event_botonEliminarActionPerformed
 
@@ -237,29 +270,92 @@ public class ClientesVentana extends javax.swing.JFrame {
         AgregarClienteVentana vent1= new AgregarClienteVentana();
         vent1.setVisible(true);
         this.setVisible(false);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
  
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
         int filaSeleccionada=tablaClientes.getSelectedRow();
-        ModificarClienteVentana ventanaModificar= new ModificarClienteVentana ();       
-        ventanaModificar.setFilaSeleccionada(filaSeleccionada);
-        ventanaModificar.setVisible(true);
-        this.setVisible(false);
+        if (filaSeleccionada!=-1){ 
+            ModificarClienteVentana ventanaModificar= new ModificarClienteVentana ();       
+            ventanaModificar.setFilaSeleccionada(filaSeleccionada);
+            ventanaModificar.setVisible(true);
+            this.setVisible(false);}
+        else{                    
+            JOptionPane.showMessageDialog(jPanel1, "Cliente no seleccionado");
+        }
 
     }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-            
-        DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+                    
+        String filtro = (String) comboxFiltro.getSelectedItem();
+        
+        if (filtro!="Filtro"){
+            if (filtro=="Codigo"){
+                if (!textoFiltro.getText().isEmpty()){
+                    limpiarTabla(tablaClientes);
+                    int codigoBuscar= Integer.parseInt(textoFiltro.getText());
+                    ArrayList<Cliente> clientesBuscados= operacion.buscarCodigoCliente(codigoBuscar);
+                    for (Cliente cliente:clientesBuscados){
+                    Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
+                     model.addRow(fila);}
+                   
+                }else{
+                    JOptionPane.showMessageDialog(jPanel1, "Debe ingresar un numero de codigo");
+                }
+            }
+            if (filtro=="Nombre"){
+                if (!textoFiltro.getText().isEmpty()){
+                    limpiarTabla(tablaClientes);
+                    String nombreBuscar=textoFiltro.getText();
+                    ArrayList<Cliente> clientesBuscados= operacion.buscarNombreCliente(nombreBuscar);
+                    for (Cliente cliente:clientesBuscados){
+                    Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
+                     model.addRow(fila);}
+                }else{
+                    JOptionPane.showMessageDialog(jPanel1, "Debe ingresar un nombre");
 
-        if (modeloTabla.getRowCount()!=0){
-            botonCargar.setEnabled(false);
-        }else{
-        cargarClientesTabla();
+                }
+            }
+            
+        } else{
+            JOptionPane.showMessageDialog(jPanel1, "Debe seleccionar un filtro para buscar");
         }
-    }//GEN-LAST:event_botonCargarActionPerformed
+
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void textoFiltroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoFiltroFocusGained
+        
+    }//GEN-LAST:event_textoFiltroFocusGained
+
+    private void textoFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFiltroKeyTyped
+
+        String filtro = (String) comboxFiltro.getSelectedItem();
+        if (filtro=="Codigo"){
+            char numero = evt.getKeyChar();
+            if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
+            evt.consume();}
+        }
+        if (filtro=="Nombre"){
+            char letra = evt.getKeyChar();
+            if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
+            evt.consume();}
+        }
+            
+                }//GEN-LAST:event_textoFiltroKeyTyped
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        Menu ventana = new Menu();
+        ventana.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void textoFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoFiltroActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -309,9 +405,9 @@ public class ClientesVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JComboBox<String> comboxFiltro;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;

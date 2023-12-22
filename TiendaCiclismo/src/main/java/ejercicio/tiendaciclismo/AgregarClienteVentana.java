@@ -11,9 +11,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static javax.management.Query.or;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 
 public class AgregarClienteVentana extends javax.swing.JFrame {
@@ -29,6 +32,13 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         // Verificar si el texto comienza con 2, 4, 6 u 8
         return texto.startsWith("2") || texto.startsWith("4") || texto.startsWith("6") || texto.startsWith("8");
     }
+       public static boolean validarCorreo(String correo) {
+        // Expresión regular simple para validar direcciones de correo electrónico
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(correo);
+
+        return matcher.matches();}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,6 +61,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         botonTerminar = new javax.swing.JButton();
         dateNacimiento = new com.toedter.calendar.JDateChooser();
+        botonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -180,6 +191,13 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         dateNacimiento.setDateFormatString("dd/MM/yyyy");
         dateNacimiento.setMaxSelectableDate(new java.util.Date(253370790068000L));
 
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,11 +234,17 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                                     .addComponent(comboxDistrito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(47, 47, 47))))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botonVolver)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
+                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5))
@@ -281,7 +305,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         if ("Ingrese su nombre".equals(nombreCliente) || "Ingrese sus apellidos".equals(apellidosCliente) || "Solo inicia (2,4,6,8)".equals(telefono) || "un@ejemplo.com".equals(correo) || "Seleccione".equals(provincia) 
                 || "Seleccione".equals(canton) || "Seleccione".equals(distrito)||fechaNacimiento.isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-            }else {}
+            }else {
                    if ( telefono.length() < 8 ){
                        JOptionPane.showMessageDialog(null, "El numero debe ser de 8 digitos", "Error", JOptionPane.ERROR_MESSAGE);
                         
@@ -300,15 +324,21 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                                         if (correo != correo.trim()){
                                         JOptionPane.showMessageDialog(null, "Hay espacios vacios en los extremos de el correo", "Error", JOptionPane.ERROR_MESSAGE);
                                         }else{
-                                        try {
+                                            if (!validarCorreo(correo)){
+                                            JOptionPane.showMessageDialog(null, "Formato invalido del correo", "Error", JOptionPane.ERROR_MESSAGE);
+
+                                            }else{
+                                                try {
                                             
-                                            operacion.ClientesArchivo(arch.leer("Clientes.txt"));
+                                            operacion.ClientesArchivo(arch.leer("Clientes.csv"));
                                             operacion.AgregarCliente(nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
                                             System.out.println("El tamaño de la lista de los clientes es :"+Integer.toString(operacion.listaClientes.size()));
                                             
                                             
                     
                                             ClientesVentana ventana = new ClientesVentana();
+                                            JTable tabla= ventana.obtenerTabla();
+                                            ventana.limpiarTabla(tabla);
                                             ventana.iniciarTablas(operacion.listaClientes);
                                             ventana.setVisible(true);
                                             this.setVisible(false);
@@ -316,10 +346,16 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
                                             } catch (IOException ex) {
                                             Logger.getLogger(AgregarClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
                                             }
-                                        
-                   
+                                            }
+        
+                                        }
+                                    }
+                                }
+                        }
                    }
-        }}}}                     
+        }
+                   
+                        
         
     }//GEN-LAST:event_botonTerminarActionPerformed
 
@@ -972,6 +1008,17 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textCorreoFocusLost
 
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        try {
+            ClientesVentana ventana = new ClientesVentana();
+            ventana.setVisible(true);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarClienteVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_botonVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1010,6 +1057,7 @@ public class AgregarClienteVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonTerminar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JComboBox<String> comboxCanton;
     private javax.swing.JComboBox<String> comboxDistrito;
     private javax.swing.JComboBox<String> comboxProvincia;

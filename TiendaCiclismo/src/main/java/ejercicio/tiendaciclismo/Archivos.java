@@ -27,18 +27,7 @@ public class Archivos {
        
     }
     
-    public void crearArchivo(String nombreArchivo){
-        
-        try{
-            archivo = new File(nombreArchivo);
-            if (archivo.createNewFile()){
-                JOptionPane.showMessageDialog(null, "Archivo creado");
-            }
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-    }
+    
     
     public void actualizarCodigoCliente(String nombreArchivo,int codigoActualizado){
       try{           

@@ -81,7 +81,7 @@ public class OperacionesCliente  {
         Cliente objeto = new Cliente(codigo,nombre.trim(),apellidos.trim(),telefono.trim(),correo.trim(),provincia.trim(),canton.trim(),distrito.trim(),fecha.trim());
         listaClientes.add(objeto);
         Archivos reg= new Archivos();
-        reg.escribirEnArchivo(objeto, "Clientes.txt");
+        reg.escribirEnArchivo(objeto, "Clientes.csv");
         
     }
      
@@ -109,7 +109,7 @@ public class OperacionesCliente  {
                         objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
                 
                 Archivos registro = new Archivos();
-                registro.modificarEscritura(lineaAñadirArchivo, lineaReemplazada, "Clientes.txt");
+                registro.modificarEscritura(lineaAñadirArchivo, lineaReemplazada, "Clientes.csv");
                 break;
             }
         }      
@@ -132,11 +132,33 @@ public class OperacionesCliente  {
             String lineaEliminada = objetoEliminado.getCodigo()+","+objetoEliminado.getNombre()+","+objetoEliminado.getApellidos()+","+objetoEliminado.getTelefono()+","+objetoEliminado.getCorreo()+","+
                         objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento();
             Archivos registro = new Archivos();
-            registro.eliminarEscritura(lineaEliminada, "Clientes.txt");
+            registro.eliminarEscritura(lineaEliminada, "Clientes.csv");
         } else {
             System.out.println("No se encontró un cliente con el código proporcionado.");
         }
         
+    }
+      public ArrayList<Cliente> buscarNombreCliente(String nombre){
+        ArrayList<Cliente> clientesBuscados = new ArrayList<>();
+        for (Cliente cliente:listaClientes){
+            String posibleNombre=cliente.getNombre();
+            if(posibleNombre.contains(nombre) || nombre.contains(posibleNombre)){
+                clientesBuscados.add(cliente);
+            }
+        }
+        
+        return clientesBuscados;
+        
+    }
+      public ArrayList<Cliente> buscarCodigoCliente(int codigo){
+        ArrayList<Cliente> clientesBuscados = new ArrayList<>();
+
+        for(Cliente cliente:listaClientes){
+            if (cliente.getCodigo()==codigo){
+                clientesBuscados.add(cliente);
+            }         
+        }
+        return clientesBuscados;
     }
      
      public void agregarClienteLista (Cliente clienteNuevo){

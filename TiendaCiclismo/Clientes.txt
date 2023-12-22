@@ -1,4 +1,0 @@
-1,Geovanni,Gonzalez,63723384,geo@gmail.com,Limón,Pococí,Guápiles,01/12/2023
-3,Yasi,Diaz Gomez,89383294,dddd,Puntarenas,Puntarenas,Puntarenas,01/12/2023
-4,Mikaiah,Gonzalez Callimore,46557468,hghdhgdng,Heredia,Heredia,Heredia,01/12/2023
-5,Cristopher,Aguilar,45463346,fgfdgfdbd,Cartago,Cartago,Oriental,02/12/2023
