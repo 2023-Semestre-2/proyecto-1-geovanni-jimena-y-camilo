@@ -15,7 +15,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 /**
- *
+ * Clase que contiene la ventana para agregar un servicio de mantenimiento
+ * 
  * @author luisc
  */
 public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {

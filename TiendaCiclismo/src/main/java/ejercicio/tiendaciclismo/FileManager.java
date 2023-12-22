@@ -22,43 +22,13 @@ import java.util.ArrayList;
 
 
 /**
- * Metodo para la lectura y escritura de archivos
+ * Clase estatica para la lectura y escritura de archivos
  *
  * @author sap1
  */
 public class FileManager {
  
     private static ArrayList<Mantenimiento> arreglo1 = new ArrayList<>();
-    
-    
-    
-    /**
-     * 
-     * @param path
-     * @return
-     * @throws FileNotFoundException
-     * @throws IOException 
-     */
-    public static String readFile (String path) throws FileNotFoundException, IOException
-    {
-       
-        String everything;
-
-        try(BufferedReader br = new BufferedReader(new FileReader(path))) 
-        {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-        everything = sb.toString();
-        }   
-
-        return everything;
-    }
     
     /**
      * Metodo que se encarga de modificar una linea de un archivo dado
@@ -135,7 +105,14 @@ public class FileManager {
     }
     
     
-        // read txt file, para ller el query
+    /**
+     * Metodo estatico que se encarga de escribir un string en un archivo 
+     * 
+     * 
+     * @param path Es la ruta del archivo que se quiere escribir
+     * @param value Es el valor que se quiere escribir dentro del archivo del path
+     * @throws IOException Cuando no puede escribir el archivo
+     */
     public static void writeFile (String path, String value) throws IOException 
     {
 
@@ -148,6 +125,12 @@ public class FileManager {
         
     }
     
+    /**
+     * Metodo que se encarga de escribir en el archivo como Truncade, es decir, lo sobreescribe
+     * @param path
+     * @param value
+     * @throws IOException 
+     */
     public static void writeFileTruncade (String path, String value) throws IOException 
     {
         try(BufferedWriter bw = new BufferedWriter (new FileWriter(path, false))) 

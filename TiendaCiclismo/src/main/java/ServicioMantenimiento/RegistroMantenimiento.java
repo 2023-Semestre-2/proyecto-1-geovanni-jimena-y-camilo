@@ -119,10 +119,10 @@ public class RegistroMantenimiento {
     /**
      * Metodo que permite verifcar los datos a la hora de agregar o modificar un elemento 
      * Los unicos datos que no se permiten dejar vacios o sin formato son el precio y las fechas
-     * @param dcsFechaRecibido es la fecha de recibido
-     * @param dcsFechaEntrega
-     * @param ftfPrecio
-     * @return 
+     * @param dcsFechaRecibido Es la fecha de recibido
+     * @param dcsFechaEntrega Es la fecha de entrega
+     * @param ftfPrecio Es el precio
+     * @return Retorna true si no hubo problemas, false si los elementos estaban vacios o en un formato invalido
      */
     public boolean verificarDatos(JDateChooser dcsFechaRecibido, JDateChooser dcsFechaEntrega, JTextField ftfPrecio)
     {
