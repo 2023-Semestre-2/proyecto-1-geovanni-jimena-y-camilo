@@ -299,10 +299,19 @@ public class MantenimientoVentana extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        registroMantenimiento.eliminarMantenimiento(model, tblTablaMantenimiento.getSelectedRow());
-        btnEliminar.setEnabled(false);
-        btnModificar.setEnabled(false);
-        btnCerrarEstado.setEnabled(false);
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Desea realizar la acción?",
+                    "Confirmación",
+                    JOptionPane.OK_CANCEL_OPTION);
+
+            if (opcion == JOptionPane.OK_OPTION) {
+                registroMantenimiento.eliminarMantenimiento(model, tblTablaMantenimiento.getSelectedRow());
+                btnEliminar.setEnabled(false);
+                btnModificar.setEnabled(false);
+                btnCerrarEstado.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "Se ha eliminado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
+
+            } 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -323,11 +332,18 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
     private void btnCerrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEstadoActionPerformed
         // TODO add your handling code here:
-        btnCerrarEstado.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        btnModificar.setEnabled(false);
-        registroMantenimiento.cerrarEstado(taller.get(tblTablaMantenimiento.getSelectedRow()), tblTablaMantenimiento.getSelectedRow());
-        
+        int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Desea realizar la acción?",
+                    "Confirmación",
+                    JOptionPane.OK_CANCEL_OPTION);
+        if (opcion == JOptionPane.OK_OPTION) {
+            btnCerrarEstado.setEnabled(false);
+            btnEliminar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            registroMantenimiento.cerrarEstado(taller.get(tblTablaMantenimiento.getSelectedRow()), tblTablaMantenimiento.getSelectedRow());
+            JOptionPane.showMessageDialog(null, "Se ha cerrado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
+
+        }
         
     }//GEN-LAST:event_btnCerrarEstadoActionPerformed
 

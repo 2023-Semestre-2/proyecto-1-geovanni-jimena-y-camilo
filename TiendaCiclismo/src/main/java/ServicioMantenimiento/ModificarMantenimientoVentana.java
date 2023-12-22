@@ -5,6 +5,7 @@
 package ServicioMantenimiento;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import moduloClientes.Cliente;
 
 /**
@@ -265,6 +266,7 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
             refVentana.eraseTable();
             refVentana.reloadClientes();
             refVentana.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Se ha guardado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE); 
             dispose();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed

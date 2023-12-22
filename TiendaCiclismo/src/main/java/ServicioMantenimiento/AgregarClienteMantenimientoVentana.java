@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -271,12 +272,15 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        
         if(registroMantenimiento.verificarDatos(dcsFechaRecibido, dcsFechaEntrega, ftfPrecio))
         {
             registroMantenimiento.convertirMantenimiento(codigo_servicio, txfCodigoCliente, txfMarca, txfDescripcion, ftfPrecio, dcsFechaRecibido, dcsFechaEntrega, txfObservaciones, cmbEstado, cmbClientes);
             refVentana.eraseTable();
             refVentana.reloadClientes();
             refVentana.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Se ha guardado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
             dispose();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed

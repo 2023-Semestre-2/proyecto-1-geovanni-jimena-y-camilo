@@ -914,10 +914,18 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
         String canton= (String)comboxCanton.getSelectedItem();
         String distrito= (String)comboxDistrito.getSelectedItem();
         String fechaNacimiento ;
+        
+        
+        try {
+            fechaNacimiento=fecha.format(dateNacimiento.getDate());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No puede dejar la fecha vacia", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         fechaNacimiento=fecha.format(dateNacimiento.getDate());
-
+        
         if ("Ingrese su nombre".equals(nombreCliente) || "Ingrese sus apellidos".equals(apellidosCliente) || "Solo inicia (2,4,6,8)".equals(telefono) || "un@ejemplo.com".equals(correo) || "Seleccione".equals(provincia)
-            || "Seleccione".equals(canton) || "Seleccione".equals(distrito)||fechaNacimiento.isEmpty()){
+            || "Seleccione".equals(canton) || "Seleccione".equals(distrito)){
             JOptionPane.showMessageDialog(null, "Por favor llenar todas las casillas correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }else {
             if ( telefono.length() < 8 ){
@@ -954,6 +962,8 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
                                 ventana.limpiarTabla(tabla);
                                 ventana.iniciarTablas(operacion.listaClientes);
                                 ventana.setVisible(true);
+                                JOptionPane.showMessageDialog(null, "Se ha guardado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
+
                                 this.setVisible(false);
 
                             } catch (IOException ex) {

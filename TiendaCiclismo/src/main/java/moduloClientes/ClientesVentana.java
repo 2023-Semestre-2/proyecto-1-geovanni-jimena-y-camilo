@@ -4,14 +4,10 @@ package moduloClientes;
 import ejercicio.tiendaciclismo.Archivos;
 import ejercicio.tiendaciclismo.Menu;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -253,6 +249,8 @@ public class ClientesVentana extends javax.swing.JFrame {
                    if (confirmacion()){                   
                        operacion.eliminarCliente(operacion.getClientes().get(filaSeleccionada).getCodigo());       
                        modeloTabla.removeRow(filaSeleccionada);
+                       JOptionPane.showMessageDialog(null, "Se ha eliminado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
+
                }}else{                             
                    JOptionPane.showMessageDialog(jPanel1, "Cliente no seleccionado");
                }
