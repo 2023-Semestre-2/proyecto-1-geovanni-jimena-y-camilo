@@ -33,6 +33,12 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private String patronFecha = "dd/MM/yyyy";
     private SimpleDateFormat sdf = new SimpleDateFormat(patronFecha);
     
+    /**
+     *
+     * @param clientes
+     * @param refVentana
+     * @param registroMantenimiento
+     */
     public AgregarClienteMantenimientoVentana(ArrayList<Cliente> clientes, MantenimientoVentana refVentana, RegistroMantenimiento registroMantenimiento) {
         initComponents();
         this.clientes = clientes;
@@ -134,6 +140,11 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         cmbEstado.setEnabled(false);
 
         ftfCodigoServicio.setEditable(false);
+        ftfCodigoServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftfCodigoServicioActionPerformed(evt);
+            }
+        });
 
         lblCodigoServicio.setText("CODIGO DEL SERVICIO");
 
@@ -272,7 +283,10 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private void txfCodigoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCodigoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
-
+/**
+ *  Boton tiene la funcion de guardar los datos del servicio
+ * @param evt 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
         
@@ -290,18 +304,28 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
     }//GEN-LAST:event_cmbClientesActionPerformed
-
+/**
+ * Regresa a la ventana de servicio de mantenimiento
+ * @param evt 
+ */
     private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed
         refVentana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btRegresarActionPerformed
-
+/**
+ * Verifica que solo se ingresen numeros
+ * @param evt 
+ */
     private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
         char numero = evt.getKeyChar();
         if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
             evt.consume();
         }
     }//GEN-LAST:event_ftfPrecioKeyTyped
+
+    private void ftfCodigoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfCodigoServicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftfCodigoServicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,42 +362,82 @@ public class AgregarClienteMantenimientoVentana extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCodigo_servicio() {
         return codigo_servicio;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox<String> getCmbEstado() {
         return cmbEstado;
     }
 
+    /**
+     *
+     * @return
+     */
     public JDateChooser getDcsFechaEntrega() {
         return dcsFechaEntrega;
     }
 
+    /**
+     *
+     * @return
+     */
     public JDateChooser getDcsFechaRecibido() {
         return dcsFechaRecibido;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFormattedTextField getFtfCodigoServicio() {
         return ftfCodigoServicio;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getFtfPrecio() {
         return ftfPrecio;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfCodigoCliente() {
         return txfCodigoCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfDescripcion() {
         return txfDescripcion;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfMarca() {
         return txfMarca;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfObservaciones() {
         return txfObservaciones;
     }

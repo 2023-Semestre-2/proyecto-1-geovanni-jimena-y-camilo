@@ -13,25 +13,45 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-
+/**
+ *
+ * @author geova
+ */
 public class ModificarClienteVentana extends javax.swing.JFrame {
 
     int filaSeleccionada;
     OperacionesCliente operacion= new OperacionesCliente();
     
+    /**
+     *Inicializa la ventana
+     */
     public ModificarClienteVentana() {
         initComponents();
         setLocationRelativeTo(null);
     }
+    /**
+     * Verifica que la string ingresada inicie con 2,4,6,8 
+     * @param texto String de numeros
+     * @return 
+     */
        private static boolean verificarNumero(String texto) {
         // Verificar si el texto comienza con 2, 4, 6 u 8
         return texto.startsWith("2") || texto.startsWith("4") || texto.startsWith("6") || texto.startsWith("8");
     }
 
+    /**
+     * Se establece la fila que se selecciono de la tabla de clientes
+     * @param filaSeleccionada fila que se selecciono
+     */
     public void setFilaSeleccionada(int filaSeleccionada) {
         this.filaSeleccionada = filaSeleccionada;
     }
 
+    /**
+     *Valida el formato del correo
+     * @param correo correo del cliente
+     * @return True o False
+     */
     public static boolean validarCorreo(String correo) {
         // Expresión regular simple para validar direcciones de correo electrónico
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
@@ -307,7 +327,10 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
     private void textCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCorreoActionPerformed
-
+/**
+ * Combobox donde se seleccionan las provincias
+ * @param evt 
+ */
     private void comboxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxProvinciaActionPerformed
         String provincia = (String) comboxProvincia.getSelectedItem();
 
@@ -377,13 +400,19 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textNombreActionPerformed
-
+/**
+ * Verifica que en la caja de texto del nombre solo ingrese letras
+ * @param evt 
+ */
     private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
         char letra = evt.getKeyChar();
         if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
             evt.consume();        }
     }//GEN-LAST:event_textNombreKeyTyped
-
+/**
+ * Combobox donde se seleccionan los cantones 
+ * @param evt 
+ */
     private void comboxCantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxCantonActionPerformed
         String canton = (String) comboxCanton.getSelectedItem();
         if ("Limón" == canton){
@@ -897,13 +926,19 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
             textApellidos.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_textApellidosFocusLost
-
+/**
+ * Verifica que se ingresen solo letras 
+ * @param evt 
+ */
     private void textApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textApellidosKeyTyped
         char letra = evt.getKeyChar();
         if ((Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)){
             evt.consume();        }
     }//GEN-LAST:event_textApellidosKeyTyped
-
+/**
+ * Recibe todos los datos del cliente que se va a modificar y los cambia por los nuevos datos
+ * @param evt 
+ */
     private void botonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarActionPerformed
 
         SimpleDateFormat fecha= new SimpleDateFormat("dd/MM/yyyy");
@@ -1009,7 +1044,10 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
     private void textTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyPressed
 
     }//GEN-LAST:event_textTelefonoKeyPressed
-
+/**
+ * Verifica que solo se ingresen numeros
+ * @param evt 
+ */
     private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
         char numero = evt.getKeyChar();
         if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){
@@ -1019,7 +1057,10 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
             evt.consume();}
 
     }//GEN-LAST:event_textTelefonoKeyTyped
-
+/**
+ * Retorna la ventana de clientes
+ * @param evt 
+ */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         try {
             ClientesVentana ventana = new ClientesVentana();

@@ -265,7 +265,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
 
             } 
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+/**
+ *  Boton que abre la ventana de modificacion para el cliente seleccionado
+ * @param evt 
+ */
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         ModificarMantenimientoVentana m1 = new ModificarMantenimientoVentana(clientes, this, taller.get(tblTablaMantenimiento.getSelectedRow()),registroMantenimiento);
         m1.setVisible(true);
@@ -281,7 +284,10 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         m1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
-
+/**
+ * Este boton cierra el estado del servicio de mantenimiento seleccionado
+ * @param evt 
+ */
     private void btnCerrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEstadoActionPerformed
         // TODO add your handling code here:
         int opcion = JOptionPane.showConfirmDialog(this,
@@ -334,14 +340,26 @@ public class MantenimientoVentana extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public JTable getTblTablaMantenimiento() {
         return tblTablaMantenimiento;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox<String> getCmbBuscar() {
         return cmbBuscar;
     }
 
+    /**
+     *
+     * @return
+     */
     public DefaultTableModel getModel() {
         return model;
     }

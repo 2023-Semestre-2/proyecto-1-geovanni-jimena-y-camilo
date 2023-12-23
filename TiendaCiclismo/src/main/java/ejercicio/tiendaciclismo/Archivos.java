@@ -78,7 +78,12 @@ public class Archivos {
         }      
     }
     
-    
+    /**
+     * Escribe en un archivo una string
+     * @param path Direccion del archivo
+     * @param value String que se va a escribir
+     * @throws IOException
+     */
     public static void escribirArchivo (String path, String value) throws IOException 
     {
 
@@ -180,7 +185,11 @@ public class Archivos {
         }
     }
     
-    
+    /**
+     *
+     * @param cliente
+     * @param nombreArchivo
+     */
     public void escribirEnArchivo(Cliente cliente,String nombreArchivo){
         try{
             
@@ -233,8 +242,10 @@ public class Archivos {
         }
     }
     
-
-    
+    /**
+     *Elimina el archivo
+     * @param path nombre del archivo
+     */
     public static void eliminarArchivo(String path){
         File archivo = new File(path);
         

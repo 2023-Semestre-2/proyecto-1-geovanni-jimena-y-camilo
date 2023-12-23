@@ -120,90 +120,179 @@ public class Factura {
     }
 
     // Getters y setters para los atributos
+
+    /**
+     *
+     * @return
+     */
     public int getNumeroFactura() {
         return numeroFactura;
     }
 
+    /**
+     *
+     * @param numeroFactura
+     */
     public void setNumeroFactura(int numeroFactura) {
         this.numeroFactura = numeroFactura;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param codigoCliente
+     */
     public void setNombre(String codigoCliente) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFecha() {
         return fecha;
     }
 
+    /**
+     *
+     * @param fecha
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEstado() {
         return Estado;
     }
 
+    /**
+     *
+     * @param Estado
+     */
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCodigoArticulo() {
         return codigoArticulo;
     }
 
+    /**
+     *
+     * @param codigoArticulo
+     */
     public void setCodigoArticulo(int codigoArticulo) {
         this.codigoArticulo = codigoArticulo;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCantidad() {
         return cantidad;
     }
 
+    /**
+     *
+     * @param cantidad
+     */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
+    /**
+     *
+     * @return
+     */
     public Archivos getReg() {
         return reg;
     }
 
+    /**
+     *
+     * @param reg
+     */
     public void setReg(Archivos reg) {
         this.reg = reg;
     }
 
+    /**
+     *
+     * @return
+     */
     public RegistroProductos getRegistro() {
         return registro;
     }
 
+    /**
+     *
+     * @param registro
+     */
     public void setRegistro(RegistroProductos registro) {
         this.registro = registro;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCodigoProducto() {
         return codigoProducto;
     }
 
+    /**
+     *
+     * @param codigoProducto
+     */
     public void setCodigoProducto(int codigoProducto) {
         this.codigoProducto = codigoProducto;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPrecio() {
         return precio;
     }
 
+    /**
+     *
+     * @param precio
+     */
     public void setPrecio(int precio) {
         this.precio = precio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTipo() {
         return Tipo;
     }
 
+    /**
+     *
+     * @param Tipo
+     */
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }

@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author geova
+ */
 public class ClientesVentana extends javax.swing.JFrame {
     
     
@@ -21,8 +25,10 @@ public class ClientesVentana extends javax.swing.JFrame {
     private Archivos arch= new Archivos();
     private OperacionesCliente operacion= new OperacionesCliente();
   
-   
-    
+    /**
+     *
+     * @throws IOException
+     */
     public ClientesVentana() throws IOException {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
@@ -50,6 +56,10 @@ public class ClientesVentana extends javax.swing.JFrame {
                 return false;
             }
     }
+
+    /**
+     * Carga los clientes en la tabala
+     */
     public void cargarClientesTabla(){
             
             operacion.ClientesArchivo(arch.leer("Clientes.csv"));
@@ -59,18 +69,31 @@ public class ClientesVentana extends javax.swing.JFrame {
         
             }
     }
-     public void iniciarTablas(ArrayList<Cliente>lista){
+
+    /**
+     * Carga los clientes en la tabla a partir de una lista
+     * @param lista
+     */
+    public void iniciarTablas(ArrayList<Cliente>lista){
          for (Cliente cliente:lista){
             Object[] fila={cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia()};
             model.addRow(fila);
          }    
  }
      
-     public JTable obtenerTabla(){
+    /**
+     *
+     * @return retorna la tabla de clientes de la ventana
+     */
+    public JTable obtenerTabla(){
          return tablaClientes;
      }
 
-     public void limpiarTabla(JTable tabla){     
+    /**
+     *Vacia la tabla de clientes
+     * @param tabla
+     */
+    public void limpiarTabla(JTable tabla){     
          DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();        
          modeloTabla.setRowCount(0);  // Elimina todas las filas del modelo        
            }
@@ -206,7 +229,10 @@ public class ClientesVentana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Elimina un cliente seleccionado de la tabla
+ * @param evt 
+ */
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
             
             try{
@@ -235,7 +261,10 @@ public class ClientesVentana extends javax.swing.JFrame {
     private void comboxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboxFiltroActionPerformed
-
+/**
+ * Retorna la ventana de agregar los clientes
+ * @param evt 
+ */
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
         AgregarClienteVentana vent1= new AgregarClienteVentana();
@@ -243,7 +272,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         this.setVisible(false);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_botonAgregarActionPerformed
-
+/**
+ * Retorna la ventana para modificar un cliente seleccionado
+ * @param evt 
+ */
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
  
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
@@ -258,7 +290,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonModificarActionPerformed
-
+/**
+ * Busca las coincidencias del texto que se va a buscar y las muestra en la tabla, segun el filtro
+ * @param evt 
+ */
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
                     
         String filtro = (String) comboxFiltro.getSelectedItem();
@@ -300,7 +335,10 @@ public class ClientesVentana extends javax.swing.JFrame {
     private void textoFiltroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoFiltroFocusGained
         
     }//GEN-LAST:event_textoFiltroFocusGained
-
+/**
+ * Verifica los datos ingresados en la caja de texto, segun el filtro, si es por codigo solo permitira numeros y si es por nombre solo permitira letras
+ * @param evt 
+ */
     private void textoFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFiltroKeyTyped
 
         String filtro = (String) comboxFiltro.getSelectedItem();
@@ -316,7 +354,10 @@ public class ClientesVentana extends javax.swing.JFrame {
         }
             
                 }//GEN-LAST:event_textoFiltroKeyTyped
-
+/**
+ * Boton que retorna al menu principal
+ * @param evt 
+ */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         Menu ventana = new Menu();
         ventana.setVisible(true);

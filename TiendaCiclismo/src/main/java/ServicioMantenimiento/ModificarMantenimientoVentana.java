@@ -23,6 +23,13 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private Mantenimiento miembroModificar;
     private RegistroMantenimiento registroMantenimiento;
     
+    /**
+     *  Inicializa la clase
+     * @param clientes 
+     * @param refVentana
+     * @param miembroModificar
+     * @param registroMantenimiento
+     */
     public ModificarMantenimientoVentana(ArrayList<Cliente> clientes, 
     MantenimientoVentana refVentana, Mantenimiento miembroModificar, RegistroMantenimiento registroMantenimiento) 
     {
@@ -257,7 +264,10 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
     private void txfCodigoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCodigoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfCodigoClienteActionPerformed
-
+/**
+ * Boton que guarda los datos modificados del servicio de mantenimiento
+ * @param evt 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         if(registroMantenimiento.verificarDatos(dcsFechaRecibido, dcsFechaEntrega, ftfPrecio))
@@ -287,17 +297,26 @@ public class ModificarMantenimientoVentana extends javax.swing.JFrame {
        dcsFechaRecibido.setDate(miembroModificar.getFecha_recibido());
        cmbEstado.addItem(miembroModificar.getEstado());
     }
-    
+    /**
+     * Combobox que muestra los clientes disponibles
+     * @param evt 
+     */
     private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
         String cliente = cmbClientes.getSelectedItem().toString();
         txfCodigoCliente.setText("" + clientes.get(cmbClientes.getSelectedIndex()).getCodigo());
     }//GEN-LAST:event_cmbClientesActionPerformed
-
+/**
+ * Boton que retorna a la pantalla de servicio de mantenimiento
+ * @param evt 
+ */
     private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed
         refVentana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btRegresarActionPerformed
-
+/**
+ * Verifica qure solo se ingresen numeros 
+ * @param evt 
+ */
     private void ftfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfPrecioKeyTyped
         char numero = evt.getKeyChar();
         if (!(Character.isDigit(numero)) || (numero == KeyEvent.VK_BACK_SPACE) || (numero == KeyEvent.VK_DELETE)){

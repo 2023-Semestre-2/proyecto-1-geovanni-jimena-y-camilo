@@ -103,7 +103,10 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Retorna la ventana del modulo de productos
+ * @param evt 
+ */
     private void btnBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBicicletasActionPerformed
 
         ProductosVentana v1 = new ProductosVentana();
@@ -111,7 +114,10 @@ public class Menu extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_btnBicicletasActionPerformed
-
+/**
+ * Retornara la ventana del modulo de clientes
+ * @param evt 
+ */
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         try {
             ClientesVentana v2 = new ClientesVentana();
@@ -121,13 +127,19 @@ public class Menu extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnClienteActionPerformed
-
+/**
+ * Retornara la ventana del modulo de mantenimiento
+ * @param evt 
+ */
     private void btnServicioTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicioTallerActionPerformed
         MantenimientoVentana m1 = new MantenimientoVentana();
         m1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnServicioTallerActionPerformed
-
+/**
+ * Retornara la ventana de el modulo de facturacion
+ * @param evt 
+ */
     private void btnFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturacionActionPerformed
         try{
             FacturacionVentana f1= new FacturacionVentana();
@@ -141,22 +153,34 @@ public class Menu extends javax.swing.JFrame {
 
     /**
      * 
+     *  
+     * @return retorna el boton de bicicletas
      */
 
     public JButton getBtnBicicletas() {
         return btnBicicletas;
     }
 
+    /**
+     *
+     * @return retorna el boton de clientes
+     */
     public JButton getBtnCliente() {
         return btnCliente;
     }
 
+    /**
+     *
+     * @return retorna el boton de facturacion
+     */
     public JButton getBtnFacturacion() {
         return btnFacturacion;
     }
 
     /**
      * 
+     * @return retorna el boton de mantenimiento 
+     *
      */
     public JButton getBtnServicioTaller() {
         return btnServicioTaller;

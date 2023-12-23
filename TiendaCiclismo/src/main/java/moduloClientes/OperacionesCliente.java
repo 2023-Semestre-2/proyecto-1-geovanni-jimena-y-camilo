@@ -7,14 +7,29 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.StringReader;
 
+/**
+ *
+ * @author geova
+ */
 public class OperacionesCliente  {
     
+    /**
+     *Array de clientes
+     */
     public ArrayList<Cliente> listaClientes = new ArrayList<>();
 
+    /**
+     *
+     */
     public OperacionesCliente() {
         
     }
-     public void ClientesArchivo(String data){
+
+    /**
+     *Transforma la string de clientes en objetos y los añade a la lista
+     * @param data string 
+     */
+    public void ClientesArchivo(String data){
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
@@ -52,7 +67,19 @@ public class OperacionesCliente  {
                    }
 
     }
-     public void AgregarCliente(String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
+
+    /**
+     * Agrega el cliente al array y al archivo
+     * @param nombre nombre del cliente
+     * @param apellidos apellidos del cliente
+     * @param telefono telefono del cliente
+     * @param correo correo del cliente
+     * @param provincia provincia del cliente
+     * @param canton cantond del cliente
+     * @param distrito distrito del cliente
+     * @param fecha fecha de nacimineto del cliente
+     */
+    public void AgregarCliente(String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
              String fecha) {
         int codigo=listaClientes.size()+1;
         System.out.println(listaClientes.size());
@@ -81,7 +108,20 @@ public class OperacionesCliente  {
         
     }
      
-     public void modificarCliente(int codigo,String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
+    /**
+     *Modifica los datos del cliente
+     * @param codigo codigo del cliente
+     * @param nombre nombre del cliente
+     * @param apellidos apellidos del cliente
+     * @param telefono telefono del cliente
+     * @param correo correo del cliente
+     * @param provincia provincia del cliente
+     * @param canton cantond del cliente
+     * @param distrito distrito del cliente
+     * @param fecha fecha de nacimineto del cliente
+     * @param facturado estado del cliente
+     */
+    public void modificarCliente(int codigo,String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
              String fecha, boolean  facturado){
          
         for (Cliente objeto:listaClientes){
@@ -116,7 +156,11 @@ public class OperacionesCliente  {
         }      
      }
      
-     public void eliminarCliente(int codigo){
+    /**
+     * Elimina el cliente de la lista y del archivo
+     * @param codigo codigo del cliente a eliminar
+     */
+    public void eliminarCliente(int codigo){
         Cliente objetoEliminado=null;
         //Quitar del archivo
         for (Cliente objeto:listaClientes){
@@ -139,7 +183,13 @@ public class OperacionesCliente  {
         }
         
     }
-      public ArrayList<Cliente> buscarNombreCliente(String nombre){
+
+    /**
+     * busca por nombre al cliente y las coincidencias las añade a un array
+     * @param nombre nombre del cliente
+     * @return retorna el array
+     */
+    public ArrayList<Cliente> buscarNombreCliente(String nombre){
         ArrayList<Cliente> clientesBuscados = new ArrayList<>();
         for (Cliente cliente:listaClientes){
             String posibleNombre=cliente.getNombre();
@@ -152,6 +202,10 @@ public class OperacionesCliente  {
         
     }
       
+    /**
+     * Verifica si el cliente ha sido facturado
+     * @param nombre nombre del clinete
+     */
     public void Clientefacturado(String nombre){
         for(Cliente cliente:listaClientes){
             String nombreGuardado=cliente.getNombre();
@@ -163,6 +217,11 @@ public class OperacionesCliente  {
         }
     } 
       
+    /**
+     *Busca por codigo el cliente y lo añade a una array
+     * @param codigo codigo a buscar
+     * @return retorna el array de coincidencias
+     */
     public ArrayList<Cliente> buscarCodigoCliente(int codigo){
         ArrayList<Cliente> clientesBuscados = new ArrayList<>();
 
@@ -173,19 +232,35 @@ public class OperacionesCliente  {
         }
         return clientesBuscados;
     }
-     
+     /**
+      * Agrega un cliente a la lista de clientes
+      * @param clienteNuevo cliente a añadir
+      */
      public void agregarClienteLista (Cliente clienteNuevo){
          listaClientes.add(clienteNuevo);
      }
+     /**
+      * Retorna un cliente de la lista segun el indice ingresado
+      * @param posicion indice del cliente que se quiere obtener
+      * @return Retorna el cliente
+      */
      public Cliente obtenerClienteLista (int posicion){
          return listaClientes.get(posicion);
      }
      
-     public int tamañoLista (){
+    /**
+     *
+     * @return retorna el tamaño de la lista de clientes
+     */
+    public int tamañoLista (){
          return listaClientes.size();
      }
   
-     public ArrayList<Cliente> getClientes(){
+    /**
+     *
+     * @return retorna la lista de clientes actuales
+     */
+    public ArrayList<Cliente> getClientes(){
          return listaClientes;
      }
     

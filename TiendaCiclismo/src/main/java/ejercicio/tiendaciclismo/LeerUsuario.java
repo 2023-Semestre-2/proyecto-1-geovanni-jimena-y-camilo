@@ -21,7 +21,10 @@ public class LeerUsuario {
     
     private ArrayList<String> arrayUsers;
 
-       public LeerUsuario() {
+    /**
+     *
+     */
+    public LeerUsuario() {
         arrayUsers = new ArrayList<>();
     }
 

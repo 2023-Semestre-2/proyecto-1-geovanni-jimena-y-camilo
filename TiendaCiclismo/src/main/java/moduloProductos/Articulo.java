@@ -55,70 +55,136 @@ public class Articulo {
 
 
     // Métodos de configuración (setters)
+
+    /**
+     *
+     * @param codigo
+     */
     
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
+    /**
+     *
+     * @param codigoTipoProducto
+     */
     public void setCodigoTipoProducto(int codigoTipoProducto) {
         this.codigoTipoProducto = codigoTipoProducto;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @param tipo
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     *
+     * @param tamano
+     */
     public void setTamano(int tamano) {
         this.tamano = tamano;
     }
 
+    /**
+     *
+     * @param marca
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
+    /**
+     *
+     * @param precio
+     */
     public void setPrecio(int precio) {
         this.precio = precio;
     }
 
+    /**
+     *
+     * @param cantidad
+     */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
     
     
     // Métodos de obtención (getters)
+
+    /**
+     *
+     * @return
+     */
     
     public int getCodigo() {
         return codigo;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCodigoTipoProducto() {
         return codigoTipoProducto;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTamano() {
         return tamano;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMarca() {
         return marca;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPrecio() {
         return precio;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCantidad() {
         return cantidad;
     }

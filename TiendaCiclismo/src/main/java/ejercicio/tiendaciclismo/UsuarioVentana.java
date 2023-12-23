@@ -107,7 +107,10 @@ public class UsuarioVentana extends javax.swing.JFrame {
     private void txfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsuarioActionPerformed
 
     }//GEN-LAST:event_txfUsuarioActionPerformed
-
+/**
+ * Verifica el usuario y la contraseña 
+ * @param evt 
+ */
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         String usuario = txfUsuario.getText();
         String password = new String(pwfPassword.getPassword());
@@ -130,7 +133,9 @@ public class UsuarioVentana extends javax.swing.JFrame {
     private void pwfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwfPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pwfPasswordActionPerformed
-
+/**
+ * Limpia las cajas de texto
+ */
     private void limpiarCampos() {
         txfUsuario.setText("");
         pwfPassword.setText("");

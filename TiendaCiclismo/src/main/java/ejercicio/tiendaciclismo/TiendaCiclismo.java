@@ -11,7 +11,10 @@ package ejercicio.tiendaciclismo;
  */
 public class TiendaCiclismo {
 
-    
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         UsuarioVentana v1 = new UsuarioVentana();
         v1.setVisible(true);  
