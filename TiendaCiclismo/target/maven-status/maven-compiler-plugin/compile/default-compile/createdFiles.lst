@@ -62,6 +62,7 @@ moduloProductos\EditarArticulo$14.class
 ServicioMantenimiento\ModificarMantenimientoVentana$1.class
 moduloClientes\ClientesVentana.class
 ejercicio\tiendaciclismo\UsuarioVentana$1.class
+moduloFacturacion\FacturacionVentana$8.class
 moduloFacturacion\FacturacionVentana$1.class
 moduloFacturacion\EditarFactura$8.class
 moduloClientes\AgregarClienteVentana$3.class
@@ -117,6 +118,7 @@ moduloClientes\ClientesVentana$6.class
 moduloProductos\ProductosVentana.class
 ServicioMantenimiento\MantenimientoVentana$1.class
 moduloClientes\ModificarClienteVentana$9.class
+ejercicio\tiendaciclismo\UsuarioVentana$4.class
 moduloClientes\AgregarClienteVentana.class
 moduloFacturacion\EditarFactura$4.class
 moduloProductos\EditarArticulo$16.class
