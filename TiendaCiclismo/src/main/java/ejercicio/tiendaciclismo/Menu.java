@@ -5,7 +5,14 @@
 package ejercicio.tiendaciclismo;
 
 import ServicioMantenimiento.MantenimientoVentana;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import moduloClientes.ClientesVentana;
 import moduloFacturacion.FacturacionVentana;
 import moduloProductos.ProductosVentana;
@@ -24,8 +31,6 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
-        
-        
     }
 
     /**
@@ -38,91 +43,63 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         lblBienvenido = new javax.swing.JLabel();
-        lblDeseaHacer = new javax.swing.JLabel();
         btnBicicletas = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         btnServicioTaller = new javax.swing.JButton();
         btnFacturacion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        pnlPanelFondo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBienvenido.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        lblBienvenido.setText("Bienvenido usuario");
+        lblBienvenido.setText("Bienvenido a la tienda de ciclismo");
+        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
-        lblDeseaHacer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblDeseaHacer.setText("¿Qué desea hacer?");
-
-        btnBicicletas.setText("Registro de Bicicletas y Accesorios");
+        btnBicicletas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBicicletas.setText("Registro de productos");
+        btnBicicletas.setFocusCycleRoot(true);
+        btnBicicletas.setFocusTraversalPolicyProvider(true);
         btnBicicletas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBicicletasActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBicicletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 253, 38));
 
+        btnCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCliente.setText("Registro de Clientes");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 253, 38));
 
+        btnServicioTaller.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnServicioTaller.setText("Servicio de Taller");
         btnServicioTaller.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnServicioTallerActionPerformed(evt);
             }
         });
+        getContentPane().add(btnServicioTaller, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 253, 38));
 
+        btnFacturacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFacturacion.setText("Facturación de Productos");
         btnFacturacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFacturacionActionPerformed(evt);
             }
         });
+        getContentPane().add(btnFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 253, 38));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(lblBienvenido))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(lblDeseaHacer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(btnBicicletas, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(btnServicioTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(btnFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lblBienvenido)
-                .addGap(26, 26, 26)
-                .addComponent(lblDeseaHacer)
-                .addGap(29, 29, 29)
-                .addComponent(btnBicicletas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnServicioTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        jLabel1.setText("");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("imagenes/menu.jpg")));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -40, -1, -1));
+        getContentPane().add(pnlPanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,11 +113,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBicicletasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        try{
-        ClientesVentana v2 = new ClientesVentana();
-        v2.setVisible(true);
-        dispose();
-        }catch (Exception e){
+        try {
+            ClientesVentana v2 = new ClientesVentana();
+            v2.setVisible(true);
+            dispose();
+        } catch (IOException ex) {
             
         }
     }//GEN-LAST:event_btnClienteActionPerformed
@@ -152,9 +129,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServicioTallerActionPerformed
 
     private void btnFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturacionActionPerformed
-        FacturacionVentana f1= new FacturacionVentana();
-        f1.setVisible(true);
-        dispose();
+        try{
+            FacturacionVentana f1= new FacturacionVentana();
+            f1.setVisible(true);
+            dispose();
+            }
+        catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Error, no hay clientes agregados", "Error", JOptionPane.ERROR_MESSAGE);   
+        }
     }//GEN-LAST:event_btnFacturacionActionPerformed
 
     /**
@@ -188,7 +170,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnFacturacion;
     private javax.swing.JButton btnServicioTaller;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBienvenido;
-    private javax.swing.JLabel lblDeseaHacer;
+    private javax.swing.JPanel pnlPanelFondo;
     // End of variables declaration//GEN-END:variables
 }

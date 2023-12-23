@@ -21,6 +21,7 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
     
     public ModificarClienteVentana() {
         initComponents();
+        setLocationRelativeTo(null);
     }
        private static boolean verificarNumero(String texto) {
         // Verificar si el texto comienza con 2, 4, 6 u 8
@@ -67,6 +68,8 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
         botonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
 
         textCorreo.setForeground(new java.awt.Color(153, 153, 153));
         textCorreo.setText("un@ejemplo.com");
@@ -955,7 +958,7 @@ public class ModificarClienteVentana extends javax.swing.JFrame {
                                 operacion.ClientesArchivo(Archivos.leer("Clientes.csv"));
                                 System.out.println(operacion.getClientes());
                                 int codigo=operacion.getClientes().get(filaSeleccionada).getCodigo();
-                                operacion.modificarCliente(codigo,nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento);
+                                operacion.modificarCliente(codigo,nombreCliente, apellidosCliente, telefono, correo, provincia, canton, distrito, fechaNacimiento,operacion.getClientes().get(filaSeleccionada).isFacturado());
                                 
                                 ClientesVentana ventana = new ClientesVentana();            
                                 JTable tabla= ventana.obtenerTabla();

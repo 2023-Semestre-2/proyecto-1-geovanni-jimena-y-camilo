@@ -26,6 +26,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     public ClientesVentana() throws IOException {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
+        setLocationRelativeTo(null);
         model.addColumn("Codigo");
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
@@ -98,6 +99,7 @@ public class ClientesVentana extends javax.swing.JFrame {
         comboxFiltro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -115,10 +117,14 @@ public class ClientesVentana extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaClientes.setAutoCreateRowSorter(true);
         tablaClientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane2.setViewportView(tablaClientes);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 750, 340));
 
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,27 +132,34 @@ public class ClientesVentana extends javax.swing.JFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, -1, 22));
 
+        botonAgregar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         botonAgregar.setText("Agregar Cliente");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 205, 33));
 
+        botonModificar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         botonModificar.setText("Modificar Cliente");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 330, 205, 34));
 
+        botonEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         botonEliminar.setText("Eliminar Cliente");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, 205, 34));
 
         textoFiltro.setToolTipText("");
         textoFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -164,6 +177,7 @@ public class ClientesVentana extends javax.swing.JFrame {
                 textoFiltroKeyTyped(evt);
             }
         });
+        getContentPane().add(textoFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 466, -1));
 
         comboxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtro", "Codigo", "Nombre" }));
         comboxFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -171,88 +185,45 @@ public class ClientesVentana extends javax.swing.JFrame {
                 comboxFiltroActionPerformed(evt);
             }
         });
+        getContentPane().add(comboxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 106, 23));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CLIENTES");
+        jLabel1.setText("Registro de clientes");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 759, 33));
 
-        botonVolver.setText("Volver");
+        botonVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        botonVolver.setText("Regresar");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(923, 30, 90, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("imagenes/comun.jpg")));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+            
             try{
                DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();                
                int filaSeleccionada=tablaClientes.getSelectedRow();
-               if (filaSeleccionada!=-1){
-                   if (confirmacion()){                   
+               if (operacion.getClientes().get(filaSeleccionada).isFacturado()){
+                    if (filaSeleccionada!=-1){
+                    if (confirmacion()){                   
                        operacion.eliminarCliente(operacion.getClientes().get(filaSeleccionada).getCodigo());       
                        modeloTabla.removeRow(filaSeleccionada);
                        JOptionPane.showMessageDialog(null, "Se ha eliminado el cliente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);   
 
-               }}else{                             
+                    }}else{                             
                    JOptionPane.showMessageDialog(jPanel1, "Cliente no seleccionado");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(jPanel1, "El cliente se encuentra con artículos facturados, dado esto no puede ser eliminado");
                }
             }catch (Exception e){
                 JOptionPane.showMessageDialog(jPanel1, "Debe seleccionar una fila.");
@@ -419,6 +390,7 @@ public class ClientesVentana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboxFiltro;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

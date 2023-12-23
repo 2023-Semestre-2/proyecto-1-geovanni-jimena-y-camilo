@@ -13,10 +13,11 @@ public class Cliente implements Serializable {
     private String canton;
     private String distrito;
     private String fechaNacimiento;
+    private boolean facturado;
     
 
-    public Cliente(int codigo,String nombre, String apellidos, String telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento) {
-      
+    public Cliente(int codigo,String nombre, String apellidos, String telefono, String correo, String provincia, String canton, String distrito, String fechaNacimiento, boolean facturado) {
+        this.facturado=facturado;
         this.codigo =codigo;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -105,6 +106,14 @@ public class Cliente implements Serializable {
 
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public boolean isFacturado() {
+        return facturado;
+    }
+
+    public void setFacturado(boolean facturado) {
+        this.facturado = facturado;
     }
     
     

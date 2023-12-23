@@ -13,7 +13,7 @@ public class TiendaCiclismo {
 
     
     public static void main(String[] args) {
-        Menu v1 = new Menu();
+        UsuarioVentana v1 = new UsuarioVentana();
         v1.setVisible(true);  
       
     }

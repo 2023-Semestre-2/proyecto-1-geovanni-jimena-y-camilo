@@ -41,73 +41,64 @@ public class UsuarioVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblSaludo = new javax.swing.JLabel();
-        txfUsuario = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        btnNext = new javax.swing.JButton();
+        pnlPanelFondo = new javax.swing.JPanel();
         pwfPassword = new javax.swing.JPasswordField();
+        txfUsuario = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblSaludo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSaludo.setText("Bienvenido a la tienda de ciclismo");
+        pnlPanelFondo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pwfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwfPasswordActionPerformed(evt);
+            }
+        });
+        pnlPanelFondo.add(pwfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 290, 40));
 
         txfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfUsuarioActionPerformed(evt);
             }
         });
+        pnlPanelFondo.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 290, 40));
 
-        lblUsuario.setText("Usuario");
-
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPassword.setText("Contraseña");
+        pnlPanelFondo.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 111, 25));
 
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsuario.setText("Usuario");
+        pnlPanelFondo.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 111, 25));
+
+        btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setText("Continuar");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
+        pnlPanelFondo.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("imagenes/inicio.jpg")));
+        pnlPanelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1270, -1));
+        pnlPanelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(lblSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                            .addComponent(pwfPassword))))
-                .addContainerGap(160, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnNext)
-                .addGap(65, 65, 65))
+            .addComponent(pnlPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 1246, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(btnNext)
-                .addGap(41, 41, 41))
+            .addComponent(pnlPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -135,6 +126,10 @@ public class UsuarioVentana extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void pwfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwfPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwfPasswordActionPerformed
 
     private void limpiarCampos() {
         txfUsuario.setText("");
@@ -178,9 +173,11 @@ public class UsuarioVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNext;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblSaludo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPanel pnlPanelFondo;
     private javax.swing.JPasswordField pwfPassword;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables

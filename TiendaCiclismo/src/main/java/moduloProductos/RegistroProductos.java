@@ -39,6 +39,7 @@ public class RegistroProductos{
 
         try {
             String linea;
+            if(data.length() > 2){
             while ((linea = bufferedReader.readLine()) != null) {
                 // Dividir cada línea en partes utilizando " " como delimitador.
                 String[] partes = linea.split(","); 
@@ -46,6 +47,7 @@ public class RegistroProductos{
                 // Crear un objeto ObjetoDatos y agregarlo a la lista.
                 TipoProducto objeto = new TipoProducto(codigo, partes[1].trim());
                 tiposProductos.add(objeto);
+                }
             }
         } catch (IOException e) {
             System.err.println("Error al leer el StringBuilder: " + e.getMessage());
@@ -203,7 +205,7 @@ public class RegistroProductos{
         if (!articulosProducto.isEmpty()) {
             for (Articulo objeto:articulosProducto){
                 String lineaEliminada=objeto.toString();
-                reg.eliminarEscritura(lineaEliminada, "Articulos");
+                reg.eliminarEscritura(lineaEliminada, "Articulos.csv");
                 articulos.remove(objeto);
             }
         }
@@ -213,7 +215,7 @@ public class RegistroProductos{
             tiposProductos.remove(objetoEliminado);
 
             String lineaEliminada = objetoEliminado.toString();
-            reg.eliminarEscritura(lineaEliminada, "tiposProductos");
+            reg.eliminarEscritura(lineaEliminada, "tiposProductos.csv");
         } else {
             System.out.println("No se encontró un TipoProducto con el código proporcionado.");
         }
@@ -242,7 +244,7 @@ public class RegistroProductos{
             articulos.remove(objetoEliminado);
 
             String lineaEliminada = objetoEliminado.toString();
-            reg.eliminarEscritura(lineaEliminada, "Articulos");
+            reg.eliminarEscritura(lineaEliminada, "Articulos.csv");
         } else {
             System.out.println("No se encontró un articulo con el código proporcionado.");
         }
@@ -267,7 +269,7 @@ public class RegistroProductos{
                 tiposProductos.add(indice, objeto);
                 
                 Archivos registro = new Archivos();
-                registro.modificarEscritura(objeto.toString(), lineaReemplazada, "tiposProductos");
+                registro.modificarEscritura(objeto.toString(), lineaReemplazada, "tiposProductos.csv");
                 break;
             }
         }      
@@ -306,7 +308,7 @@ public class RegistroProductos{
                 System.out.println(objeto);
                 
                 articulos.add(indice, objeto);
-                reg.modificarEscritura(objeto.toString(), lineaReemplazada, "Articulos");
+                reg.modificarEscritura(objeto.toString(), lineaReemplazada, "Articulos.csv");
                 break;
                 
             }

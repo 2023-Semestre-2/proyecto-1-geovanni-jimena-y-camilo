@@ -35,9 +35,10 @@ public class OperacionesCliente  {
                 String canton= partes[6].trim();
                 String distrito= partes[7].trim();
                 String fecha= partes[8].trim();
+                boolean facturado= Boolean.parseBoolean(partes[9].trim());
 
                 // Crear un objeto ObjetoDatos y agregarlo a la lista.
-                Cliente objeto = new Cliente(codigo,nombre,apellidos,telefono,correo,provincia,canton,distrito,fecha);
+                Cliente objeto = new Cliente(codigo,nombre,apellidos,telefono,correo,provincia,canton,distrito,fecha,facturado);
                 listaClientes.add(objeto);
             }}
             }} catch (IOException e) {
@@ -73,7 +74,7 @@ public class OperacionesCliente  {
         
         
         // Crear el objeto Cliente
-        Cliente objeto = new Cliente(codigo,nombre.trim(),apellidos.trim(),telefono.trim(),correo.trim(),provincia.trim(),canton.trim(),distrito.trim(),fecha.trim());
+        Cliente objeto = new Cliente(codigo,nombre.trim(),apellidos.trim(),telefono.trim(),correo.trim(),provincia.trim(),canton.trim(),distrito.trim(),fecha.trim(),true);
         listaClientes.add(objeto);
         Archivos reg= new Archivos();
         reg.escribirEnArchivo(objeto, "Clientes.csv");
@@ -81,14 +82,16 @@ public class OperacionesCliente  {
     }
      
      public void modificarCliente(int codigo,String nombre, String apellidos,String telefono, String correo,String provincia, String canton, String distrito,
-             String fecha){
+             String fecha, boolean  facturado){
          
         for (Cliente objeto:listaClientes){
             int codigoExiste=objeto.getCodigo();
             if (codigoExiste==codigo){
                 //Modificarlo en la lista
                 String lineaReemplazada=objeto.getCodigo()+","+objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
-                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
+                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento() + "," +String.valueOf(objeto.isFacturado()) + ",";
+                System.out.println("Prueba linea reemplazar");
+                System.out.println(lineaReemplazada);
                 int indice=listaClientes.indexOf(objeto);
                 listaClientes.remove(objeto);
                 objeto.setNombre(nombre);
@@ -98,10 +101,13 @@ public class OperacionesCliente  {
                 objeto.setProvincia(provincia);
                 objeto.setCanton(canton);
                 objeto.setDistrito(distrito);
+                objeto.setFacturado(facturado);
                 
                 listaClientes.add(indice, objeto);
                 String lineaAñadirArchivo= objeto.getCodigo()+","+objeto.getNombre()+","+objeto.getApellidos()+","+objeto.getTelefono()+","+objeto.getCorreo()+","+
-                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento();
+                        objeto.getProvincia()+","+objeto.getCanton()+","+objeto.getDistrito()+","+objeto.getFechaNacimiento()+","+String.valueOf(objeto.isFacturado()) + ",";
+                System.out.println("Prueba linea añadir");
+                System.out.println(lineaAñadirArchivo);
                 
                 Archivos registro = new Archivos();
                 registro.modificarEscritura(lineaAñadirArchivo, lineaReemplazada, "Clientes.csv");
@@ -125,7 +131,7 @@ public class OperacionesCliente  {
             listaClientes.remove(objetoEliminado);
 
             String lineaEliminada = objetoEliminado.getCodigo()+","+objetoEliminado.getNombre()+","+objetoEliminado.getApellidos()+","+objetoEliminado.getTelefono()+","+objetoEliminado.getCorreo()+","+
-                        objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento() + ',';
+                        objetoEliminado.getProvincia()+","+objetoEliminado.getCanton()+","+objetoEliminado.getDistrito()+","+objetoEliminado.getFechaNacimiento() + ','+objetoEliminado.isFacturado()+",";
             Archivos registro = new Archivos();
             registro.eliminarEscritura(lineaEliminada, "Clientes.csv");
         } else {
@@ -145,7 +151,19 @@ public class OperacionesCliente  {
         return clientesBuscados;
         
     }
-      public ArrayList<Cliente> buscarCodigoCliente(int codigo){
+      
+    public void Clientefacturado(String nombre){
+        for(Cliente cliente:listaClientes){
+            String nombreGuardado=cliente.getNombre();
+            System.out.println("Prueba cliente facturado");
+            System.out.println(nombreGuardado);
+            if (nombreGuardado.equals(nombre)){
+                modificarCliente(cliente.getCodigo(),cliente.getNombre(),cliente.getApellidos(),cliente.getTelefono(),cliente.getCorreo(),cliente.getProvincia(),cliente.getCanton(),cliente.getDistrito(),cliente.getFechaNacimiento(),false);
+            }
+        }
+    } 
+      
+    public ArrayList<Cliente> buscarCodigoCliente(int codigo){
         ArrayList<Cliente> clientesBuscados = new ArrayList<>();
 
         for(Cliente cliente:listaClientes){

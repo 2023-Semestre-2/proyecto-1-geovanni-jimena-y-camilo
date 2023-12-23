@@ -187,7 +187,7 @@ public class Archivos {
             FileWriter escribir = new FileWriter(nombreArchivo,true);
             escribir.write(String.valueOf(cliente.getCodigo())+","+cliente.getNombre()+","+cliente.getApellidos()+","+cliente.getTelefono()+","+
                     cliente.getCorreo()+","+cliente.getProvincia()+","+cliente.getCanton()+","+cliente.getDistrito()+","+
-                    cliente.getFechaNacimiento()+"\r\n");
+                    cliente.getFechaNacimiento()+","+String.valueOf(cliente.isFacturado())+ ","+"\r\n");
             escribir.close();
             
         }catch(IOException e){
