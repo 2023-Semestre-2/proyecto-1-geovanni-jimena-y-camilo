@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ejercicio.tiendaciclismo"},{"l":"ServicioMantenimiento"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ejercicio.tiendaciclismo"},{"l":"moduloClientes"},{"l":"moduloFacturacion"},{"l":"moduloProductos"},{"l":"ServicioMantenimiento"}];updateSearchResults();
